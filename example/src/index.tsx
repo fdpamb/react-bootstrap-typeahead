@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Page from './components/Page';
 
@@ -13,7 +13,10 @@ import RenderingSection from './sections/RenderingSection';
 
 import '../../styles/Typeahead.scss';
 
-render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <Page>
       <BasicSection title="Basic Example" />
@@ -24,6 +27,5 @@ render(
       <AsyncSection title="Asynchronous Searching" />
       <PublicMethodsSection title="Public Methods" />
     </Page>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
