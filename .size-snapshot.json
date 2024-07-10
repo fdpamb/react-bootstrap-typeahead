@@ -8,5 +8,15 @@
     "bundled": 290611,
     "minified": 96081,
     "gzipped": 32386
+  },
+  "react-bootstrap-typeahead.js": {
+    "bundled": 255629,
+    "minified": 86640,
+    "gzipped": 30218
+  },
+  "react-bootstrap-typeahead.min.js": {
+    "bundled": 216407,
+    "minified": 75015,
+    "gzipped": 26588
   }
 }

@@ -1,8 +1,0 @@
-css
-dist
-es
-example/package-example.js
-example/public/prism.min.js
-flow-typed
-lib
-**/node_modules
