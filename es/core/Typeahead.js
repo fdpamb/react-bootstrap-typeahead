@@ -423,8 +423,6 @@ class Typeahead extends React.Component {
   componentDidMount() {
     this.props.autoFocus && this.focus();
   }
-
-  /* eslint-disable-next-line camelcase */
   UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       labelKey,

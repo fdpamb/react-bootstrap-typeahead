@@ -16,23 +16,18 @@ const BaseMenuItem = /*#__PURE__*/React.forwardRef((_ref, ref) => {
     active,
     disabled
   };
-  return (
-    /*#__PURE__*/
-    /* eslint-disable jsx-a11y/anchor-is-valid */
-    React.createElement("li", _extends({}, props, {
-      className: cx(conditionalClassNames, className),
-      ref: ref
-    }), /*#__PURE__*/React.createElement("a", {
-      className: cx('dropdown-item', conditionalClassNames),
-      href: "#",
-      onClick: e => {
-        e.preventDefault();
-        !disabled && onClick && onClick(e);
-      },
-      onMouseDown: onMouseDown
-    }, children))
-    /* eslint-enable jsx-a11y/anchor-is-valid */
-  );
+  return /*#__PURE__*/React.createElement("li", _extends({}, props, {
+    className: cx(conditionalClassNames, className),
+    ref: ref
+  }), /*#__PURE__*/React.createElement("a", {
+    className: cx('dropdown-item', conditionalClassNames),
+    href: "#",
+    onClick: e => {
+      e.preventDefault();
+      !disabled && onClick && onClick(e);
+    },
+    onMouseDown: onMouseDown
+  }, children));
 });
 export { BaseMenuItem };
 export default menuItemContainer(BaseMenuItem);

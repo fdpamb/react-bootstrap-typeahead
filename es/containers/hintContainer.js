@@ -11,7 +11,6 @@ function interpolateStyle(styles, attr, subattr) {
   }
   // Title-case the sub-attribute.
   if (subattr) {
-    /* eslint-disable-next-line no-param-reassign */
     subattr = subattr.replace(subattr[0], subattr[0].toUpperCase());
   }
   return ['Top', 'Right', 'Bottom', 'Left'].map(dir => styles[attr + dir + subattr]).join(' ');
@@ -21,8 +20,6 @@ function copyStyles(inputNode, hintNode) {
     return;
   }
   const inputStyle = window.getComputedStyle(inputNode);
-
-  /* eslint-disable no-param-reassign */
   hintNode.style.borderStyle = interpolateStyle(inputStyle, 'border', 'style');
   hintNode.style.borderWidth = interpolateStyle(inputStyle, 'border', 'width');
   hintNode.style.fontSize = inputStyle.fontSize;
@@ -30,7 +27,6 @@ function copyStyles(inputNode, hintNode) {
   hintNode.style.lineHeight = inputStyle.lineHeight;
   hintNode.style.margin = interpolateStyle(inputStyle, 'margin');
   hintNode.style.padding = interpolateStyle(inputStyle, 'padding');
-  /* eslint-enable no-param-reassign */
 }
 function hintContainer(Input) {
   class HintedInput extends React.Component {

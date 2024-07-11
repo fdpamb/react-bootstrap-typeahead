@@ -87,10 +87,9 @@ class TypeaheadComponent extends React.Component {
     _defineProperty(this, "referenceElementRef", element => {
       // Use `findDOMNode` here because it's easier and less fragile than
       // forwarding refs to the input's container.
-      /* eslint-disable react/no-find-dom-node */
+
       // $FlowFixMe: `findDOMNode` could return Text or an Element.
       this._referenceElement = findDOMNode(element);
-      /* eslint-enable react/no-find-dom-node */
     });
     _defineProperty(this, "_renderInput", (inputProps, props) => {
       const {

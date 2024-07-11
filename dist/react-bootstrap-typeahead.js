@@ -1746,7 +1746,6 @@
    *
    * Taken from: http://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript/18391901#18391901
    */
-  /* eslint-disable max-len */
   const map = [{
     base: 'A',
     letters: '\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F'
@@ -2006,8 +2005,6 @@
     base: 'z',
     letters: '\u007A\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763'
   }];
-  /* eslint-enable max-len */
-
   const diacriticsMap = {};
   for (let ii = 0; ii < map.length; ii++) {
     const {
@@ -2021,7 +2018,7 @@
   // "what?" version ... http://jsperf.com/diacritics/12
   function stripDiacritics(str) {
     return str.replace(/[\u0300-\u036F]/g, '') // Remove combining diacritics
-    /* eslint-disable-next-line no-control-regex */.replace(/[^\u0000-\u007E]/g, a => diacriticsMap[a] || a);
+    .replace(/[^\u0000-\u007E]/g, a => diacriticsMap[a] || a);
   }
 
   /**
@@ -2343,7 +2340,6 @@
         ...inputProps
       } = _temp === void 0 ? {} : _temp;
       const props = {
-        /* eslint-disable sort-keys */
         // These props can be overridden by values in `inputProps`.
         autoComplete: 'off',
         placeholder,
@@ -2365,7 +2361,6 @@
         // Comboboxes are single-select by definition:
         // https://www.w3.org/TR/wai-aria-practices-1.1/#combobox
         role: 'combobox'
-        /* eslint-enable sort-keys */
       };
       if (!multiple) {
         return props;
@@ -2541,7 +2536,7 @@
   const TypeaheadContext = /*#__PURE__*/React.createContext({});
   const withContext = (Component, values) => {
     // Note: Use a class instead of function component to support refs.
-    /* eslint-disable-next-line react/prefer-stateless-function */
+
     return class extends React__default["default"].Component {
       render() {
         return /*#__PURE__*/React__default["default"].createElement(TypeaheadContext.Consumer, null, context => /*#__PURE__*/React__default["default"].createElement(Component, _extends({}, this.props, pick(context, values))));
@@ -3128,8 +3123,6 @@
     componentDidMount() {
       this.props.autoFocus && this.focus();
     }
-
-    /* eslint-disable-next-line camelcase */
     UNSAFE_componentWillReceiveProps(nextProps) {
       const {
         labelKey,
@@ -5948,7 +5941,6 @@
     return unwrapArray(children)(childrenProps);
   }
 
-  /* eslint-disable react/no-unused-prop-types */
   // `Element` is not defined during server-side rendering, so shim it here.
   /* istanbul ignore next */
   const SafeElement = typeof Element === 'undefined' ? () => {} : Element;
@@ -6307,7 +6299,6 @@
     }
     // Title-case the sub-attribute.
     if (subattr) {
-      /* eslint-disable-next-line no-param-reassign */
       subattr = subattr.replace(subattr[0], subattr[0].toUpperCase());
     }
     return ['Top', 'Right', 'Bottom', 'Left'].map(dir => styles[attr + dir + subattr]).join(' ');
@@ -6317,8 +6308,6 @@
       return;
     }
     const inputStyle = window.getComputedStyle(inputNode);
-
-    /* eslint-disable no-param-reassign */
     hintNode.style.borderStyle = interpolateStyle(inputStyle, 'border', 'style');
     hintNode.style.borderWidth = interpolateStyle(inputStyle, 'border', 'width');
     hintNode.style.fontSize = inputStyle.fontSize;
@@ -6326,7 +6315,6 @@
     hintNode.style.lineHeight = inputStyle.lineHeight;
     hintNode.style.margin = interpolateStyle(inputStyle, 'margin');
     hintNode.style.padding = interpolateStyle(inputStyle, 'padding');
-    /* eslint-enable no-param-reassign */
   }
   function hintContainer(Input) {
     class HintedInput extends React__default["default"].Component {
@@ -6402,7 +6390,7 @@
 
   function withClassNames(Component) {
     // Use a class instead of function component to support refs.
-    /* eslint-disable-next-line react/prefer-stateless-function */
+
     class WrappedComponent extends React__default["default"].Component {
       render() {
         const {
@@ -6694,23 +6682,18 @@
       active,
       disabled
     };
-    return (
-      /*#__PURE__*/
-      /* eslint-disable jsx-a11y/anchor-is-valid */
-      React__default["default"].createElement("li", _extends({}, props, {
-        className: cx(conditionalClassNames, className),
-        ref: ref
-      }), /*#__PURE__*/React__default["default"].createElement("a", {
-        className: cx('dropdown-item', conditionalClassNames),
-        href: "#",
-        onClick: e => {
-          e.preventDefault();
-          !disabled && onClick && onClick(e);
-        },
-        onMouseDown: onMouseDown
-      }, children))
-      /* eslint-enable jsx-a11y/anchor-is-valid */
-    );
+    return /*#__PURE__*/React__default["default"].createElement("li", _extends({}, props, {
+      className: cx(conditionalClassNames, className),
+      ref: ref
+    }), /*#__PURE__*/React__default["default"].createElement("a", {
+      className: cx('dropdown-item', conditionalClassNames),
+      href: "#",
+      onClick: e => {
+        e.preventDefault();
+        !disabled && onClick && onClick(e);
+      },
+      onMouseDown: onMouseDown
+    }, children));
   });
   var MenuItem = menuItemContainer(BaseMenuItem);
 
@@ -6952,10 +6935,9 @@
       _defineProperty(this, "referenceElementRef", element => {
         // Use `findDOMNode` here because it's easier and less fragile than
         // forwarding refs to the input's container.
-        /* eslint-disable react/no-find-dom-node */
+
         // $FlowFixMe: `findDOMNode` could return Text or an Element.
         this._referenceElement = require$$0.findDOMNode(element);
-        /* eslint-enable react/no-find-dom-node */
       });
       _defineProperty(this, "_renderInput", (inputProps, props) => {
         const {

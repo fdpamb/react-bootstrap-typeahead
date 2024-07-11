@@ -17,7 +17,6 @@ const getInputProps = _ref => {
       ...inputProps
     } = _temp === void 0 ? {} : _temp;
     const props = {
-      /* eslint-disable sort-keys */
       // These props can be overridden by values in `inputProps`.
       autoComplete: 'off',
       placeholder,
@@ -39,7 +38,6 @@ const getInputProps = _ref => {
       // Comboboxes are single-select by definition:
       // https://www.w3.org/TR/wai-aria-practices-1.1/#combobox
       role: 'combobox'
-      /* eslint-enable sort-keys */
     };
     if (!multiple) {
       return props;

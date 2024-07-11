@@ -5,7 +5,7 @@ import React from 'react';
 import { getDisplayName, isSizeLarge, isSizeSmall } from '../utils';
 function withClassNames(Component) {
   // Use a class instead of function component to support refs.
-  /* eslint-disable-next-line react/prefer-stateless-function */
+
   class WrappedComponent extends React.Component {
     render() {
       const {
