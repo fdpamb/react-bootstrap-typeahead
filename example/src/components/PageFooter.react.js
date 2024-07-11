@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { version } from '../../../package.json';
+import packageInfo from '../../../package.json';
 
 import Container from './Container.react';
 import GithubStarsButton from './GithubStarsButton.react';
@@ -36,7 +36,7 @@ const versionLink =
     href="https://www.npmjs.com/package/react-bootstrap-typeahead"
     rel="noreferrer noopener"
     target="_blank">
-    v{version}
+    v{packageInfo.version}
   </a>;
 
 const PageFooter = () => (

@@ -8,7 +8,7 @@ import { Nav, NavItem, Navbar } from 'react-bootstrap';
 import GitHubLogo from './GitHubLogo.react';
 import VersionDropdown from './VersionDropdown.react';
 
-import { version as PACKAGE_VERSION } from '../../../package.json';
+import packageInfo from '../../../package.json';
 import { BS3, BS4 } from '../util/bsVersions';
 
 const GITHUB_URL = 'https://github.com/ericgio/react-bootstrap-typeahead';
@@ -45,7 +45,7 @@ class PageHeader extends React.Component {
             <NavItem
               href={`${GITHUB_URL}/releases`}
               target="_blank">
-              v{PACKAGE_VERSION}
+              v{packageInfo.version}
             </NavItem>
             <VersionDropdown
               isOpen={isOpen}
