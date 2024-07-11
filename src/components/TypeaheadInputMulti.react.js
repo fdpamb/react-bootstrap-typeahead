@@ -1,7 +1,7 @@
 // @flow
 
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
 
 import cx from 'classnames';
 import React, { type Node } from 'react';

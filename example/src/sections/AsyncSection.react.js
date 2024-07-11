@@ -2,9 +2,9 @@ import React from 'react';
 
 import AsyncExample from '../examples/AsyncExample.react';
 
-/* eslint-disable import/no-unresolved */
+
 import AsyncExampleCode from '!raw-loader!../examples/AsyncExample.react';
-/* eslint-enable import/no-unresolved */
+
 
 import ExampleSection from '../components/ExampleSection.react';
 import Markdown from '../components/Markdown.react';

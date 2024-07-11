@@ -334,7 +334,7 @@ describe('<AsyncTypeahead>', () => {
   });
 
   test('resets instance properties on unmount', () => {
-    /* eslint-disable no-underscore-dangle */
+    
     const instance = wrapper.find('asyncContainer(Typeahead)').instance();
     const cancel = jest.fn();
 
@@ -348,6 +348,6 @@ describe('<AsyncTypeahead>', () => {
     expect(instance._cache).toEqual({});
     expect(instance._query).toBe('');
     expect(cancel).toHaveBeenCalledTimes(1);
-    /* eslint-enable no-underscore-dangle */
+    
   });
 });

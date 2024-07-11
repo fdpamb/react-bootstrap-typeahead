@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+
 
 import { sortBy } from 'lodash';
 import React, { Fragment } from 'react';

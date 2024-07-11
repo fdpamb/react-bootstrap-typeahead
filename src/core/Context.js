@@ -29,7 +29,7 @@ export const withContext = (
   values: string[]
 ) => {
   // Note: Use a class instead of function component to support refs.
-  /* eslint-disable-next-line react/prefer-stateless-function */
+  
   return class extends React.Component<*> {
     render() {
       return (

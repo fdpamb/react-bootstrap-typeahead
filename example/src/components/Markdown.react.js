@@ -1,5 +1,5 @@
 /* global Prism */
-/* eslint-disable react/no-danger,import/no-extraneous-dependencies */
+
 
 import cx from 'classnames';
 import marked from 'marked';

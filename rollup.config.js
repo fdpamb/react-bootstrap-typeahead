@@ -1,4 +1,4 @@
-/* eslint-disable sort-keys */
+
 
 const babel = require('@rollup/plugin-babel').default;
 const commonjs = require('@rollup/plugin-commonjs');

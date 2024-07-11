@@ -1,9 +1,9 @@
 import React from 'react';
 
 import BasicExample from '../examples/BasicExample.react';
-/* eslint-disable import/no-unresolved */
+
 import BasicExampleCode from '!raw-loader!../examples/BasicExample.react';
-/* eslint-enable import/no-unresolved */
+
 
 import ExampleSection from '../components/ExampleSection.react';
 import Markdown from '../components/Markdown.react';

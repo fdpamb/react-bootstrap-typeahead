@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+
 
 import cx from 'classnames';
 import PropTypes from 'prop-types';

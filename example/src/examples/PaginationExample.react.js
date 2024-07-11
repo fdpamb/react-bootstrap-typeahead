@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+
 
 import { range } from 'lodash';
 import React, { Fragment, useState } from 'react';
@@ -7,7 +7,7 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 
 import Control from '../components/Control.react';
 
-/* eslint-disable no-console */
+
 /* example-start */
 const options = range(0, 1000).map((o) => `Item ${o}`);
 
@@ -35,6 +35,6 @@ const PaginationExample = () => {
   );
 };
 /* example-end */
-/* eslint-enable no-console */
+
 
 export default PaginationExample;

@@ -3,10 +3,10 @@ import React from 'react';
 import LabelKeyExample from '../examples/LabelKeyExample.react';
 import RenderingExample from '../examples/RenderingExample.react';
 
-/* eslint-disable import/no-unresolved */
+
 import LabelKeyExampleCode from '!raw-loader!../examples/LabelKeyExample.react';
 import RenderingExampleCode from '!raw-loader!../examples/RenderingExample.react';
-/* eslint-enable import/no-unresolved */
+
 
 import ExampleSection from '../components/ExampleSection.react';
 import Markdown from '../components/Markdown.react';

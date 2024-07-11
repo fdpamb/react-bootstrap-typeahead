@@ -2,11 +2,11 @@ import defaultFilterBy from '../../utils/defaultFilterBy';
 import states from '../data';
 
 const FILTERED_RESULTS = [
-  /* eslint-disable max-len, sort-keys */
+  
   { name: 'California', population: 37254503, capital: 'Sacramento', region: 'West' },
   { name: 'North Carolina', population: 9535692, capital: 'Raleigh', region: 'South' },
   { name: 'South Carolina', population: 4625401, capital: 'Columbia', region: 'South' },
-  /* eslint-enable max-len, sort-keys */
+  
 ];
 
 describe('defaultFilterBy', () => {

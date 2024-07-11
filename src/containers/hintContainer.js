@@ -16,7 +16,7 @@ function interpolateStyle(
 ): string {
   // Title-case the sub-attribute.
   if (subattr) {
-    /* eslint-disable-next-line no-param-reassign */
+    
     subattr = subattr.replace(subattr[0], subattr[0].toUpperCase());
   }
 
@@ -32,7 +32,7 @@ function copyStyles(inputNode: ?HTMLInputElement, hintNode: ?HTMLInputElement) {
 
   const inputStyle = window.getComputedStyle(inputNode);
 
-  /* eslint-disable no-param-reassign */
+  
   hintNode.style.borderStyle = interpolateStyle(inputStyle, 'border', 'style');
   hintNode.style.borderWidth = interpolateStyle(inputStyle, 'border', 'width');
   hintNode.style.fontSize = inputStyle.fontSize;
@@ -40,7 +40,7 @@ function copyStyles(inputNode: ?HTMLInputElement, hintNode: ?HTMLInputElement) {
   hintNode.style.lineHeight = inputStyle.lineHeight;
   hintNode.style.margin = interpolateStyle(inputStyle, 'margin');
   hintNode.style.padding = interpolateStyle(inputStyle, 'padding');
-  /* eslint-enable no-param-reassign */
+  
 }
 
 type Props = {

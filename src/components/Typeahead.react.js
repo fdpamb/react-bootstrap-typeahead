@@ -199,10 +199,10 @@ class TypeaheadComponent extends React.Component<Props> {
   referenceElementRef = (element: ?ReferenceElement) => {
     // Use `findDOMNode` here because it's easier and less fragile than
     // forwarding refs to the input's container.
-    /* eslint-disable react/no-find-dom-node */
+    
     // $FlowFixMe: `findDOMNode` could return Text or an Element.
     this._referenceElement = findDOMNode(element);
-    /* eslint-enable react/no-find-dom-node */
+
   }
 
   _renderInput = (inputProps: InputProps, props: TypeaheadManagerProps) => {

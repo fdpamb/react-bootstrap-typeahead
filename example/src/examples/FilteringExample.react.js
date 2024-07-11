@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+
 
 import React, { Fragment, useState } from 'react';
 import { FormGroup } from 'react-bootstrap';

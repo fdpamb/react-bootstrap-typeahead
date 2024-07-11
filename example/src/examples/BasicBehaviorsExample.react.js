@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+
 
 import React, { Fragment } from 'react';
 import { FormGroup } from 'react-bootstrap';
@@ -32,7 +32,7 @@ class BasicBehaviorsExample extends React.Component {
     } = this.state;
 
     const checkboxes = [
-      /* eslint-disable max-len */
+      
       { checked: disabled, children: 'Disable the input', name: 'disabled' },
       { checked: dropup, children: 'Dropup menu', name: 'dropup' },
       { checked: flip, children: 'Flip the menu position when it reaches the viewport bounds', name: 'flip' },
@@ -40,7 +40,7 @@ class BasicBehaviorsExample extends React.Component {
       { checked: selectHintOnEnter, children: 'Select the hinted result by pressing enter', name: 'selectHintOnEnter' },
       { checked: highlightOnlyResult, children: 'Highlight the only result', name: 'highlightOnlyResult' },
       { checked: !!open, children: 'Force the menu to stay open', name: 'open' },
-      /* eslint-enable max-len */
+      
     ];
 
     return (

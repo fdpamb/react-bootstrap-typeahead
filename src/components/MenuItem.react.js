@@ -26,7 +26,7 @@ const BaseMenuItem = React.forwardRef<MenuItemProps, ?HTMLElement>((
   };
 
   return (
-    /* eslint-disable jsx-a11y/anchor-is-valid */
+    
     <li
       {...props}
       className={cx(conditionalClassNames, className)}
@@ -42,7 +42,7 @@ const BaseMenuItem = React.forwardRef<MenuItemProps, ?HTMLElement>((
         {children}
       </a>
     </li>
-    /* eslint-enable jsx-a11y/anchor-is-valid */
+    
   );
 });
 

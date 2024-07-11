@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+
 
 import React, { Fragment, useRef } from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';

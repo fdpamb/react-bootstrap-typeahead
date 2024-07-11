@@ -1,6 +1,6 @@
 // @flow
 
-/* eslint-disable no-use-before-define */
+
 
 import type { Node } from 'react';
 

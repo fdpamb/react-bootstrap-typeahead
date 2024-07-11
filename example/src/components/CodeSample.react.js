@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+
 
 import { PrismCode } from 'react-prism';
 import PropTypes from 'prop-types';

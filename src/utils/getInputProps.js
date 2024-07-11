@@ -17,7 +17,7 @@ const getInputProps = ({
   ...rest
 }: TypeaheadManagerProps) => ({ className, ...inputProps }: Object = {}) => {
   const props = {
-    /* eslint-disable sort-keys */
+    
     // These props can be overridden by values in `inputProps`.
     autoComplete: 'off',
     placeholder,
@@ -42,7 +42,7 @@ const getInputProps = ({
     // Comboboxes are single-select by definition:
     // https://www.w3.org/TR/wai-aria-practices-1.1/#combobox
     role: 'combobox',
-    /* eslint-enable sort-keys */
+    
   };
 
   if (!multiple) {
