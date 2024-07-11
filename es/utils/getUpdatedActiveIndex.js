@@ -1,13 +1,13 @@
 import { DOWN, UP } from '../constants';
 function skipDisabledOptions(currentIndex, keyCode, items) {
-  var newIndex = currentIndex;
+  let newIndex = currentIndex;
   while (items[newIndex] && items[newIndex].disabled) {
     newIndex += keyCode === UP ? -1 : 1;
   }
   return newIndex;
 }
 export default function getUpdatedActiveIndex(currentIndex, keyCode, items) {
-  var newIndex = currentIndex;
+  let newIndex = currentIndex;
 
   // Increment or decrement index based on user keystroke.
   newIndex += keyCode === UP ? -1 : 1;

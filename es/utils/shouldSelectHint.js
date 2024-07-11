@@ -1,11 +1,15 @@
 import isSelectable from './isSelectable';
 import { RETURN, RIGHT, TAB } from '../constants';
 export default function shouldSelectHint(_ref, _ref2) {
-  var currentTarget = _ref.currentTarget,
-    keyCode = _ref.keyCode;
-  var hintText = _ref2.hintText,
-    selectHintOnEnter = _ref2.selectHintOnEnter,
-    value = _ref2.value;
+  let {
+    currentTarget,
+    keyCode
+  } = _ref;
+  let {
+    hintText,
+    selectHintOnEnter,
+    value
+  } = _ref2;
   if (!hintText) {
     return false;
   }

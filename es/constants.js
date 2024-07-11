@@ -2,22 +2,22 @@
  * Common (non-printable) keycodes for `keydown` and `keyup` events. Note that
  * `keypress` handles things differently and may not return the same values.
  */
-export var BACKSPACE = 8;
-export var TAB = 9;
-export var RETURN = 13;
-export var ESC = 27;
-export var SPACE = 32;
-export var LEFT = 37;
-export var UP = 38;
-export var RIGHT = 39;
-export var DOWN = 40;
-export var DEFAULT_LABELKEY = 'label';
-export var ALIGN = {
+export const BACKSPACE = 8;
+export const TAB = 9;
+export const RETURN = 13;
+export const ESC = 27;
+export const SPACE = 32;
+export const LEFT = 37;
+export const UP = 38;
+export const RIGHT = 39;
+export const DOWN = 40;
+export const DEFAULT_LABELKEY = 'label';
+export const ALIGN = {
   JUSTIFY: 'justify',
   LEFT: 'left',
   RIGHT: 'right'
 };
-export var SIZE = {
+export const SIZE = {
   LARGE: 'large',
   LG: 'lg',
   SM: 'sm',

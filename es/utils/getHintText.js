@@ -1,14 +1,16 @@
 import getMatchBounds from './getMatchBounds';
 import getOptionLabel from './getOptionLabel';
 function getHintText(props) {
-  var activeIndex = props.activeIndex,
-    initialItem = props.initialItem,
-    isFocused = props.isFocused,
-    isMenuShown = props.isMenuShown,
-    labelKey = props.labelKey,
-    multiple = props.multiple,
-    selected = props.selected,
-    text = props.text;
+  const {
+    activeIndex,
+    initialItem,
+    isFocused,
+    isMenuShown,
+    labelKey,
+    multiple,
+    selected,
+    text
+  } = props;
 
   // Don't display a hint under the following conditions:
   if (
@@ -28,8 +30,8 @@ function getHintText(props) {
   !!selected.length && !multiple) {
     return '';
   }
-  var initialItemStr = getOptionLabel(initialItem, labelKey);
-  var bounds = getMatchBounds(initialItemStr.toLowerCase(), text.toLowerCase());
+  const initialItemStr = getOptionLabel(initialItem, labelKey);
+  const bounds = getMatchBounds(initialItemStr.toLowerCase(), text.toLowerCase());
   if (!(bounds && bounds.start === 0)) {
     return '';
   }

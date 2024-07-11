@@ -1,4 +1,3 @@
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 import _extends from "@babel/runtime/helpers/extends";
 import cx from 'classnames';
@@ -6,18 +5,14 @@ import PropTypes from 'prop-types';
 import React, { Children } from 'react';
 import { BaseMenuItem } from './MenuItem.react';
 import { checkPropType, isRequiredForA11y } from '../propTypes';
-var MenuDivider = function MenuDivider(props) {
-  return /*#__PURE__*/React.createElement("li", {
-    className: "divider dropdown-divider",
-    role: "separator"
-  });
-};
-var MenuHeader = function MenuHeader(props) {
-  return /*#__PURE__*/React.createElement("li", _extends({}, props, {
-    className: "dropdown-header"
-  }));
-};
-var propTypes = {
+const MenuDivider = props => /*#__PURE__*/React.createElement("li", {
+  className: "divider dropdown-divider",
+  role: "separator"
+});
+const MenuHeader = props => /*#__PURE__*/React.createElement("li", _extends({}, props, {
+  className: "dropdown-header"
+}));
+const propTypes = {
   'aria-label': PropTypes.string,
   /**
    * Message to display in the menu if there are no valid results.
@@ -32,7 +27,7 @@ var propTypes = {
    */
   maxHeight: PropTypes.string
 };
-var defaultProps = {
+const defaultProps = {
   'aria-label': 'menu-options',
   emptyLabel: 'No matches found.',
   maxHeight: '300px'
@@ -40,33 +35,30 @@ var defaultProps = {
 /**
  * Menu component that handles empty state when passed a set of results.
  */
-var Menu = /*#__PURE__*/function (_React$Component) {
-  function Menu() {
-    return _React$Component.apply(this, arguments) || this;
-  }
-  _inheritsLoose(Menu, _React$Component);
-  var _proto = Menu.prototype;
-  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-    var _this$props = this.props,
-      inputHeight = _this$props.inputHeight,
-      scheduleUpdate = _this$props.scheduleUpdate;
+class Menu extends React.Component {
+  componentDidUpdate(prevProps) {
+    const {
+      inputHeight,
+      scheduleUpdate
+    } = this.props;
 
     // Update the menu position if the height of the input changes.
     if (inputHeight !== prevProps.inputHeight) {
       scheduleUpdate();
     }
-  };
-  _proto.render = function render() {
-    var _this$props2 = this.props,
-      children = _this$props2.children,
-      className = _this$props2.className,
-      emptyLabel = _this$props2.emptyLabel,
-      id = _this$props2.id,
-      innerRef = _this$props2.innerRef,
-      maxHeight = _this$props2.maxHeight,
-      style = _this$props2.style,
-      text = _this$props2.text;
-    var contents = Children.count(children) === 0 ? /*#__PURE__*/React.createElement(BaseMenuItem, {
+  }
+  render() {
+    const {
+      children,
+      className,
+      emptyLabel,
+      id,
+      innerRef,
+      maxHeight,
+      style,
+      text
+    } = this.props;
+    const contents = Children.count(children) === 0 ? /*#__PURE__*/React.createElement(BaseMenuItem, {
       disabled: true,
       role: "option"
     }, emptyLabel) : children;
@@ -80,15 +72,15 @@ var Menu = /*#__PURE__*/function (_React$Component) {
       text,
       ref: innerRef,
       role: "listbox",
-      style: _extends({}, style, {
+      style: {
+        ...style,
         display: 'block',
-        maxHeight: maxHeight,
+        maxHeight,
         overflow: 'auto'
-      })
+      }
     }, contents);
-  };
-  return Menu;
-}(React.Component);
+  }
+}
 _defineProperty(Menu, "propTypes", propTypes);
 _defineProperty(Menu, "defaultProps", defaultProps);
 _defineProperty(Menu, "Divider", MenuDivider);

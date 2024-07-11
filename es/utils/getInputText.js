@@ -1,16 +1,18 @@
 import getOptionLabel from './getOptionLabel';
 import { head } from './nodash';
 function getInputText(props) {
-  var activeItem = props.activeItem,
-    labelKey = props.labelKey,
-    multiple = props.multiple,
-    selected = props.selected,
-    text = props.text;
+  const {
+    activeItem,
+    labelKey,
+    multiple,
+    selected,
+    text
+  } = props;
   if (activeItem) {
     // Display the input value if the pagination item is active.
     return getOptionLabel(activeItem, labelKey);
   }
-  var selectedItem = !multiple && !!selected.length && head(selected);
+  const selectedItem = !multiple && !!selected.length && head(selected);
   if (selectedItem) {
     return getOptionLabel(selectedItem, labelKey);
   }

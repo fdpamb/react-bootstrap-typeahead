@@ -46,23 +46,6 @@
       return n;
     }, _extends.apply(null, arguments);
   }
-  function _inheritsLoose(t, o) {
-    t.prototype = Object.create(o.prototype), t.prototype.constructor = t, _setPrototypeOf(t, o);
-  }
-  function _objectWithoutPropertiesLoose(r, e) {
-    if (null == r) return {};
-    var t = {};
-    for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
-      if (e.indexOf(n) >= 0) continue;
-      t[n] = r[n];
-    }
-    return t;
-  }
-  function _setPrototypeOf(t, e) {
-    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) {
-      return t.__proto__ = e, t;
-    }, _setPrototypeOf(t, e);
-  }
   function _toPrimitive(t, r) {
     if ("object" != typeof t || !t) return t;
     var e = t[Symbol.toPrimitive];
@@ -1635,20 +1618,20 @@
    * Common (non-printable) keycodes for `keydown` and `keyup` events. Note that
    * `keypress` handles things differently and may not return the same values.
    */
-  var BACKSPACE = 8;
-  var TAB = 9;
-  var RETURN = 13;
-  var ESC = 27;
-  var UP = 38;
-  var RIGHT = 39;
-  var DOWN = 40;
-  var DEFAULT_LABELKEY = 'label';
-  var ALIGN = {
+  const BACKSPACE = 8;
+  const TAB = 9;
+  const RETURN = 13;
+  const ESC = 27;
+  const UP = 38;
+  const RIGHT = 39;
+  const DOWN = 40;
+  const DEFAULT_LABELKEY = 'label';
+  const ALIGN = {
     JUSTIFY: 'justify',
     LEFT: 'left',
     RIGHT: 'right'
   };
-  var SIZE = {
+  const SIZE = {
     LARGE: 'large',
     LG: 'lg',
     SM: 'sm',
@@ -1659,7 +1642,7 @@
     return typeof labelKey === 'string' ? labelKey : DEFAULT_LABELKEY;
   }
 
-  var idCounter = 0;
+  let idCounter = 0;
   function head(arr) {
     return Array.isArray(arr) && arr.length ? arr[0] : undefined;
   }
@@ -1671,8 +1654,8 @@
   }
   function noop() {}
   function pick(obj, keys) {
-    var result = {};
-    keys.forEach(function (k) {
+    const result = {};
+    keys.forEach(k => {
       if (Object.prototype.hasOwnProperty.call(obj, k)) {
         result[k] = obj[k];
       }
@@ -1686,7 +1669,7 @@
 
   // Export for testing purposes.
   function valuesPolyfill(obj) {
-    return Object.keys(obj).reduce(function (accum, key) {
+    return Object.keys(obj).reduce((accum, key) => {
       if (Object.prototype.propertyIsEnumerable.call(obj, key)) {
         accum.push(obj[key]);
       }
@@ -1707,7 +1690,7 @@
     if (!isString(option) && (option.paginationOption || option.customOption)) {
       return option[getStringLabelKey(labelKey)];
     }
-    var optionLabel;
+    let optionLabel;
     if (isFunction(labelKey)) {
       optionLabel = labelKey(option);
     } else if (isString(option)) {
@@ -1721,9 +1704,11 @@
   }
 
   function addCustomOption(results, props) {
-    var allowNew = props.allowNew,
-      labelKey = props.labelKey,
-      text = props.text;
+    const {
+      allowNew,
+      labelKey,
+      text
+    } = props;
     if (!allowNew || !text.trim()) {
       return false;
     }
@@ -1736,9 +1721,7 @@
 
     // By default, don't add the custom option if there is an exact text match
     // with an existing option.
-    return !results.some(function (o) {
-      return getOptionLabel(o, labelKey) === text;
-    });
+    return !results.some(o => getOptionLabel(o, labelKey) === text);
   }
 
   function getOptionProperty(option, key) {
@@ -1764,271 +1747,273 @@
    * Taken from: http://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript/18391901#18391901
    */
   /* eslint-disable max-len */
-  var map = [{
+  const map = [{
     base: 'A',
-    letters: "A\u24B6\uFF21\xC0\xC1\xC2\u1EA6\u1EA4\u1EAA\u1EA8\xC3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\xC4\u01DE\u1EA2\xC5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F"
+    letters: '\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F'
   }, {
     base: 'AA',
-    letters: "\uA732"
+    letters: '\uA732'
   }, {
     base: 'AE',
-    letters: "\xC6\u01FC\u01E2"
+    letters: '\u00C6\u01FC\u01E2'
   }, {
     base: 'AO',
-    letters: "\uA734"
+    letters: '\uA734'
   }, {
     base: 'AU',
-    letters: "\uA736"
+    letters: '\uA736'
   }, {
     base: 'AV',
-    letters: "\uA738\uA73A"
+    letters: '\uA738\uA73A'
   }, {
     base: 'AY',
-    letters: "\uA73C"
+    letters: '\uA73C'
   }, {
     base: 'B',
-    letters: "B\u24B7\uFF22\u1E02\u1E04\u1E06\u0243\u0182\u0181"
+    letters: '\u0042\u24B7\uFF22\u1E02\u1E04\u1E06\u0243\u0182\u0181'
   }, {
     base: 'C',
-    letters: "C\u24B8\uFF23\u0106\u0108\u010A\u010C\xC7\u1E08\u0187\u023B\uA73E"
+    letters: '\u0043\u24B8\uFF23\u0106\u0108\u010A\u010C\u00C7\u1E08\u0187\u023B\uA73E'
   }, {
     base: 'D',
-    letters: "D\u24B9\uFF24\u1E0A\u010E\u1E0C\u1E10\u1E12\u1E0E\u0110\u018B\u018A\u0189\uA779\xD0"
+    letters: '\u0044\u24B9\uFF24\u1E0A\u010E\u1E0C\u1E10\u1E12\u1E0E\u0110\u018B\u018A\u0189\uA779\u00D0'
   }, {
     base: 'DZ',
-    letters: "\u01F1\u01C4"
+    letters: '\u01F1\u01C4'
   }, {
     base: 'Dz',
-    letters: "\u01F2\u01C5"
+    letters: '\u01F2\u01C5'
   }, {
     base: 'E',
-    letters: "E\u24BA\uFF25\xC8\xC9\xCA\u1EC0\u1EBE\u1EC4\u1EC2\u1EBC\u0112\u1E14\u1E16\u0114\u0116\xCB\u1EBA\u011A\u0204\u0206\u1EB8\u1EC6\u0228\u1E1C\u0118\u1E18\u1E1A\u0190\u018E"
+    letters: '\u0045\u24BA\uFF25\u00C8\u00C9\u00CA\u1EC0\u1EBE\u1EC4\u1EC2\u1EBC\u0112\u1E14\u1E16\u0114\u0116\u00CB\u1EBA\u011A\u0204\u0206\u1EB8\u1EC6\u0228\u1E1C\u0118\u1E18\u1E1A\u0190\u018E'
   }, {
     base: 'F',
-    letters: "F\u24BB\uFF26\u1E1E\u0191\uA77B"
+    letters: '\u0046\u24BB\uFF26\u1E1E\u0191\uA77B'
   }, {
     base: 'G',
-    letters: "G\u24BC\uFF27\u01F4\u011C\u1E20\u011E\u0120\u01E6\u0122\u01E4\u0193\uA7A0\uA77D\uA77E"
+    letters: '\u0047\u24BC\uFF27\u01F4\u011C\u1E20\u011E\u0120\u01E6\u0122\u01E4\u0193\uA7A0\uA77D\uA77E'
   }, {
     base: 'H',
-    letters: "H\u24BD\uFF28\u0124\u1E22\u1E26\u021E\u1E24\u1E28\u1E2A\u0126\u2C67\u2C75\uA78D"
+    letters: '\u0048\u24BD\uFF28\u0124\u1E22\u1E26\u021E\u1E24\u1E28\u1E2A\u0126\u2C67\u2C75\uA78D'
   }, {
     base: 'I',
-    letters: "I\u24BE\uFF29\xCC\xCD\xCE\u0128\u012A\u012C\u0130\xCF\u1E2E\u1EC8\u01CF\u0208\u020A\u1ECA\u012E\u1E2C\u0197"
+    letters: '\u0049\u24BE\uFF29\u00CC\u00CD\u00CE\u0128\u012A\u012C\u0130\u00CF\u1E2E\u1EC8\u01CF\u0208\u020A\u1ECA\u012E\u1E2C\u0197'
   }, {
     base: 'J',
-    letters: "J\u24BF\uFF2A\u0134\u0248"
+    letters: '\u004A\u24BF\uFF2A\u0134\u0248'
   }, {
     base: 'K',
-    letters: "K\u24C0\uFF2B\u1E30\u01E8\u1E32\u0136\u1E34\u0198\u2C69\uA740\uA742\uA744\uA7A2"
+    letters: '\u004B\u24C0\uFF2B\u1E30\u01E8\u1E32\u0136\u1E34\u0198\u2C69\uA740\uA742\uA744\uA7A2'
   }, {
     base: 'L',
-    letters: "L\u24C1\uFF2C\u013F\u0139\u013D\u1E36\u1E38\u013B\u1E3C\u1E3A\u0141\u023D\u2C62\u2C60\uA748\uA746\uA780"
+    letters: '\u004C\u24C1\uFF2C\u013F\u0139\u013D\u1E36\u1E38\u013B\u1E3C\u1E3A\u0141\u023D\u2C62\u2C60\uA748\uA746\uA780'
   }, {
     base: 'LJ',
-    letters: "\u01C7"
+    letters: '\u01C7'
   }, {
     base: 'Lj',
-    letters: "\u01C8"
+    letters: '\u01C8'
   }, {
     base: 'M',
-    letters: "M\u24C2\uFF2D\u1E3E\u1E40\u1E42\u2C6E\u019C"
+    letters: '\u004D\u24C2\uFF2D\u1E3E\u1E40\u1E42\u2C6E\u019C'
   }, {
     base: 'N',
-    letters: "N\u24C3\uFF2E\u01F8\u0143\xD1\u1E44\u0147\u1E46\u0145\u1E4A\u1E48\u0220\u019D\uA790\uA7A4"
+    letters: '\u004E\u24C3\uFF2E\u01F8\u0143\u00D1\u1E44\u0147\u1E46\u0145\u1E4A\u1E48\u0220\u019D\uA790\uA7A4'
   }, {
     base: 'NJ',
-    letters: "\u01CA"
+    letters: '\u01CA'
   }, {
     base: 'Nj',
-    letters: "\u01CB"
+    letters: '\u01CB'
   }, {
     base: 'O',
-    letters: "O\u24C4\uFF2F\xD2\xD3\xD4\u1ED2\u1ED0\u1ED6\u1ED4\xD5\u1E4C\u022C\u1E4E\u014C\u1E50\u1E52\u014E\u022E\u0230\xD6\u022A\u1ECE\u0150\u01D1\u020C\u020E\u01A0\u1EDC\u1EDA\u1EE0\u1EDE\u1EE2\u1ECC\u1ED8\u01EA\u01EC\xD8\u01FE\u0186\u019F\uA74A\uA74C"
+    letters: '\u004F\u24C4\uFF2F\u00D2\u00D3\u00D4\u1ED2\u1ED0\u1ED6\u1ED4\u00D5\u1E4C\u022C\u1E4E\u014C\u1E50\u1E52\u014E\u022E\u0230\u00D6\u022A\u1ECE\u0150\u01D1\u020C\u020E\u01A0\u1EDC\u1EDA\u1EE0\u1EDE\u1EE2\u1ECC\u1ED8\u01EA\u01EC\u00D8\u01FE\u0186\u019F\uA74A\uA74C'
   }, {
     base: 'OI',
-    letters: "\u01A2"
+    letters: '\u01A2'
   }, {
     base: 'OO',
-    letters: "\uA74E"
+    letters: '\uA74E'
   }, {
     base: 'OU',
-    letters: "\u0222"
+    letters: '\u0222'
   }, {
     base: 'OE',
-    letters: "\x8C\u0152"
+    letters: '\u008C\u0152'
   }, {
     base: 'oe',
-    letters: "\x9C\u0153"
+    letters: '\u009C\u0153'
   }, {
     base: 'P',
-    letters: "P\u24C5\uFF30\u1E54\u1E56\u01A4\u2C63\uA750\uA752\uA754"
+    letters: '\u0050\u24C5\uFF30\u1E54\u1E56\u01A4\u2C63\uA750\uA752\uA754'
   }, {
     base: 'Q',
-    letters: "Q\u24C6\uFF31\uA756\uA758\u024A"
+    letters: '\u0051\u24C6\uFF31\uA756\uA758\u024A'
   }, {
     base: 'R',
-    letters: "R\u24C7\uFF32\u0154\u1E58\u0158\u0210\u0212\u1E5A\u1E5C\u0156\u1E5E\u024C\u2C64\uA75A\uA7A6\uA782"
+    letters: '\u0052\u24C7\uFF32\u0154\u1E58\u0158\u0210\u0212\u1E5A\u1E5C\u0156\u1E5E\u024C\u2C64\uA75A\uA7A6\uA782'
   }, {
     base: 'S',
-    letters: "S\u24C8\uFF33\u1E9E\u015A\u1E64\u015C\u1E60\u0160\u1E66\u1E62\u1E68\u0218\u015E\u2C7E\uA7A8\uA784"
+    letters: '\u0053\u24C8\uFF33\u1E9E\u015A\u1E64\u015C\u1E60\u0160\u1E66\u1E62\u1E68\u0218\u015E\u2C7E\uA7A8\uA784'
   }, {
     base: 'T',
-    letters: "T\u24C9\uFF34\u1E6A\u0164\u1E6C\u021A\u0162\u1E70\u1E6E\u0166\u01AC\u01AE\u023E\uA786"
+    letters: '\u0054\u24C9\uFF34\u1E6A\u0164\u1E6C\u021A\u0162\u1E70\u1E6E\u0166\u01AC\u01AE\u023E\uA786'
   }, {
     base: 'TZ',
-    letters: "\uA728"
+    letters: '\uA728'
   }, {
     base: 'U',
-    letters: "U\u24CA\uFF35\xD9\xDA\xDB\u0168\u1E78\u016A\u1E7A\u016C\xDC\u01DB\u01D7\u01D5\u01D9\u1EE6\u016E\u0170\u01D3\u0214\u0216\u01AF\u1EEA\u1EE8\u1EEE\u1EEC\u1EF0\u1EE4\u1E72\u0172\u1E76\u1E74\u0244"
+    letters: '\u0055\u24CA\uFF35\u00D9\u00DA\u00DB\u0168\u1E78\u016A\u1E7A\u016C\u00DC\u01DB\u01D7\u01D5\u01D9\u1EE6\u016E\u0170\u01D3\u0214\u0216\u01AF\u1EEA\u1EE8\u1EEE\u1EEC\u1EF0\u1EE4\u1E72\u0172\u1E76\u1E74\u0244'
   }, {
     base: 'V',
-    letters: "V\u24CB\uFF36\u1E7C\u1E7E\u01B2\uA75E\u0245"
+    letters: '\u0056\u24CB\uFF36\u1E7C\u1E7E\u01B2\uA75E\u0245'
   }, {
     base: 'VY',
-    letters: "\uA760"
+    letters: '\uA760'
   }, {
     base: 'W',
-    letters: "W\u24CC\uFF37\u1E80\u1E82\u0174\u1E86\u1E84\u1E88\u2C72"
+    letters: '\u0057\u24CC\uFF37\u1E80\u1E82\u0174\u1E86\u1E84\u1E88\u2C72'
   }, {
     base: 'X',
-    letters: "X\u24CD\uFF38\u1E8A\u1E8C"
+    letters: '\u0058\u24CD\uFF38\u1E8A\u1E8C'
   }, {
     base: 'Y',
-    letters: "Y\u24CE\uFF39\u1EF2\xDD\u0176\u1EF8\u0232\u1E8E\u0178\u1EF6\u1EF4\u01B3\u024E\u1EFE"
+    letters: '\u0059\u24CE\uFF39\u1EF2\u00DD\u0176\u1EF8\u0232\u1E8E\u0178\u1EF6\u1EF4\u01B3\u024E\u1EFE'
   }, {
     base: 'Z',
-    letters: "Z\u24CF\uFF3A\u0179\u1E90\u017B\u017D\u1E92\u1E94\u01B5\u0224\u2C7F\u2C6B\uA762"
+    letters: '\u005A\u24CF\uFF3A\u0179\u1E90\u017B\u017D\u1E92\u1E94\u01B5\u0224\u2C7F\u2C6B\uA762'
   }, {
     base: 'a',
-    letters: "a\u24D0\uFF41\u1E9A\xE0\xE1\xE2\u1EA7\u1EA5\u1EAB\u1EA9\xE3\u0101\u0103\u1EB1\u1EAF\u1EB5\u1EB3\u0227\u01E1\xE4\u01DF\u1EA3\xE5\u01FB\u01CE\u0201\u0203\u1EA1\u1EAD\u1EB7\u1E01\u0105\u2C65\u0250"
+    letters: '\u0061\u24D0\uFF41\u1E9A\u00E0\u00E1\u00E2\u1EA7\u1EA5\u1EAB\u1EA9\u00E3\u0101\u0103\u1EB1\u1EAF\u1EB5\u1EB3\u0227\u01E1\u00E4\u01DF\u1EA3\u00E5\u01FB\u01CE\u0201\u0203\u1EA1\u1EAD\u1EB7\u1E01\u0105\u2C65\u0250'
   }, {
     base: 'aa',
-    letters: "\uA733"
+    letters: '\uA733'
   }, {
     base: 'ae',
-    letters: "\xE6\u01FD\u01E3"
+    letters: '\u00E6\u01FD\u01E3'
   }, {
     base: 'ao',
-    letters: "\uA735"
+    letters: '\uA735'
   }, {
     base: 'au',
-    letters: "\uA737"
+    letters: '\uA737'
   }, {
     base: 'av',
-    letters: "\uA739\uA73B"
+    letters: '\uA739\uA73B'
   }, {
     base: 'ay',
-    letters: "\uA73D"
+    letters: '\uA73D'
   }, {
     base: 'b',
-    letters: "b\u24D1\uFF42\u1E03\u1E05\u1E07\u0180\u0183\u0253"
+    letters: '\u0062\u24D1\uFF42\u1E03\u1E05\u1E07\u0180\u0183\u0253'
   }, {
     base: 'c',
-    letters: "c\u24D2\uFF43\u0107\u0109\u010B\u010D\xE7\u1E09\u0188\u023C\uA73F\u2184"
+    letters: '\u0063\u24D2\uFF43\u0107\u0109\u010B\u010D\u00E7\u1E09\u0188\u023C\uA73F\u2184'
   }, {
     base: 'd',
-    letters: "d\u24D3\uFF44\u1E0B\u010F\u1E0D\u1E11\u1E13\u1E0F\u0111\u018C\u0256\u0257\uA77A"
+    letters: '\u0064\u24D3\uFF44\u1E0B\u010F\u1E0D\u1E11\u1E13\u1E0F\u0111\u018C\u0256\u0257\uA77A'
   }, {
     base: 'dz',
-    letters: "\u01F3\u01C6"
+    letters: '\u01F3\u01C6'
   }, {
     base: 'e',
-    letters: "e\u24D4\uFF45\xE8\xE9\xEA\u1EC1\u1EBF\u1EC5\u1EC3\u1EBD\u0113\u1E15\u1E17\u0115\u0117\xEB\u1EBB\u011B\u0205\u0207\u1EB9\u1EC7\u0229\u1E1D\u0119\u1E19\u1E1B\u0247\u025B\u01DD"
+    letters: '\u0065\u24D4\uFF45\u00E8\u00E9\u00EA\u1EC1\u1EBF\u1EC5\u1EC3\u1EBD\u0113\u1E15\u1E17\u0115\u0117\u00EB\u1EBB\u011B\u0205\u0207\u1EB9\u1EC7\u0229\u1E1D\u0119\u1E19\u1E1B\u0247\u025B\u01DD'
   }, {
     base: 'f',
-    letters: "f\u24D5\uFF46\u1E1F\u0192\uA77C"
+    letters: '\u0066\u24D5\uFF46\u1E1F\u0192\uA77C'
   }, {
     base: 'g',
-    letters: "g\u24D6\uFF47\u01F5\u011D\u1E21\u011F\u0121\u01E7\u0123\u01E5\u0260\uA7A1\u1D79\uA77F"
+    letters: '\u0067\u24D6\uFF47\u01F5\u011D\u1E21\u011F\u0121\u01E7\u0123\u01E5\u0260\uA7A1\u1D79\uA77F'
   }, {
     base: 'h',
-    letters: "h\u24D7\uFF48\u0125\u1E23\u1E27\u021F\u1E25\u1E29\u1E2B\u1E96\u0127\u2C68\u2C76\u0265"
+    letters: '\u0068\u24D7\uFF48\u0125\u1E23\u1E27\u021F\u1E25\u1E29\u1E2B\u1E96\u0127\u2C68\u2C76\u0265'
   }, {
     base: 'hv',
-    letters: "\u0195"
+    letters: '\u0195'
   }, {
     base: 'i',
-    letters: "i\u24D8\uFF49\xEC\xED\xEE\u0129\u012B\u012D\xEF\u1E2F\u1EC9\u01D0\u0209\u020B\u1ECB\u012F\u1E2D\u0268\u0131"
+    letters: '\u0069\u24D8\uFF49\u00EC\u00ED\u00EE\u0129\u012B\u012D\u00EF\u1E2F\u1EC9\u01D0\u0209\u020B\u1ECB\u012F\u1E2D\u0268\u0131'
   }, {
     base: 'j',
-    letters: "j\u24D9\uFF4A\u0135\u01F0\u0249"
+    letters: '\u006A\u24D9\uFF4A\u0135\u01F0\u0249'
   }, {
     base: 'k',
-    letters: "k\u24DA\uFF4B\u1E31\u01E9\u1E33\u0137\u1E35\u0199\u2C6A\uA741\uA743\uA745\uA7A3"
+    letters: '\u006B\u24DA\uFF4B\u1E31\u01E9\u1E33\u0137\u1E35\u0199\u2C6A\uA741\uA743\uA745\uA7A3'
   }, {
     base: 'l',
-    letters: "l\u24DB\uFF4C\u0140\u013A\u013E\u1E37\u1E39\u013C\u1E3D\u1E3B\u017F\u0142\u019A\u026B\u2C61\uA749\uA781\uA747"
+    letters: '\u006C\u24DB\uFF4C\u0140\u013A\u013E\u1E37\u1E39\u013C\u1E3D\u1E3B\u017F\u0142\u019A\u026B\u2C61\uA749\uA781\uA747'
   }, {
     base: 'lj',
-    letters: "\u01C9"
+    letters: '\u01C9'
   }, {
     base: 'm',
-    letters: "m\u24DC\uFF4D\u1E3F\u1E41\u1E43\u0271\u026F"
+    letters: '\u006D\u24DC\uFF4D\u1E3F\u1E41\u1E43\u0271\u026F'
   }, {
     base: 'n',
-    letters: "n\u24DD\uFF4E\u01F9\u0144\xF1\u1E45\u0148\u1E47\u0146\u1E4B\u1E49\u019E\u0272\u0149\uA791\uA7A5"
+    letters: '\u006E\u24DD\uFF4E\u01F9\u0144\u00F1\u1E45\u0148\u1E47\u0146\u1E4B\u1E49\u019E\u0272\u0149\uA791\uA7A5'
   }, {
     base: 'nj',
-    letters: "\u01CC"
+    letters: '\u01CC'
   }, {
     base: 'o',
-    letters: "o\u24DE\uFF4F\xF2\xF3\xF4\u1ED3\u1ED1\u1ED7\u1ED5\xF5\u1E4D\u022D\u1E4F\u014D\u1E51\u1E53\u014F\u022F\u0231\xF6\u022B\u1ECF\u0151\u01D2\u020D\u020F\u01A1\u1EDD\u1EDB\u1EE1\u1EDF\u1EE3\u1ECD\u1ED9\u01EB\u01ED\xF8\u01FF\u0254\uA74B\uA74D\u0275"
+    letters: '\u006F\u24DE\uFF4F\u00F2\u00F3\u00F4\u1ED3\u1ED1\u1ED7\u1ED5\u00F5\u1E4D\u022D\u1E4F\u014D\u1E51\u1E53\u014F\u022F\u0231\u00F6\u022B\u1ECF\u0151\u01D2\u020D\u020F\u01A1\u1EDD\u1EDB\u1EE1\u1EDF\u1EE3\u1ECD\u1ED9\u01EB\u01ED\u00F8\u01FF\u0254\uA74B\uA74D\u0275'
   }, {
     base: 'oi',
-    letters: "\u01A3"
+    letters: '\u01A3'
   }, {
     base: 'ou',
-    letters: "\u0223"
+    letters: '\u0223'
   }, {
     base: 'oo',
-    letters: "\uA74F"
+    letters: '\uA74F'
   }, {
     base: 'p',
-    letters: "p\u24DF\uFF50\u1E55\u1E57\u01A5\u1D7D\uA751\uA753\uA755"
+    letters: '\u0070\u24DF\uFF50\u1E55\u1E57\u01A5\u1D7D\uA751\uA753\uA755'
   }, {
     base: 'q',
-    letters: "q\u24E0\uFF51\u024B\uA757\uA759"
+    letters: '\u0071\u24E0\uFF51\u024B\uA757\uA759'
   }, {
     base: 'r',
-    letters: "r\u24E1\uFF52\u0155\u1E59\u0159\u0211\u0213\u1E5B\u1E5D\u0157\u1E5F\u024D\u027D\uA75B\uA7A7\uA783"
+    letters: '\u0072\u24E1\uFF52\u0155\u1E59\u0159\u0211\u0213\u1E5B\u1E5D\u0157\u1E5F\u024D\u027D\uA75B\uA7A7\uA783'
   }, {
     base: 's',
-    letters: "s\u24E2\uFF53\xDF\u015B\u1E65\u015D\u1E61\u0161\u1E67\u1E63\u1E69\u0219\u015F\u023F\uA7A9\uA785\u1E9B"
+    letters: '\u0073\u24E2\uFF53\u00DF\u015B\u1E65\u015D\u1E61\u0161\u1E67\u1E63\u1E69\u0219\u015F\u023F\uA7A9\uA785\u1E9B'
   }, {
     base: 't',
-    letters: "t\u24E3\uFF54\u1E6B\u1E97\u0165\u1E6D\u021B\u0163\u1E71\u1E6F\u0167\u01AD\u0288\u2C66\uA787"
+    letters: '\u0074\u24E3\uFF54\u1E6B\u1E97\u0165\u1E6D\u021B\u0163\u1E71\u1E6F\u0167\u01AD\u0288\u2C66\uA787'
   }, {
     base: 'tz',
-    letters: "\uA729"
+    letters: '\uA729'
   }, {
     base: 'u',
-    letters: "u\u24E4\uFF55\xF9\xFA\xFB\u0169\u1E79\u016B\u1E7B\u016D\xFC\u01DC\u01D8\u01D6\u01DA\u1EE7\u016F\u0171\u01D4\u0215\u0217\u01B0\u1EEB\u1EE9\u1EEF\u1EED\u1EF1\u1EE5\u1E73\u0173\u1E77\u1E75\u0289"
+    letters: '\u0075\u24E4\uFF55\u00F9\u00FA\u00FB\u0169\u1E79\u016B\u1E7B\u016D\u00FC\u01DC\u01D8\u01D6\u01DA\u1EE7\u016F\u0171\u01D4\u0215\u0217\u01B0\u1EEB\u1EE9\u1EEF\u1EED\u1EF1\u1EE5\u1E73\u0173\u1E77\u1E75\u0289'
   }, {
     base: 'v',
-    letters: "v\u24E5\uFF56\u1E7D\u1E7F\u028B\uA75F\u028C"
+    letters: '\u0076\u24E5\uFF56\u1E7D\u1E7F\u028B\uA75F\u028C'
   }, {
     base: 'vy',
-    letters: "\uA761"
+    letters: '\uA761'
   }, {
     base: 'w',
-    letters: "w\u24E6\uFF57\u1E81\u1E83\u0175\u1E87\u1E85\u1E98\u1E89\u2C73"
+    letters: '\u0077\u24E6\uFF57\u1E81\u1E83\u0175\u1E87\u1E85\u1E98\u1E89\u2C73'
   }, {
     base: 'x',
-    letters: "x\u24E7\uFF58\u1E8B\u1E8D"
+    letters: '\u0078\u24E7\uFF58\u1E8B\u1E8D'
   }, {
     base: 'y',
-    letters: "y\u24E8\uFF59\u1EF3\xFD\u0177\u1EF9\u0233\u1E8F\xFF\u1EF7\u1E99\u1EF5\u01B4\u024F\u1EFF"
+    letters: '\u0079\u24E8\uFF59\u1EF3\u00FD\u0177\u1EF9\u0233\u1E8F\u00FF\u1EF7\u1E99\u1EF5\u01B4\u024F\u1EFF'
   }, {
     base: 'z',
-    letters: "z\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763"
+    letters: '\u007A\u24E9\uFF5A\u017A\u1E91\u017C\u017E\u1E93\u1E95\u01B6\u0225\u0240\u2C6C\uA763'
   }];
   /* eslint-enable max-len */
 
-  var diacriticsMap = {};
-  for (var ii = 0; ii < map.length; ii++) {
-    var letters = map[ii].letters;
-    for (var jj = 0; jj < letters.length; jj++) {
+  const diacriticsMap = {};
+  for (let ii = 0; ii < map.length; ii++) {
+    const {
+      letters
+    } = map[ii];
+    for (let jj = 0; jj < letters.length; jj++) {
       diacriticsMap[letters[jj]] = map[ii].base;
     }
   }
@@ -2036,9 +2021,7 @@
   // "what?" version ... http://jsperf.com/diacritics/12
   function stripDiacritics(str) {
     return str.replace(/[\u0300-\u036F]/g, '') // Remove combining diacritics
-    /* eslint-disable-next-line no-control-regex */.replace(/[^\u0000-\u007E]/g, function (a) {
-      return diacriticsMap[a] || a;
-    });
+    /* eslint-disable-next-line no-control-regex */.replace(/[^\u0000-\u007E]/g, a => diacriticsMap[a] || a);
   }
 
   /**
@@ -2095,7 +2078,7 @@
 
   var warning$1 = /*@__PURE__*/getDefaultExportFromCjs(warning_1);
 
-  var warned = {};
+  let warned = {};
 
   /**
    * Copied from: https://github.com/ReactTraining/react-router/blob/master/modules/routerWarning.js
@@ -2111,12 +2094,12 @@
     for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
       args[_key - 2] = arguments[_key];
     }
-    warning$1.apply(void 0, [falseToWarn, "[react-bootstrap-typeahead] " + message].concat(args));
+    warning$1(falseToWarn, "[react-bootstrap-typeahead] " + message, ...args) ;
   }
 
   function isMatch(input, string, props) {
-    var searchStr = input;
-    var str = string;
+    let searchStr = input;
+    let str = string;
     if (!props.caseSensitive) {
       searchStr = searchStr.toLowerCase();
       str = str.toLowerCase();
@@ -2132,22 +2115,22 @@
    * Default algorithm for filtering results.
    */
   function defaultFilterBy(option, props) {
-    var filterBy = props.filterBy,
-      labelKey = props.labelKey,
-      multiple = props.multiple,
-      selected = props.selected,
-      text = props.text;
+    const {
+      filterBy,
+      labelKey,
+      multiple,
+      selected,
+      text
+    } = props;
 
     // Don't show selected options in the menu for the multi-select case.
-    if (multiple && selected.some(function (o) {
-      return isEqual$1(o, option);
-    })) {
+    if (multiple && selected.some(o => isEqual$1(o, option))) {
       return false;
     }
     if (isFunction(labelKey) && isMatch(text, labelKey(option), props)) {
       return true;
     }
-    var fields = filterBy.slice();
+    const fields = filterBy.slice();
     if (isString(labelKey)) {
       // Add the `labelKey` field to the list of fields if it isn't already there.
       if (fields.indexOf(labelKey) === -1) {
@@ -2158,8 +2141,8 @@
       warn(fields.length <= 1, 'You cannot filter by properties when `option` is a string.');
       return isMatch(text, option, props);
     }
-    return fields.some(function (field) {
-      var value = getOptionProperty(option, field);
+    return fields.some(field => {
+      let value = getOptionProperty(option, field);
       if (!isString(value)) {
         warn(false, 'Fields passed to `filterBy` should have string values. Value will ' + 'be converted to a string; results may be unexpected.');
         value = String(value);
@@ -2172,8 +2155,8 @@
     return Component.displayName || Component.name || 'Component';
   }
 
-  var CASE_INSENSITIVE = 'i';
-  var COMBINING_MARKS = /[\u0300-\u036F]/;
+  const CASE_INSENSITIVE = 'i';
+  const COMBINING_MARKS = /[\u0300-\u036F]/;
   // Export for testing.
   function escapeStringRegexp(str) {
     !(typeof str === 'string') ? invariant$1(false, '`escapeStringRegexp` expected a string.')  : void 0;
@@ -2185,19 +2168,19 @@
     return str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(/-/g, '\\x2d');
   }
   function getMatchBounds(subject, str) {
-    var search = new RegExp(escapeStringRegexp(stripDiacritics(str)), CASE_INSENSITIVE);
-    var matches = search.exec(stripDiacritics(subject));
+    const search = new RegExp(escapeStringRegexp(stripDiacritics(str)), CASE_INSENSITIVE);
+    const matches = search.exec(stripDiacritics(subject));
     if (!matches) {
       return null;
     }
-    var start = matches.index;
-    var matchLength = matches[0].length;
+    let start = matches.index;
+    let matchLength = matches[0].length;
 
     // Account for combining marks, which changes the indices.
     if (COMBINING_MARKS.test(subject)) {
       // Starting at the beginning of the subject string, check for the number of
       // combining marks and increment the start index whenever one is found.
-      for (var ii = 0; ii <= start; ii++) {
+      for (let ii = 0; ii <= start; ii++) {
         if (COMBINING_MARKS.test(subject[ii])) {
           start += 1;
         }
@@ -2205,27 +2188,29 @@
 
       // Similarly, increment the length of the match string if it contains a
       // combining mark.
-      for (var _ii = start; _ii <= start + matchLength; _ii++) {
-        if (COMBINING_MARKS.test(subject[_ii])) {
+      for (let ii = start; ii <= start + matchLength; ii++) {
+        if (COMBINING_MARKS.test(subject[ii])) {
           matchLength += 1;
         }
       }
     }
     return {
       end: start + matchLength,
-      start: start
+      start
     };
   }
 
   function getHintText(props) {
-    var activeIndex = props.activeIndex,
-      initialItem = props.initialItem,
-      isFocused = props.isFocused,
-      isMenuShown = props.isMenuShown,
-      labelKey = props.labelKey,
-      multiple = props.multiple,
-      selected = props.selected,
-      text = props.text;
+    const {
+      activeIndex,
+      initialItem,
+      isFocused,
+      isMenuShown,
+      labelKey,
+      multiple,
+      selected,
+      text
+    } = props;
 
     // Don't display a hint under the following conditions:
     if (
@@ -2245,8 +2230,8 @@
     !!selected.length && !multiple) {
       return '';
     }
-    var initialItemStr = getOptionLabel(initialItem, labelKey);
-    var bounds = getMatchBounds(initialItemStr.toLowerCase(), text.toLowerCase());
+    const initialItemStr = getOptionLabel(initialItem, labelKey);
+    const bounds = getMatchBounds(initialItemStr.toLowerCase(), text.toLowerCase());
     if (!(bounds && bounds.start === 0)) {
       return '';
     }
@@ -2341,66 +2326,73 @@
     return (id || '') + "-item-" + position;
   }
 
-  var _excluded$d = ["activeIndex", "id", "isFocused", "isMenuShown", "multiple", "onFocus", "placeholder"],
-    _excluded2$1 = ["className"];
-  var getInputProps = function getInputProps(_ref) {
-    var activeIndex = _ref.activeIndex,
-      id = _ref.id,
-      isFocused = _ref.isFocused,
-      isMenuShown = _ref.isMenuShown,
-      multiple = _ref.multiple,
-      onFocus = _ref.onFocus,
-      placeholder = _ref.placeholder,
-      rest = _objectWithoutPropertiesLoose(_ref, _excluded$d);
+  const getInputProps = _ref => {
+    let {
+      activeIndex,
+      id,
+      isFocused,
+      isMenuShown,
+      multiple,
+      onFocus,
+      placeholder,
+      ...rest
+    } = _ref;
     return function (_temp) {
-      var _cx;
-      var _ref2 = _temp === void 0 ? {} : _temp,
-        className = _ref2.className,
-        inputProps = _objectWithoutPropertiesLoose(_ref2, _excluded2$1);
-      var props = _extends({
+      let {
+        className,
+        ...inputProps
+      } = _temp === void 0 ? {} : _temp;
+      const props = {
         /* eslint-disable sort-keys */
         // These props can be overridden by values in `inputProps`.
         autoComplete: 'off',
-        placeholder: placeholder,
-        type: 'text'
-      }, inputProps, rest, {
+        placeholder,
+        type: 'text',
+        ...inputProps,
+        ...rest,
         'aria-activedescendant': activeIndex >= 0 ? getMenuItemId(id, activeIndex) : undefined,
         'aria-autocomplete': 'both',
         'aria-expanded': isMenuShown,
         'aria-haspopup': 'listbox',
         'aria-owns': isMenuShown ? id : undefined,
-        className: cx((_cx = {}, _cx[className || ''] = !multiple, _cx.focus = isFocused, _cx)),
+        className: cx({
+          [className || '']: !multiple,
+          focus: isFocused
+        }),
         // Re-open the menu, eg: if it's closed via ESC.
         onClick: onFocus,
-        onFocus: onFocus,
+        onFocus,
         // Comboboxes are single-select by definition:
         // https://www.w3.org/TR/wai-aria-practices-1.1/#combobox
         role: 'combobox'
         /* eslint-enable sort-keys */
-      });
+      };
       if (!multiple) {
         return props;
       }
-      return _extends({}, props, {
+      return {
+        ...props,
         'aria-autocomplete': 'list',
         'aria-expanded': undefined,
         inputClassName: className,
         role: undefined
-      });
+      };
     };
   };
 
   function getInputText(props) {
-    var activeItem = props.activeItem,
-      labelKey = props.labelKey,
-      multiple = props.multiple,
-      selected = props.selected,
-      text = props.text;
+    const {
+      activeItem,
+      labelKey,
+      multiple,
+      selected,
+      text
+    } = props;
     if (activeItem) {
       // Display the input value if the pagination item is active.
       return getOptionLabel(activeItem, labelKey);
     }
-    var selectedItem = !multiple && !!selected.length && head(selected);
+    const selectedItem = !multiple && !!selected.length && head(selected);
     if (selectedItem) {
       return getOptionLabel(selectedItem, labelKey);
     }
@@ -2408,9 +2400,11 @@
   }
 
   function getIsOnlyResult(props) {
-    var allowNew = props.allowNew,
-      highlightOnlyResult = props.highlightOnlyResult,
-      results = props.results;
+    const {
+      allowNew,
+      highlightOnlyResult,
+      results
+    } = props;
     if (!highlightOnlyResult || allowNew) {
       return false;
     }
@@ -2428,14 +2422,14 @@
   }
 
   function skipDisabledOptions(currentIndex, keyCode, items) {
-    var newIndex = currentIndex;
+    let newIndex = currentIndex;
     while (items[newIndex] && items[newIndex].disabled) {
       newIndex += keyCode === UP ? -1 : 1;
     }
     return newIndex;
   }
   function getUpdatedActiveIndex(currentIndex, keyCode, items) {
-    var newIndex = currentIndex;
+    let newIndex = currentIndex;
 
     // Increment or decrement index based on user keystroke.
     newIndex += keyCode === UP ? -1 : 1;
@@ -2467,10 +2461,12 @@
   }
 
   function isShown(props) {
-    var open = props.open,
-      minLength = props.minLength,
-      showMenu = props.showMenu,
-      text = props.text;
+    const {
+      open,
+      minLength,
+      showMenu,
+      text
+    } = props;
 
     // If menu visibility is controlled via props, that value takes precedence.
     if (open || open === false) {
@@ -2491,11 +2487,15 @@
   }
 
   function shouldSelectHint(_ref, _ref2) {
-    var currentTarget = _ref.currentTarget,
-      keyCode = _ref.keyCode;
-    var hintText = _ref2.hintText,
-      selectHintOnEnter = _ref2.selectHintOnEnter,
-      value = _ref2.value;
+    let {
+      currentTarget,
+      keyCode
+    } = _ref;
+    let {
+      hintText,
+      selectHintOnEnter,
+      value
+    } = _ref2;
     if (!hintText) {
       return false;
     }
@@ -2522,9 +2522,9 @@
   }
 
   function validateSelectedPropChange(prevSelected, selected) {
-    var uncontrolledToControlled = !prevSelected && selected;
-    var controlledToUncontrolled = prevSelected && !selected;
-    var from, to, precedent;
+    const uncontrolledToControlled = !prevSelected && selected;
+    const controlledToUncontrolled = prevSelected && !selected;
+    let from, to, precedent;
     if (uncontrolledToControlled) {
       from = 'uncontrolled';
       to = 'controlled';
@@ -2534,71 +2534,58 @@
       to = 'uncontrolled';
       precedent = 'a';
     }
-    var message = "You are changing " + precedent + " " + from + " typeahead to be " + to + ". " + ("Input elements should not switch from " + from + " to " + to + " (or vice versa). ") + 'Decide between using a controlled or uncontrolled element for the ' + 'lifetime of the component.';
+    const message = "You are changing " + precedent + " " + from + " typeahead to be " + to + ". " + ("Input elements should not switch from " + from + " to " + to + " (or vice versa). ") + 'Decide between using a controlled or uncontrolled element for the ' + 'lifetime of the component.';
     warn(!(uncontrolledToControlled || controlledToUncontrolled), message);
   }
 
-  var TypeaheadContext = /*#__PURE__*/React.createContext({});
-  var withContext = function withContext(Component, values) {
+  const TypeaheadContext = /*#__PURE__*/React.createContext({});
+  const withContext = (Component, values) => {
     // Note: Use a class instead of function component to support refs.
     /* eslint-disable-next-line react/prefer-stateless-function */
-    return /*#__PURE__*/function (_React$Component) {
-      function _class() {
-        return _React$Component.apply(this, arguments) || this;
+    return class extends React__default["default"].Component {
+      render() {
+        return /*#__PURE__*/React__default["default"].createElement(TypeaheadContext.Consumer, null, context => /*#__PURE__*/React__default["default"].createElement(Component, _extends({}, this.props, pick(context, values))));
       }
-      _inheritsLoose(_class, _React$Component);
-      var _proto = _class.prototype;
-      _proto.render = function render() {
-        var _this = this;
-        return /*#__PURE__*/React__default["default"].createElement(TypeaheadContext.Consumer, null, function (context) {
-          return /*#__PURE__*/React__default["default"].createElement(Component, _extends({}, _this.props, pick(context, values)));
-        });
-      };
-      return _class;
-    }(React__default["default"].Component);
+    };
   };
 
-  var inputPropKeys = ['activeIndex', 'disabled', 'id', 'inputRef', 'isFocused', 'isMenuShown', 'multiple', 'onBlur', 'onChange', 'onFocus', 'onKeyDown', 'placeholder'];
-  var propKeys = ['activeIndex', 'hideMenu', 'isMenuShown', 'labelKey', 'onClear', 'onHide', 'onRemove', 'results', 'selected', 'text', 'toggleMenu'];
-  var typeaheadContextKeys = ['activeIndex', 'id', 'initialItem', 'inputNode', 'onActiveItemChange', 'onAdd', 'onInitialItemChange', 'onMenuItemClick', 'selectHintOnEnter', 'setItem'];
+  const inputPropKeys = ['activeIndex', 'disabled', 'id', 'inputRef', 'isFocused', 'isMenuShown', 'multiple', 'onBlur', 'onChange', 'onFocus', 'onKeyDown', 'placeholder'];
+  const propKeys = ['activeIndex', 'hideMenu', 'isMenuShown', 'labelKey', 'onClear', 'onHide', 'onRemove', 'results', 'selected', 'text', 'toggleMenu'];
+  const typeaheadContextKeys = ['activeIndex', 'id', 'initialItem', 'inputNode', 'onActiveItemChange', 'onAdd', 'onInitialItemChange', 'onMenuItemClick', 'selectHintOnEnter', 'setItem'];
   function getTypeaheadContextValue(props) {
-    return _extends({}, pick(props, typeaheadContextKeys), {
+    return {
+      ...pick(props, typeaheadContextKeys),
       hintText: getHintText(props),
       isOnlyResult: getIsOnlyResult(props)
-    });
+    };
   }
-  var TypeaheadManager = /*#__PURE__*/function (_React$Component) {
-    function TypeaheadManager() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "_handleKeyDown", function (e) {
-        var _this$props = _this.props,
-          initialItem = _this$props.initialItem,
-          onKeyDown = _this$props.onKeyDown,
-          onAdd = _this$props.onAdd;
+  class TypeaheadManager extends React__default["default"].Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "_handleKeyDown", e => {
+        const {
+          initialItem,
+          onKeyDown,
+          onAdd
+        } = this.props;
         switch (e.keyCode) {
           case RETURN:
-            if (initialItem && getIsOnlyResult(_this.props)) {
+            if (initialItem && getIsOnlyResult(this.props)) {
               onAdd(initialItem);
             }
             break;
         }
         onKeyDown(e);
       });
-      return _this;
     }
-    _inheritsLoose(TypeaheadManager, _React$Component);
-    var _proto = TypeaheadManager.prototype;
-    _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-      var _this$props2 = this.props,
-        allowNew = _this$props2.allowNew,
-        isMenuShown = _this$props2.isMenuShown,
-        onInitialItemChange = _this$props2.onInitialItemChange,
-        onMenuToggle = _this$props2.onMenuToggle,
-        results = _this$props2.results;
+    componentDidUpdate(prevProps) {
+      const {
+        allowNew,
+        isMenuShown,
+        onInitialItemChange,
+        onMenuToggle,
+        results
+      } = this.props;
 
       // Clear the initial item when there are no results.
       if (!(allowNew || results.length)) {
@@ -2607,22 +2594,23 @@
       if (isMenuShown !== prevProps.isMenuShown) {
         onMenuToggle(isMenuShown);
       }
-    };
-    _proto.render = function render() {
-      var childProps = _extends({}, pick(this.props, propKeys), {
-        getInputProps: getInputProps(_extends({}, pick(this.props, inputPropKeys), {
+    }
+    render() {
+      const childProps = {
+        ...pick(this.props, propKeys),
+        getInputProps: getInputProps({
+          ...pick(this.props, inputPropKeys),
           onKeyDown: this._handleKeyDown,
           value: getInputText(this.props)
-        }))
-      });
+        })
+      };
       return /*#__PURE__*/React__default["default"].createElement(TypeaheadContext.Provider, {
         value: getTypeaheadContextValue(this.props)
       }, this.props.children(childProps));
-    };
-    return TypeaheadManager;
-  }(React__default["default"].Component);
+    }
+  }
 
-  var INPUT_PROPS_BLACKLIST = [{
+  const INPUT_PROPS_BLACKLIST = [{
     alt: 'onBlur',
     prop: 'onBlur'
   }, {
@@ -2635,61 +2623,75 @@
     alt: 'onKeyDown',
     prop: 'onKeyDown'
   }];
-  var sizeType = PropTypes.oneOf(values(SIZE));
+  const sizeType = PropTypes.oneOf(values(SIZE));
 
   /**
    * Allows additional warnings or messaging related to prop validation.
    */
   function checkPropType(validator, callback) {
-    return function (props, propName, componentName) {
-      var _PropTypes$checkPropT;
-      PropTypes.checkPropTypes((_PropTypes$checkPropT = {}, _PropTypes$checkPropT[propName] = validator, _PropTypes$checkPropT), props, 'prop', componentName);
+    return (props, propName, componentName) => {
+      PropTypes.checkPropTypes({
+        [propName]: validator
+      }, props, 'prop', componentName);
       isFunction(callback) && callback(props, propName, componentName);
     };
   }
   function caseSensitiveType(props, propName, componentName) {
-    var caseSensitive = props.caseSensitive,
-      filterBy = props.filterBy;
+    const {
+      caseSensitive,
+      filterBy
+    } = props;
     warn(!caseSensitive || typeof filterBy !== 'function', 'Your `filterBy` function will override the `caseSensitive` prop.');
   }
   function deprecated(validator, reason) {
     return function validate(props, propName, componentName) {
-      var _PropTypes$checkPropT2;
       if (props[propName] != null) {
         warn(false, "The prop `" + propName + "` is deprecated. " + reason);
       }
-      return PropTypes.checkPropTypes((_PropTypes$checkPropT2 = {}, _PropTypes$checkPropT2[propName] = validator, _PropTypes$checkPropT2), props, 'prop', componentName);
+      return PropTypes.checkPropTypes({
+        [propName]: validator
+      }, props, 'prop', componentName);
     };
   }
   function defaultInputValueType(props, propName, componentName) {
-    var defaultInputValue = props.defaultInputValue,
-      defaultSelected = props.defaultSelected,
-      multiple = props.multiple,
-      selected = props.selected;
-    var name = defaultSelected.length ? 'defaultSelected' : 'selected';
+    const {
+      defaultInputValue,
+      defaultSelected,
+      multiple,
+      selected
+    } = props;
+    const name = defaultSelected.length ? 'defaultSelected' : 'selected';
     warn(!(!multiple && defaultInputValue && (defaultSelected.length || selected && selected.length)), "`defaultInputValue` will be overridden by the value from `" + name + "`.");
   }
   function highlightOnlyResultType(props, propName, componentName) {
-    var allowNew = props.allowNew,
-      highlightOnlyResult = props.highlightOnlyResult;
+    const {
+      allowNew,
+      highlightOnlyResult
+    } = props;
     warn(!(highlightOnlyResult && allowNew), '`highlightOnlyResult` will not work with `allowNew`.');
   }
   function ignoreDiacriticsType(props, propName, componentName) {
-    var filterBy = props.filterBy,
-      ignoreDiacritics = props.ignoreDiacritics;
+    const {
+      filterBy,
+      ignoreDiacritics
+    } = props;
     warn(ignoreDiacritics || typeof filterBy !== 'function', 'Your `filterBy` function will override the `ignoreDiacritics` prop.');
   }
   function inputPropsType(props, propName, componentName) {
-    var inputProps = props.inputProps;
+    const {
+      inputProps
+    } = props;
     if (!(inputProps && Object.prototype.toString.call(inputProps) === '[object Object]')) {
       return;
     }
 
     // Blacklisted properties.
-    INPUT_PROPS_BLACKLIST.forEach(function (_ref) {
-      var alt = _ref.alt,
-        prop = _ref.prop;
-      var msg = alt ? " Use the top-level `" + alt + "` prop instead." : null;
+    INPUT_PROPS_BLACKLIST.forEach(_ref => {
+      let {
+        alt,
+        prop
+      } = _ref;
+      const msg = alt ? " Use the top-level `" + alt + "` prop instead." : null;
       warn(!inputProps[prop], "The `" + prop + "` property of `inputProps` will be ignored." + msg);
     });
   }
@@ -2697,19 +2699,22 @@
     warn(props[propName] != null, "The prop `" + propName + "` is required to make `" + componentName + "` " + 'accessible for users of assistive technologies such as screen readers.');
   }
   function labelKeyType(props, propName, componentName) {
-    var allowNew = props.allowNew,
-      labelKey = props.labelKey;
+    const {
+      allowNew,
+      labelKey
+    } = props;
     warn(!(isFunction(labelKey) && allowNew), '`labelKey` must be a string when `allowNew={true}`.');
   }
-  var optionType = PropTypes.oneOfType([PropTypes.object, PropTypes.string]);
+  const optionType = PropTypes.oneOfType([PropTypes.object, PropTypes.string]);
   function selectedType(props, propName, componentName) {
-    var onChange = props.onChange,
-      selected = props.selected;
+    const {
+      onChange,
+      selected
+    } = props;
     warn(!selected || selected && isFunction(onChange), 'You provided a `selected` prop without an `onChange` handler. If you ' + 'want the typeahead to be uncontrolled, use `defaultSelected`. ' + 'Otherwise, set `onChange`.');
   }
 
-  var _excluded$c = ["onChange"];
-  var propTypes$a = {
+  const propTypes$a = {
     /**
      * Allows the creation of new selections on the fly. Note that any new items
      * will be added to the list of selections, but not the list of original
@@ -2834,7 +2839,7 @@
      */
     selectHintOnEnter: PropTypes.bool
   };
-  var defaultProps$9 = {
+  const defaultProps$9 = {
     allowNew: false,
     autoFocus: false,
     caseSensitive: false,
@@ -2858,13 +2863,15 @@
     selectHintOnEnter: false
   };
   function getInitialState(props) {
-    var defaultInputValue = props.defaultInputValue,
-      defaultOpen = props.defaultOpen,
-      defaultSelected = props.defaultSelected,
-      maxResults = props.maxResults,
-      multiple = props.multiple;
-    var selected = props.selected ? props.selected.slice() : defaultSelected.slice();
-    var text = defaultInputValue;
+    const {
+      defaultInputValue,
+      defaultOpen,
+      defaultSelected,
+      maxResults,
+      multiple
+    } = props;
+    let selected = props.selected ? props.selected.slice() : defaultSelected.slice();
+    let text = defaultInputValue;
     if (!multiple && selected.length) {
       // Set the text if an initial selection is passed in.
       text = getOptionLabel(head(selected), props.labelKey);
@@ -2878,31 +2885,33 @@
       activeItem: null,
       initialItem: null,
       isFocused: false,
-      selected: selected,
+      selected,
       showMenu: defaultOpen,
       shownResults: maxResults,
-      text: text
+      text
     };
   }
   function clearTypeahead(state, props) {
-    return _extends({}, getInitialState(props), {
+    return {
+      ...getInitialState(props),
       isFocused: state.isFocused,
       selected: [],
       text: ''
-    });
+    };
   }
   function hideMenu(state, props) {
-    var _getInitialState = getInitialState(props),
-      activeIndex = _getInitialState.activeIndex,
-      activeItem = _getInitialState.activeItem,
-      initialItem = _getInitialState.initialItem,
-      shownResults = _getInitialState.shownResults;
+    const {
+      activeIndex,
+      activeItem,
+      initialItem,
+      shownResults
+    } = getInitialState(props);
     return {
-      activeIndex: activeIndex,
-      activeItem: activeItem,
-      initialItem: initialItem,
+      activeIndex,
+      activeItem,
+      initialItem,
       showMenu: false,
-      shownResults: shownResults
+      shownResults
     };
   }
   function toggleMenu(state, props) {
@@ -2910,138 +2919,130 @@
       showMenu: true
     };
   }
-  var Typeahead$1 = /*#__PURE__*/function (_React$Component) {
-    function Typeahead() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "state", getInitialState(_this.props));
-      _defineProperty(_this, "inputNode", void 0);
-      _defineProperty(_this, "isMenuShown", false);
+  class Typeahead$1 extends React__default["default"].Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "state", getInitialState(this.props));
+      _defineProperty(this, "inputNode", void 0);
+      _defineProperty(this, "isMenuShown", false);
       // Keeps track of actual items displayed in the menu, after sorting,
       // truncating, grouping, etc.
-      _defineProperty(_this, "items", []);
-      _defineProperty(_this, "blur", function () {
-        _this.inputNode && _this.inputNode.blur();
-        _this.hideMenu();
+      _defineProperty(this, "items", []);
+      _defineProperty(this, "blur", () => {
+        this.inputNode && this.inputNode.blur();
+        this.hideMenu();
       });
-      _defineProperty(_this, "clear", function () {
-        _this.setState(clearTypeahead);
+      _defineProperty(this, "clear", () => {
+        this.setState(clearTypeahead);
       });
-      _defineProperty(_this, "focus", function () {
-        _this.inputNode && _this.inputNode.focus();
+      _defineProperty(this, "focus", () => {
+        this.inputNode && this.inputNode.focus();
       });
-      _defineProperty(_this, "getInput", function () {
-        return _this.inputNode;
+      _defineProperty(this, "getInput", () => {
+        return this.inputNode;
       });
       /**
        * For backwards compatibility...
        */
-      _defineProperty(_this, "getInstance", function () {
+      _defineProperty(this, "getInstance", () => {
         warn(false, 'The `getInstance` method is deprecated. You can now access instance ' + 'methods directly on the ref.');
-        return _this;
+        return this;
       });
-      _defineProperty(_this, "inputRef", function (inputNode) {
-        _this.inputNode = inputNode;
+      _defineProperty(this, "inputRef", inputNode => {
+        this.inputNode = inputNode;
       });
-      _defineProperty(_this, "setItem", function (item, position) {
-        _this.items[position] = item;
+      _defineProperty(this, "setItem", (item, position) => {
+        this.items[position] = item;
       });
-      _defineProperty(_this, "hideMenu", function () {
-        _this.setState(hideMenu);
+      _defineProperty(this, "hideMenu", () => {
+        this.setState(hideMenu);
       });
-      _defineProperty(_this, "toggleMenu", function () {
-        _this.setState(toggleMenu);
+      _defineProperty(this, "toggleMenu", () => {
+        this.setState(toggleMenu);
       });
-      _defineProperty(_this, "_handleActiveIndexChange", function (activeIndex) {
-        _this.setState(function (state) {
-          return {
-            activeIndex: activeIndex,
-            activeItem: activeIndex === -1 ? null : state.activeItem
-          };
-        });
+      _defineProperty(this, "_handleActiveIndexChange", activeIndex => {
+        this.setState(state => ({
+          activeIndex,
+          activeItem: activeIndex === -1 ? null : state.activeItem
+        }));
       });
-      _defineProperty(_this, "_handleActiveItemChange", function (activeItem) {
+      _defineProperty(this, "_handleActiveItemChange", activeItem => {
         // Don't update the active item if it hasn't changed.
-        if (!isEqual$1(activeItem, _this.state.activeItem)) {
-          _this.setState({
-            activeItem: activeItem
+        if (!isEqual$1(activeItem, this.state.activeItem)) {
+          this.setState({
+            activeItem
           });
         }
       });
-      _defineProperty(_this, "_handleBlur", function (e) {
+      _defineProperty(this, "_handleBlur", e => {
         e.persist();
-        _this.setState({
+        this.setState({
           isFocused: false
-        }, function () {
-          return _this.props.onBlur(e);
-        });
+        }, () => this.props.onBlur(e));
       });
-      _defineProperty(_this, "_handleChange", function (selected) {
-        _this.props.onChange && _this.props.onChange(selected);
+      _defineProperty(this, "_handleChange", selected => {
+        this.props.onChange && this.props.onChange(selected);
       });
-      _defineProperty(_this, "_handleClear", function () {
-        _this.setState(clearTypeahead, function () {
-          return _this._handleChange([]);
-        });
+      _defineProperty(this, "_handleClear", () => {
+        this.setState(clearTypeahead, () => this._handleChange([]));
       });
-      _defineProperty(_this, "_handleFocus", function (e) {
+      _defineProperty(this, "_handleFocus", e => {
         e.persist();
-        _this.setState({
+        this.setState({
           isFocused: true,
           showMenu: true
-        }, function () {
-          return _this.props.onFocus(e);
-        });
+        }, () => this.props.onFocus(e));
       });
-      _defineProperty(_this, "_handleInitialItemChange", function (initialItem) {
+      _defineProperty(this, "_handleInitialItemChange", initialItem => {
         // Don't update the initial item if it hasn't changed.
-        if (!isEqual$1(initialItem, _this.state.initialItem)) {
-          _this.setState({
-            initialItem: initialItem
+        if (!isEqual$1(initialItem, this.state.initialItem)) {
+          this.setState({
+            initialItem
           });
         }
       });
-      _defineProperty(_this, "_handleInputChange", function (e) {
+      _defineProperty(this, "_handleInputChange", e => {
         e.persist();
-        var text = e.currentTarget.value;
-        var _this$props = _this.props,
-          multiple = _this$props.multiple,
-          onInputChange = _this$props.onInputChange;
+        const text = e.currentTarget.value;
+        const {
+          multiple,
+          onInputChange
+        } = this.props;
 
         // Clear selections when the input value changes in single-select mode.
-        var shouldClearSelections = _this.state.selected.length && !multiple;
-        _this.setState(function (state, props) {
-          var _getInitialState2 = getInitialState(props),
-            activeIndex = _getInitialState2.activeIndex,
-            activeItem = _getInitialState2.activeItem,
-            shownResults = _getInitialState2.shownResults;
+        const shouldClearSelections = this.state.selected.length && !multiple;
+        this.setState((state, props) => {
+          const {
+            activeIndex,
+            activeItem,
+            shownResults
+          } = getInitialState(props);
           return {
-            activeIndex: activeIndex,
-            activeItem: activeItem,
+            activeIndex,
+            activeItem,
             selected: shouldClearSelections ? [] : state.selected,
             showMenu: true,
-            shownResults: shownResults,
-            text: text
+            shownResults,
+            text
           };
-        }, function () {
+        }, () => {
           onInputChange(text, e);
-          shouldClearSelections && _this._handleChange([]);
+          shouldClearSelections && this._handleChange([]);
         });
       });
-      _defineProperty(_this, "_handleKeyDown", function (e) {
-        var activeItem = _this.state.activeItem;
+      _defineProperty(this, "_handleKeyDown", e => {
+        const {
+          activeItem
+        } = this.state;
 
         // Skip most actions when the menu is hidden.
-        if (!_this.isMenuShown) {
+        if (!this.isMenuShown) {
           if (e.keyCode === UP || e.keyCode === DOWN) {
-            _this.setState({
+            this.setState({
               showMenu: true
             });
           }
-          _this.props.onKeyDown(e);
+          this.props.onKeyDown(e);
           return;
         }
         switch (e.keyCode) {
@@ -3049,58 +3050,56 @@
           case DOWN:
             // Prevent input cursor from going to the beginning when pressing up.
             e.preventDefault();
-            _this._handleActiveIndexChange(getUpdatedActiveIndex(_this.state.activeIndex, e.keyCode, _this.items));
+            this._handleActiveIndexChange(getUpdatedActiveIndex(this.state.activeIndex, e.keyCode, this.items));
             break;
           case RETURN:
             // Prevent form submission while menu is open.
             e.preventDefault();
-            activeItem && _this._handleMenuItemSelect(activeItem, e);
+            activeItem && this._handleMenuItemSelect(activeItem, e);
             break;
           case ESC:
           case TAB:
             // ESC simply hides the menu. TAB will blur the input and move focus to
             // the next item; hide the menu so it doesn't gain focus.
-            _this.hideMenu();
+            this.hideMenu();
             break;
         }
-        _this.props.onKeyDown(e);
+        this.props.onKeyDown(e);
       });
-      _defineProperty(_this, "_handleMenuItemSelect", function (option, e) {
+      _defineProperty(this, "_handleMenuItemSelect", (option, e) => {
         if (option.paginationOption) {
-          _this._handlePaginate(e);
+          this._handlePaginate(e);
         } else {
-          _this._handleSelectionAdd(option);
+          this._handleSelectionAdd(option);
         }
       });
-      _defineProperty(_this, "_handlePaginate", function (e) {
+      _defineProperty(this, "_handlePaginate", e => {
         e.persist();
-        _this.setState(function (state, props) {
-          return {
-            shownResults: state.shownResults + props.maxResults
-          };
-        }, function () {
-          return _this.props.onPaginate(e, _this.state.shownResults);
-        });
+        this.setState((state, props) => ({
+          shownResults: state.shownResults + props.maxResults
+        }), () => this.props.onPaginate(e, this.state.shownResults));
       });
-      _defineProperty(_this, "_handleSelectionAdd", function (option) {
-        var _this$props2 = _this.props,
-          multiple = _this$props2.multiple,
-          labelKey = _this$props2.labelKey;
-        var selected;
-        var selection = option;
-        var text;
+      _defineProperty(this, "_handleSelectionAdd", option => {
+        const {
+          multiple,
+          labelKey
+        } = this.props;
+        let selected;
+        let selection = option;
+        let text;
 
         // Add a unique id to the custom selection. Avoid doing this in `render` so
         // the id doesn't increment every time.
         if (!isString(selection) && selection.customOption) {
-          selection = _extends({}, selection, {
+          selection = {
+            ...selection,
             id: uniqueId('new-id-')
-          });
+          };
         }
         if (multiple) {
           // If multiple selections are allowed, add the new selection to the
           // existing selections.
-          selected = _this.state.selected.concat(selection);
+          selected = this.state.selected.concat(selection);
           text = '';
         } else {
           // If only a single selection is allowed, replace the existing selection
@@ -3108,44 +3107,35 @@
           selected = [selection];
           text = getOptionLabel(selection, labelKey);
         }
-        _this.setState(function (state, props) {
-          return _extends({}, hideMenu(state, props), {
-            initialItem: selection,
-            selected: selected,
-            text: text
-          });
-        }, function () {
-          return _this._handleChange(selected);
-        });
+        this.setState((state, props) => ({
+          ...hideMenu(state, props),
+          initialItem: selection,
+          selected,
+          text
+        }), () => this._handleChange(selected));
       });
-      _defineProperty(_this, "_handleSelectionRemove", function (selection) {
-        var selected = _this.state.selected.filter(function (option) {
-          return !isEqual$1(option, selection);
-        });
+      _defineProperty(this, "_handleSelectionRemove", selection => {
+        const selected = this.state.selected.filter(option => !isEqual$1(option, selection));
 
         // Make sure the input stays focused after the item is removed.
-        _this.focus();
-        _this.setState(function (state, props) {
-          return _extends({}, hideMenu(state, props), {
-            selected: selected
-          });
-        }, function () {
-          return _this._handleChange(selected);
-        });
+        this.focus();
+        this.setState((state, props) => ({
+          ...hideMenu(state, props),
+          selected
+        }), () => this._handleChange(selected));
       });
-      return _this;
     }
-    _inheritsLoose(Typeahead, _React$Component);
-    var _proto = Typeahead.prototype;
-    _proto.componentDidMount = function componentDidMount() {
+    componentDidMount() {
       this.props.autoFocus && this.focus();
     }
 
-    /* eslint-disable-next-line camelcase */;
-    _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
-      var labelKey = nextProps.labelKey,
-        multiple = nextProps.multiple,
-        selected = nextProps.selected;
+    /* eslint-disable-next-line camelcase */
+    UNSAFE_componentWillReceiveProps(nextProps) {
+      const {
+        labelKey,
+        multiple,
+        selected
+      } = nextProps;
       validateSelectedPropChange(selected, this.props.selected);
       if (multiple !== this.props.multiple) {
         this.setState({
@@ -3156,7 +3146,7 @@
       // If new selections are passed via props, treat as a controlled input.
       if (selected && !isEqual$1(selected, this.state.selected)) {
         this.setState({
-          selected: selected
+          selected
         });
         if (multiple) {
           return;
@@ -3167,7 +3157,7 @@
       }
 
       // Truncate selections when in single-select mode.
-      var newSelected = selected || this.state.selected;
+      let newSelected = selected || this.state.selected;
       if (!multiple && newSelected.length > 1) {
         newSelected = newSelected.slice(0, 1);
         this.setState({
@@ -3175,47 +3165,53 @@
           text: getOptionLabel(head(newSelected), labelKey)
         });
       }
-    };
-    _proto.render = function render() {
+    }
+    render() {
       // Omit `onChange` so Flow doesn't complain.
-      var _this$props3 = this.props;
-        _this$props3.onChange;
-        var otherProps = _objectWithoutPropertiesLoose(_this$props3, _excluded$c);
-      var mergedPropsAndState = _extends({}, otherProps, this.state);
-      var filterBy = mergedPropsAndState.filterBy,
-        labelKey = mergedPropsAndState.labelKey,
-        options = mergedPropsAndState.options,
-        paginate = mergedPropsAndState.paginate,
-        shownResults = mergedPropsAndState.shownResults,
-        text = mergedPropsAndState.text;
+      const {
+        onChange,
+        ...otherProps
+      } = this.props;
+      const mergedPropsAndState = {
+        ...otherProps,
+        ...this.state
+      };
+      const {
+        filterBy,
+        labelKey,
+        options,
+        paginate,
+        shownResults,
+        text
+      } = mergedPropsAndState;
       this.isMenuShown = isShown(mergedPropsAndState);
       this.items = []; // Reset items on re-render.
 
-      var results = [];
+      let results = [];
       if (this.isMenuShown) {
-        var cb = typeof filterBy === 'function' ? filterBy : defaultFilterBy;
-        results = options.filter(function (option) {
-          return cb(option, mergedPropsAndState);
-        });
+        const cb = typeof filterBy === 'function' ? filterBy : defaultFilterBy;
+        results = options.filter(option => cb(option, mergedPropsAndState));
 
         // This must come before results are truncated.
-        var shouldPaginate = paginate && results.length > shownResults;
+        const shouldPaginate = paginate && results.length > shownResults;
 
         // Truncate results if necessary.
         results = getTruncatedOptions(results, shownResults);
 
         // Add the custom option if necessary.
         if (addCustomOption(results, mergedPropsAndState)) {
-          var _results$push;
-          results.push((_results$push = {
-            customOption: true
-          }, _results$push[getStringLabelKey(labelKey)] = text, _results$push));
+          results.push({
+            customOption: true,
+            [getStringLabelKey(labelKey)]: text
+          });
         }
 
         // Add the pagination item if necessary.
         if (shouldPaginate) {
-          var _results$push2;
-          results.push((_results$push2 = {}, _results$push2[getStringLabelKey(labelKey)] = '', _results$push2.paginationOption = true, _results$push2));
+          results.push({
+            [getStringLabelKey(labelKey)]: '',
+            paginationOption: true
+          });
         }
       }
       return /*#__PURE__*/React__default["default"].createElement(TypeaheadManager, _extends({}, mergedPropsAndState, {
@@ -3238,14 +3234,12 @@
         setItem: this.setItem,
         toggleMenu: this.toggleMenu
       }));
-    };
-    return Typeahead;
-  }(React__default["default"].Component);
+    }
+  }
   _defineProperty(Typeahead$1, "propTypes", propTypes$a);
   _defineProperty(Typeahead$1, "defaultProps", defaultProps$9);
 
-  var _excluded$b = ["allowNew", "instanceRef", "isLoading", "options", "useCache"];
-  var propTypes$9 = {
+  const propTypes$9 = {
     /**
      * Delay, in milliseconds, before performing search.
      */
@@ -3281,7 +3275,7 @@
      */
     useCache: PropTypes.bool
   };
-  var defaultProps$8 = {
+  const defaultProps$8 = {
     delay: 200,
     minLength: 2,
     options: [],
@@ -3297,24 +3291,21 @@
    *  - Optional query caching
    *  - Search prompt and empty results behaviors
    */
-  var asyncContainer = function asyncContainer(TypeaheadComponent) {
-    var AsyncTypeahead = /*#__PURE__*/function (_React$Component) {
-      function AsyncTypeahead() {
-        var _this;
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-        _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-        _defineProperty(_this, "_cache", {});
-        _defineProperty(_this, "_handleSearchDebounced", void 0);
-        _defineProperty(_this, "_query", _this.props.defaultInputValue || '');
-        _defineProperty(_this, "_getEmptyLabel", function () {
-          var _this$props = _this.props,
-            emptyLabel = _this$props.emptyLabel,
-            isLoading = _this$props.isLoading,
-            promptText = _this$props.promptText,
-            searchText = _this$props.searchText;
-          if (!_this._query.length) {
+  const asyncContainer = TypeaheadComponent => {
+    class AsyncTypeahead extends React__default["default"].Component {
+      constructor() {
+        super(...arguments);
+        _defineProperty(this, "_cache", {});
+        _defineProperty(this, "_handleSearchDebounced", void 0);
+        _defineProperty(this, "_query", this.props.defaultInputValue || '');
+        _defineProperty(this, "_getEmptyLabel", () => {
+          const {
+            emptyLabel,
+            isLoading,
+            promptText,
+            searchText
+          } = this.props;
+          if (!this._query.length) {
             return promptText;
           }
           if (isLoading) {
@@ -3322,42 +3313,41 @@
           }
           return emptyLabel;
         });
-        _defineProperty(_this, "_handleInputChange", function (query, e) {
-          _this.props.onInputChange && _this.props.onInputChange(query, e);
-          _this._handleSearchDebounced(query);
+        _defineProperty(this, "_handleInputChange", (query, e) => {
+          this.props.onInputChange && this.props.onInputChange(query, e);
+          this._handleSearchDebounced(query);
         });
-        _defineProperty(_this, "_handleSearch", function (query) {
-          _this._query = query;
-          var _this$props2 = _this.props,
-            minLength = _this$props2.minLength,
-            onSearch = _this$props2.onSearch,
-            useCache = _this$props2.useCache;
+        _defineProperty(this, "_handleSearch", query => {
+          this._query = query;
+          const {
+            minLength,
+            onSearch,
+            useCache
+          } = this.props;
           if (!query || minLength && query.length < minLength) {
             return;
           }
 
           // Use cached results, if applicable.
-          if (useCache && _this._cache[query]) {
+          if (useCache && this._cache[query]) {
             // Re-render the component with the cached results.
-            _this.forceUpdate();
+            this.forceUpdate();
             return;
           }
 
           // Perform the search.
           onSearch(query);
         });
-        return _this;
       }
-      _inheritsLoose(AsyncTypeahead, _React$Component);
-      var _proto = AsyncTypeahead.prototype;
-      _proto.componentDidMount = function componentDidMount() {
+      componentDidMount() {
         this._handleSearchDebounced = debounce$2(this._handleSearch, this.props.delay);
-      };
-      _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-        var _this$props3 = this.props,
-          isLoading = _this$props3.isLoading,
-          options = _this$props3.options,
-          useCache = _this$props3.useCache;
+      }
+      componentDidUpdate(prevProps) {
+        const {
+          isLoading,
+          options,
+          useCache
+        } = this.props;
 
         // Ensure that we've gone from a loading to a completed state. Otherwise
         // an empty response could get cached if the component updates during the
@@ -3365,21 +3355,22 @@
         if (!isLoading && prevProps.isLoading && useCache) {
           this._cache[this._query] = options;
         }
-      };
-      _proto.componentWillUnmount = function componentWillUnmount() {
+      }
+      componentWillUnmount() {
         this._cache = {};
         this._query = '';
         this._handleSearchDebounced && this._handleSearchDebounced.cancel();
-      };
-      _proto.render = function render() {
-        var _this$props4 = this.props,
-          allowNew = _this$props4.allowNew,
-          instanceRef = _this$props4.instanceRef,
-          isLoading = _this$props4.isLoading,
-          options = _this$props4.options,
-          useCache = _this$props4.useCache,
-          props = _objectWithoutPropertiesLoose(_this$props4, _excluded$b);
-        var cachedQuery = this._cache[this._query];
+      }
+      render() {
+        const {
+          allowNew,
+          instanceRef,
+          isLoading,
+          options,
+          useCache,
+          ...props
+        } = this.props;
+        const cachedQuery = this._cache[this._query];
         return /*#__PURE__*/React__default["default"].createElement(TypeaheadComponent, _extends({}, props, {
           allowNew:
           // Disable custom selections during a search unless
@@ -3391,17 +3382,14 @@
           options: useCache && cachedQuery ? cachedQuery : options,
           ref: instanceRef
         }));
-      };
-      return AsyncTypeahead;
-    }(React__default["default"].Component);
+      }
+    }
     _defineProperty(AsyncTypeahead, "displayName", "asyncContainer(" + getDisplayName(Typeahead$1) + ")");
     _defineProperty(AsyncTypeahead, "propTypes", propTypes$9);
     _defineProperty(AsyncTypeahead, "defaultProps", defaultProps$8);
-    return /*#__PURE__*/React.forwardRef(function (props, ref) {
-      return /*#__PURE__*/React__default["default"].createElement(AsyncTypeahead, _extends({}, props, {
-        instanceRef: ref
-      }));
-    });
+    return /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement(AsyncTypeahead, _extends({}, props, {
+      instanceRef: ref
+    })));
   };
 
   var RootCloseWrapper$1 = {exports: {}};
@@ -5960,12 +5948,11 @@
     return unwrapArray(children)(childrenProps);
   }
 
-  var _excluded$a = ["styles"],
-    _excluded2 = ["ref"];
+  /* eslint-disable react/no-unused-prop-types */
   // `Element` is not defined during server-side rendering, so shim it here.
   /* istanbul ignore next */
-  var SafeElement = typeof Element === 'undefined' ? function () {} : Element;
-  var propTypes$8 = {
+  const SafeElement = typeof Element === 'undefined' ? () => {} : Element;
+  const propTypes$8 = {
     /**
      * Specify menu alignment. The default value is `justify`, which makes the
      * menu as wide as the input and truncates long values. Specifying `left`
@@ -5987,7 +5974,7 @@
     positionFixed: PropTypes.bool,
     referenceElement: PropTypes.instanceOf(SafeElement)
   };
-  var defaultProps$7 = {
+  const defaultProps$7 = {
     align: ALIGN.JUSTIFY,
     dropup: false,
     flip: false,
@@ -5995,24 +5982,30 @@
     positionFixed: false
   };
   function getModifiers(_ref) {
-    var align = _ref.align,
-      flip = _ref.flip;
+    let {
+      align,
+      flip
+    } = _ref;
     return {
       computeStyles: {
         enabled: true,
-        fn: function fn(_ref2) {
-          var styles = _ref2.styles,
-            data = _objectWithoutPropertiesLoose(_ref2, _excluded$a);
-          return _extends({}, data, {
-            styles: _extends({}, styles, {
+        fn: _ref2 => {
+          let {
+            styles,
+            ...data
+          } = _ref2;
+          return {
+            ...data,
+            styles: {
+              ...styles,
               // Use the following condition instead of `align === 'justify'`
               // since it allows the component to fall back to justifying the
               // menu width if `align` is undefined.
               width: align !== ALIGN.RIGHT && align !== ALIGN.LEFT ?
               // Set the popper width to match the target width.
               data.offsets.reference.width : styles.width
-            })
-          });
+            }
+          };
         }
       },
       flip: {
@@ -6025,7 +6018,7 @@
   }
 
   // Flow expects a string literal value for `placement`.
-  var PLACEMENT = {
+  const PLACEMENT = {
     bottom: {
       end: 'bottom-end',
       start: 'bottom-start'
@@ -6036,17 +6029,21 @@
     }
   };
   function getPlacement(_ref3) {
-    var align = _ref3.align,
-      dropup = _ref3.dropup;
-    var x = align === ALIGN.RIGHT ? 'end' : 'start';
-    var y = dropup ? 'top' : 'bottom';
+    let {
+      align,
+      dropup
+    } = _ref3;
+    const x = align === ALIGN.RIGHT ? 'end' : 'start';
+    const y = dropup ? 'top' : 'bottom';
     return PLACEMENT[y][x];
   }
-  var Overlay = function Overlay(props) {
-    var children = props.children,
-      isMenuShown = props.isMenuShown,
-      positionFixed = props.positionFixed,
-      referenceElement = props.referenceElement;
+  const Overlay = props => {
+    const {
+      children,
+      isMenuShown,
+      positionFixed,
+      referenceElement
+    } = props;
     if (!isMenuShown) {
       return null;
     }
@@ -6055,25 +6052,27 @@
       placement: getPlacement(props),
       positionFixed: positionFixed,
       referenceElement: referenceElement
-    }, function (_ref4) {
-      var ref = _ref4.ref,
-        popperProps = _objectWithoutPropertiesLoose(_ref4, _excluded2);
-      return children(_extends({}, popperProps, {
+    }, _ref4 => {
+      let {
+        ref,
+        ...popperProps
+      } = _ref4;
+      return children({
+        ...popperProps,
         innerRef: ref,
         inputHeight: referenceElement ? referenceElement.offsetHeight : 0
-      }));
+      });
     });
   };
   Overlay.propTypes = propTypes$8;
   Overlay.defaultProps = defaultProps$7;
 
-  var _excluded$9 = ["className", "label", "onClick", "size"];
-  var propTypes$7 = {
+  const propTypes$7 = {
     label: PropTypes.string,
     onClick: PropTypes.func,
     size: sizeType
   };
-  var defaultProps$6 = {
+  const defaultProps$6 = {
     label: 'Clear',
     onClick: noop
   };
@@ -6082,20 +6081,22 @@
    *
    * http://getbootstrap.com/css/#helper-classes-close
    */
-  var ClearButton = function ClearButton(_ref) {
-    var className = _ref.className,
-      label = _ref.label,
-      _onClick = _ref.onClick,
-      size = _ref.size,
-      props = _objectWithoutPropertiesLoose(_ref, _excluded$9);
+  const ClearButton = _ref => {
+    let {
+      className,
+      label,
+      onClick,
+      size,
+      ...props
+    } = _ref;
     return /*#__PURE__*/React__default["default"].createElement("button", _extends({}, props, {
       "aria-label": label,
       className: cx('close', 'rbt-close', {
         'rbt-close-lg': isSizeLarge(size)
       }, className),
-      onClick: function onClick(e) {
+      onClick: e => {
         e.stopPropagation();
-        _onClick(e);
+        onClick(e);
       },
       type: "button"
     }), /*#__PURE__*/React__default["default"].createElement("span", {
@@ -6107,8 +6108,10 @@
   ClearButton.propTypes = propTypes$7;
   ClearButton.defaultProps = defaultProps$6;
 
-  var Loader = function Loader(_ref) {
-    var size = _ref.size;
+  const Loader = _ref => {
+    let {
+      size
+    } = _ref;
     return /*#__PURE__*/React__default["default"].createElement("div", {
       className: cx('rbt-loader', {
         'rbt-loader-lg': isSizeLarge(size),
@@ -6120,14 +6123,14 @@
     size: sizeType
   };
 
-  var propTypes$6 = {
+  const propTypes$6 = {
     onBlur: PropTypes.func,
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
     onRemove: PropTypes.func,
     option: optionType.isRequired
   };
-  var defaultProps$5 = {
+  const defaultProps$5 = {
     onBlur: noop,
     onClick: noop,
     onFocus: noop
@@ -6136,65 +6139,61 @@
   /**
    * Higher-order component to encapsulate Token behaviors.
    */
-  var tokenContainer = function tokenContainer(Component) {
-    var WrappedComponent = /*#__PURE__*/function (_React$Component) {
-      function WrappedComponent() {
-        var _this;
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-        _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-        _defineProperty(_this, "state", {
+  const tokenContainer = Component => {
+    class WrappedComponent extends React__default["default"].Component {
+      constructor() {
+        super(...arguments);
+        _defineProperty(this, "state", {
           active: false
         });
-        _defineProperty(_this, "_handleActiveChange", function (e, active, callback) {
+        _defineProperty(this, "_handleActiveChange", (e, active, callback) => {
           // e.persist() isn't always present.
           e.persist && e.persist();
           e.stopPropagation();
-          _this.setState({
-            active: active
-          }, function () {
-            return callback(e);
-          });
+          this.setState({
+            active
+          }, () => callback(e));
         });
-        _defineProperty(_this, "_handleBlur", function (e) {
-          _this._handleActiveChange(e, false, _this.props.onBlur);
+        _defineProperty(this, "_handleBlur", e => {
+          this._handleActiveChange(e, false, this.props.onBlur);
         });
-        _defineProperty(_this, "_handleClick", function (e) {
-          _this._handleActiveChange(e, true, _this.props.onClick);
+        _defineProperty(this, "_handleClick", e => {
+          this._handleActiveChange(e, true, this.props.onClick);
         });
-        _defineProperty(_this, "_handleFocus", function (e) {
-          _this._handleActiveChange(e, true, _this.props.onFocus);
+        _defineProperty(this, "_handleFocus", e => {
+          this._handleActiveChange(e, true, this.props.onFocus);
         });
-        _defineProperty(_this, "_handleKeyDown", function (e) {
+        _defineProperty(this, "_handleKeyDown", e => {
           switch (e.keyCode) {
             case BACKSPACE:
-              if (_this.state.active) {
+              if (this.state.active) {
                 // Prevent backspace keypress from triggering the browser "back"
                 // action.
                 e.preventDefault();
-                _this._handleRemove();
+                this._handleRemove();
               }
               break;
           }
         });
-        _defineProperty(_this, "_handleRemove", function () {
-          var _this$props = _this.props,
-            onRemove = _this$props.onRemove,
-            option = _this$props.option;
+        _defineProperty(this, "_handleRemove", () => {
+          const {
+            onRemove,
+            option
+          } = this.props;
 
           // Flow having trouble with `isFunction` here for some reason...
           if (typeof onRemove === 'function') {
             onRemove(option);
           }
         });
-        return _this;
       }
-      _inheritsLoose(WrappedComponent, _React$Component);
-      var _proto = WrappedComponent.prototype;
-      _proto.render = function render() {
-        var onRemove = this.props.onRemove;
-        var active = this.state.active;
+      render() {
+        const {
+          onRemove
+        } = this.props;
+        const {
+          active
+        } = this.state;
         return /*#__PURE__*/React__default["default"].createElement(RootCloseWrapper, {
           disabled: !active,
           onRootClose: this._handleBlur
@@ -6206,17 +6205,15 @@
           onKeyDown: this._handleKeyDown,
           onRemove: isFunction(onRemove) ? this._handleRemove : undefined
         })));
-      };
-      return WrappedComponent;
-    }(React__default["default"].Component);
+      }
+    }
     _defineProperty(WrappedComponent, "displayName", "tokenContainer(" + getDisplayName(Component) + ")");
     _defineProperty(WrappedComponent, "propTypes", propTypes$6);
     _defineProperty(WrappedComponent, "defaultProps", defaultProps$5);
     return WrappedComponent;
   };
 
-  var _excluded$8 = ["active", "children", "className", "onRemove"];
-  var propTypes$5 = {
+  const propTypes$5 = {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
     /**
@@ -6230,7 +6227,7 @@
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number
   };
-  var defaultProps$4 = {
+  const defaultProps$4 = {
     active: false,
     disabled: false,
     tabIndex: 0
@@ -6241,20 +6238,17 @@
    * Individual token component, generally displayed within the TokenizerInput
    * component, but can also be rendered on its own.
    */
-  var Token = /*#__PURE__*/function (_React$Component) {
-    function Token() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "_renderRemoveableToken", function () {
-        var _this$props = _this.props,
-          active = _this$props.active,
-          children = _this$props.children,
-          className = _this$props.className,
-          onRemove = _this$props.onRemove,
-          props = _objectWithoutPropertiesLoose(_this$props, _excluded$8);
+  class Token extends React__default["default"].Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "_renderRemoveableToken", () => {
+        const {
+          active,
+          children,
+          className,
+          onRemove,
+          ...props
+        } = this.props;
         return /*#__PURE__*/React__default["default"].createElement("div", _extends({}, props, {
           className: cx('rbt-token', 'rbt-token-removeable', {
             'rbt-token-active': active
@@ -6266,13 +6260,14 @@
           tabIndex: -1
         }));
       });
-      _defineProperty(_this, "_renderToken", function () {
-        var _this$props2 = _this.props,
-          children = _this$props2.children,
-          className = _this$props2.className,
-          disabled = _this$props2.disabled,
-          href = _this$props2.href;
-        var classnames = cx('rbt-token', {
+      _defineProperty(this, "_renderToken", () => {
+        const {
+          children,
+          className,
+          disabled,
+          href
+        } = this.props;
+        const classnames = cx('rbt-token', {
           'rbt-token-disabled': disabled
         }, className);
         if (href && !disabled) {
@@ -6285,31 +6280,25 @@
           className: classnames
         }, children);
       });
-      return _this;
     }
-    _inheritsLoose(Token, _React$Component);
-    var _proto = Token.prototype;
-    _proto.render = function render() {
-      var _this$props3 = this.props,
-        disabled = _this$props3.disabled,
-        onRemove = _this$props3.onRemove,
-        readOnly = _this$props3.readOnly;
+    render() {
+      const {
+        disabled,
+        onRemove,
+        readOnly
+      } = this.props;
       return !disabled && !readOnly && isFunction(onRemove) ? this._renderRemoveableToken() : this._renderToken();
-    };
-    return Token;
-  }(React__default["default"].Component);
+    }
+  }
   _defineProperty(Token, "propTypes", propTypes$5);
   _defineProperty(Token, "defaultProps", defaultProps$4);
   var Token$1 = tokenContainer(Token);
 
-  var Input = /*#__PURE__*/React__default["default"].forwardRef(function (props, ref) {
-    return /*#__PURE__*/React__default["default"].createElement("input", _extends({}, props, {
-      className: cx('rbt-input-main', props.className),
-      ref: ref
-    }));
-  });
+  const Input = /*#__PURE__*/React__default["default"].forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement("input", _extends({}, props, {
+    className: cx('rbt-input-main', props.className),
+    ref: ref
+  })));
 
-  var _excluded$7 = ["forwardedRef", "hintText", "initialItem", "inputNode", "onAdd", "selectHintOnEnter"];
   // IE doesn't seem to get the composite computed value (eg: 'padding',
   // 'borderStyle', etc.), so generate these from the individual values.
   function interpolateStyle(styles, attr, subattr) {
@@ -6321,15 +6310,13 @@
       /* eslint-disable-next-line no-param-reassign */
       subattr = subattr.replace(subattr[0], subattr[0].toUpperCase());
     }
-    return ['Top', 'Right', 'Bottom', 'Left'].map(function (dir) {
-      return styles[attr + dir + subattr];
-    }).join(' ');
+    return ['Top', 'Right', 'Bottom', 'Left'].map(dir => styles[attr + dir + subattr]).join(' ');
   }
   function copyStyles(inputNode, hintNode) {
     if (!inputNode || !hintNode) {
       return;
     }
-    var inputStyle = window.getComputedStyle(inputNode);
+    const inputStyle = window.getComputedStyle(inputNode);
 
     /* eslint-disable no-param-reassign */
     hintNode.style.borderStyle = interpolateStyle(inputStyle, 'border', 'style');
@@ -6342,44 +6329,39 @@
     /* eslint-enable no-param-reassign */
   }
   function hintContainer(Input) {
-    var HintedInput = /*#__PURE__*/function (_React$Component) {
-      function HintedInput() {
-        var _this;
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-        _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-        _defineProperty(_this, "hintRef", /*#__PURE__*/React__default["default"].createRef());
-        _defineProperty(_this, "_handleKeyDown", function (e) {
-          var _this$props = _this.props,
-            initialItem = _this$props.initialItem,
-            onAdd = _this$props.onAdd,
-            onKeyDown = _this$props.onKeyDown;
-          if (shouldSelectHint(e, _this.props)) {
+    class HintedInput extends React__default["default"].Component {
+      constructor() {
+        super(...arguments);
+        _defineProperty(this, "hintRef", /*#__PURE__*/React__default["default"].createRef());
+        _defineProperty(this, "_handleKeyDown", e => {
+          const {
+            initialItem,
+            onAdd,
+            onKeyDown
+          } = this.props;
+          if (shouldSelectHint(e, this.props)) {
             e.preventDefault(); // Prevent input from blurring on TAB.
             onAdd(initialItem);
           }
           onKeyDown(e);
         });
-        return _this;
       }
-      _inheritsLoose(HintedInput, _React$Component);
-      var _proto = HintedInput.prototype;
-      _proto.componentDidMount = function componentDidMount() {
+      componentDidMount() {
         copyStyles(this.props.inputNode, this.hintRef.current);
-      };
-      _proto.componentDidUpdate = function componentDidUpdate() {
+      }
+      componentDidUpdate() {
         copyStyles(this.props.inputNode, this.hintRef.current);
-      };
-      _proto.render = function render() {
-        var _this$props2 = this.props,
-          forwardedRef = _this$props2.forwardedRef,
-          hintText = _this$props2.hintText;
-          _this$props2.initialItem;
-          _this$props2.inputNode;
-          _this$props2.onAdd;
-          _this$props2.selectHintOnEnter;
-          var props = _objectWithoutPropertiesLoose(_this$props2, _excluded$7);
+      }
+      render() {
+        const {
+          forwardedRef,
+          hintText,
+          initialItem,
+          inputNode,
+          onAdd,
+          selectHintOnEnter,
+          ...props
+        } = this.props;
         return /*#__PURE__*/React__default["default"].createElement("div", {
           style: {
             display: 'flex',
@@ -6409,35 +6391,27 @@
           tabIndex: -1,
           value: hintText
         }));
-      };
-      return HintedInput;
-    }(React__default["default"].Component);
+      }
+    }
     _defineProperty(HintedInput, "displayName", "hintContainer(" + getDisplayName(Input) + ")");
-    var HintedInputWithContext = withContext(HintedInput, ['hintText', 'initialItem', 'inputNode', 'onAdd', 'selectHintOnEnter']);
-    return /*#__PURE__*/React__default["default"].forwardRef(function (props, ref) {
-      return /*#__PURE__*/React__default["default"].createElement(HintedInputWithContext, _extends({}, props, {
-        forwardedRef: ref
-      }));
-    });
+    const HintedInputWithContext = withContext(HintedInput, ['hintText', 'initialItem', 'inputNode', 'onAdd', 'selectHintOnEnter']);
+    return /*#__PURE__*/React__default["default"].forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement(HintedInputWithContext, _extends({}, props, {
+      forwardedRef: ref
+    })));
   }
 
-  var _excluded$6 = ["className", "isInvalid", "isValid", "size"];
   function withClassNames(Component) {
     // Use a class instead of function component to support refs.
     /* eslint-disable-next-line react/prefer-stateless-function */
-    var WrappedComponent = /*#__PURE__*/function (_React$Component) {
-      function WrappedComponent() {
-        return _React$Component.apply(this, arguments) || this;
-      }
-      _inheritsLoose(WrappedComponent, _React$Component);
-      var _proto = WrappedComponent.prototype;
-      _proto.render = function render() {
-        var _this$props = this.props,
-          className = _this$props.className,
-          isInvalid = _this$props.isInvalid,
-          isValid = _this$props.isValid,
-          size = _this$props.size,
-          props = _objectWithoutPropertiesLoose(_this$props, _excluded$6);
+    class WrappedComponent extends React__default["default"].Component {
+      render() {
+        const {
+          className,
+          isInvalid,
+          isValid,
+          size,
+          ...props
+        } = this.props;
         return /*#__PURE__*/React__default["default"].createElement(Component, _extends({}, props, {
           className: cx('form-control', 'rbt-input', {
             'input-lg form-control-lg': isSizeLarge(size),
@@ -6446,40 +6420,34 @@
             'is-valid': isValid
           }, className)
         }));
-      };
-      return WrappedComponent;
-    }(React__default["default"].Component);
+      }
+    }
     _defineProperty(WrappedComponent, "displayName", "withClassNames(" + getDisplayName(Component) + ")");
     return WrappedComponent;
   }
 
-  var _excluded$5 = ["children", "className", "inputClassName", "inputRef", "placeholder", "selected"];
-  var HintedInput$1 = hintContainer(Input);
-  var TypeaheadInputMulti = /*#__PURE__*/function (_React$Component) {
-    function TypeaheadInputMulti() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "wrapperRef", /*#__PURE__*/React__default["default"].createRef());
-      _defineProperty(_this, "_input", void 0);
-      _defineProperty(_this, "getInputRef", function (input) {
-        _this._input = input;
-        _this.props.inputRef(input);
+  const HintedInput$1 = hintContainer(Input);
+  class TypeaheadInputMulti extends React__default["default"].Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "wrapperRef", /*#__PURE__*/React__default["default"].createRef());
+      _defineProperty(this, "_input", void 0);
+      _defineProperty(this, "getInputRef", input => {
+        this._input = input;
+        this.props.inputRef(input);
       });
       /**
        * Forward click or focus events on the container element to the input.
        */
-      _defineProperty(_this, "_handleContainerClickOrFocus", function (e) {
+      _defineProperty(this, "_handleContainerClickOrFocus", e => {
         // Don't focus the input if it's disabled.
-        if (_this.props.disabled) {
+        if (this.props.disabled) {
           e.currentTarget.blur();
           return;
         }
 
         // Move cursor to the end if the user clicks outside the actual input.
-        var inputNode = _this._input;
+        const inputNode = this._input;
         if (!inputNode) {
           return;
         }
@@ -6488,22 +6456,25 @@
         }
         inputNode.focus();
       });
-      _defineProperty(_this, "_handleKeyDown", function (e) {
-        var _this$props = _this.props,
-          onKeyDown = _this$props.onKeyDown,
-          selected = _this$props.selected,
-          value = _this$props.value;
+      _defineProperty(this, "_handleKeyDown", e => {
+        const {
+          onKeyDown,
+          selected,
+          value
+        } = this.props;
         switch (e.keyCode) {
           case BACKSPACE:
-            if (e.currentTarget === _this._input && selected.length && !value) {
+            if (e.currentTarget === this._input && selected.length && !value) {
               // Prevent browser from going back.
               e.preventDefault();
 
               // If the input is selected and there is no text, focus the last
               // token when the user hits backspace.
-              if (_this.wrapperRef.current) {
-                var children = _this.wrapperRef.current.children;
-                var lastToken = children[children.length - 2];
+              if (this.wrapperRef.current) {
+                const {
+                  children
+                } = this.wrapperRef.current;
+                const lastToken = children[children.length - 2];
                 lastToken && lastToken.focus();
               }
             }
@@ -6511,19 +6482,17 @@
         }
         onKeyDown(e);
       });
-      return _this;
     }
-    _inheritsLoose(TypeaheadInputMulti, _React$Component);
-    var _proto = TypeaheadInputMulti.prototype;
-    _proto.render = function render() {
-      var _this$props2 = this.props,
-        children = _this$props2.children,
-        className = _this$props2.className,
-        inputClassName = _this$props2.inputClassName;
-        _this$props2.inputRef;
-        var placeholder = _this$props2.placeholder,
-        selected = _this$props2.selected,
-        props = _objectWithoutPropertiesLoose(_this$props2, _excluded$5);
+    render() {
+      const {
+        children,
+        className,
+        inputClassName,
+        inputRef,
+        placeholder,
+        selected,
+        ...props
+      } = this.props;
       return /*#__PURE__*/React__default["default"].createElement("div", {
         className: cx('rbt-input-multi', className),
         disabled: props.disabled,
@@ -6549,27 +6518,27 @@
           zIndex: 1
         }
       }))));
-    };
-    return TypeaheadInputMulti;
-  }(React__default["default"].Component);
+    }
+  }
   var TypeaheadInputMulti$1 = withClassNames(TypeaheadInputMulti);
 
-  var _excluded$4 = ["inputRef"];
-  var HintedInput = hintContainer(Input);
-  var TypeaheadInputSingle = withClassNames(function (_ref) {
-    var inputRef = _ref.inputRef,
-      props = _objectWithoutPropertiesLoose(_ref, _excluded$4);
+  const HintedInput = hintContainer(Input);
+  var TypeaheadInputSingle = withClassNames(_ref => {
+    let {
+      inputRef,
+      ...props
+    } = _ref;
     return /*#__PURE__*/React__default["default"].createElement(HintedInput, _extends({}, props, {
       ref: inputRef
     }));
   });
 
-  var propTypes$4 = {
+  const propTypes$4 = {
     children: PropTypes.string.isRequired,
     highlightClassName: PropTypes.string,
     search: PropTypes.string.isRequired
   };
-  var defaultProps$3 = {
+  const defaultProps$3 = {
     highlightClassName: 'rbt-highlight-text'
   };
   /**
@@ -6578,25 +6547,21 @@
    * Results are already filtered by the time the component is used internally so
    * we can safely ignore case and diacritical marks for the purposes of matching.
    */
-  var Highlighter = /*#__PURE__*/function (_React$PureComponent) {
-    function Highlighter() {
-      return _React$PureComponent.apply(this, arguments) || this;
-    }
-    _inheritsLoose(Highlighter, _React$PureComponent);
-    var _proto = Highlighter.prototype;
-    _proto.render = function render() {
-      var _this$props = this.props,
-        children = _this$props.children,
-        highlightClassName = _this$props.highlightClassName,
-        search = _this$props.search;
+  class Highlighter extends React__default["default"].PureComponent {
+    render() {
+      const {
+        children,
+        highlightClassName,
+        search
+      } = this.props;
       if (!search || !children) {
         return children;
       }
-      var matchCount = 0;
-      var remaining = children;
-      var highlighterChildren = [];
+      let matchCount = 0;
+      let remaining = children;
+      const highlighterChildren = [];
       while (remaining) {
-        var bounds = getMatchBounds(remaining, search);
+        const bounds = getMatchBounds(remaining, search);
 
         // No match anywhere in the remaining string, stop.
         if (!bounds) {
@@ -6605,13 +6570,13 @@
         }
 
         // Capture the string that leads up to a match.
-        var nonMatch = remaining.slice(0, bounds.start);
+        const nonMatch = remaining.slice(0, bounds.start);
         if (nonMatch) {
           highlighterChildren.push(nonMatch);
         }
 
         // Capture the matching string.
-        var match = remaining.slice(bounds.start, bounds.end);
+        const match = remaining.slice(bounds.start, bounds.end);
         highlighterChildren.push( /*#__PURE__*/React__default["default"].createElement("mark", {
           className: highlightClassName,
           key: matchCount
@@ -6622,9 +6587,8 @@
         remaining = remaining.slice(bounds.end);
       }
       return highlighterChildren;
-    };
-    return Highlighter;
-  }(React__default["default"].PureComponent);
+    }
+  }
   _defineProperty(Highlighter, "propTypes", propTypes$4);
   _defineProperty(Highlighter, "defaultProps", defaultProps$3);
 
@@ -6632,35 +6596,32 @@
 
   const o=t=>!1===t?{block:"end",inline:"nearest"}:(t=>t===Object(t)&&0!==Object.keys(t).length)(t)?t:{block:"start",inline:"nearest"};function e(e,r$1){if(!e.isConnected||!(t=>{let o=t;for(;o&&o.parentNode;){if(o.parentNode===document)return !0;o=o.parentNode instanceof ShadowRoot?o.parentNode.host:o.parentNode;}return !1})(e))return;const n=(t=>{const o=window.getComputedStyle(t);return {top:parseFloat(o.scrollMarginTop)||0,right:parseFloat(o.scrollMarginRight)||0,bottom:parseFloat(o.scrollMarginBottom)||0,left:parseFloat(o.scrollMarginLeft)||0}})(e);if((t=>"object"==typeof t&&"function"==typeof t.behavior)(r$1))return r$1.behavior(r(e,r$1));const l="boolean"==typeof r$1||null==r$1?void 0:r$1.behavior;for(const{el:a,top:i,left:s}of r(e,o(r$1))){const t=i-n.top+n.bottom,o=s-n.left+n.right;a.scroll({top:t,left:o,behavior:l});}}
 
-  var _excluded$3 = ["activeIndex", "id", "isOnlyResult", "label", "onActiveItemChange", "onInitialItemChange", "onMenuItemClick", "option", "position", "setItem"];
-  var propTypes$3 = {
+  const propTypes$3 = {
     option: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
     position: PropTypes.number
   };
-  var menuItemContainer = function menuItemContainer(Component) {
-    var WrappedMenuItem = /*#__PURE__*/function (_React$Component) {
-      function WrappedMenuItem() {
-        var _this;
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-        _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-        _defineProperty(_this, "itemRef", /*#__PURE__*/React__default["default"].createRef());
-        _defineProperty(_this, "_handleClick", function (e) {
-          var _this$props = _this.props,
-            onMenuItemClick = _this$props.onMenuItemClick,
-            option = _this$props.option,
-            onClick = _this$props.onClick;
+  const menuItemContainer = Component => {
+    class WrappedMenuItem extends React__default["default"].Component {
+      constructor() {
+        super(...arguments);
+        _defineProperty(this, "itemRef", /*#__PURE__*/React__default["default"].createRef());
+        _defineProperty(this, "_handleClick", e => {
+          const {
+            onMenuItemClick,
+            option,
+            onClick
+          } = this.props;
           onMenuItemClick(option, e);
           onClick && onClick(e);
         });
-        _defineProperty(_this, "_maybeUpdateItem", function () {
-          var _this$props2 = _this.props,
-            activeIndex = _this$props2.activeIndex,
-            onActiveItemChange = _this$props2.onActiveItemChange,
-            onInitialItemChange = _this$props2.onInitialItemChange,
-            option = _this$props2.option,
-            position = _this$props2.position;
+        _defineProperty(this, "_maybeUpdateItem", () => {
+          const {
+            activeIndex,
+            onActiveItemChange,
+            onInitialItemChange,
+            option,
+            position
+          } = this.props;
           if (position === 0) {
             onInitialItemChange(option);
           }
@@ -6668,7 +6629,7 @@
             onActiveItemChange(option);
 
             // Automatically scroll the menu as the user keys through it.
-            var node = _this.itemRef.current;
+            const node = this.itemRef.current;
             node && e(node, {
               block: 'nearest',
               boundary: node.parentNode,
@@ -6677,30 +6638,28 @@
             });
           }
         });
-        return _this;
       }
-      _inheritsLoose(WrappedMenuItem, _React$Component);
-      var _proto = WrappedMenuItem.prototype;
-      _proto.componentDidMount = function componentDidMount() {
+      componentDidMount() {
         this._maybeUpdateItem();
-      };
-      _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
+      }
+      componentDidUpdate(prevProps, prevState) {
         this._maybeUpdateItem();
-      };
-      _proto.render = function render() {
-        var _this$props3 = this.props,
-          activeIndex = _this$props3.activeIndex,
-          id = _this$props3.id,
-          isOnlyResult = _this$props3.isOnlyResult,
-          label = _this$props3.label;
-          _this$props3.onActiveItemChange;
-          _this$props3.onInitialItemChange;
-          _this$props3.onMenuItemClick;
-          var option = _this$props3.option,
-          position = _this$props3.position,
-          setItem = _this$props3.setItem,
-          props = _objectWithoutPropertiesLoose(_this$props3, _excluded$3);
-        var active = isOnlyResult || activeIndex === position;
+      }
+      render() {
+        const {
+          activeIndex,
+          id,
+          isOnlyResult,
+          label,
+          onActiveItemChange,
+          onInitialItemChange,
+          onMenuItemClick,
+          option,
+          position,
+          setItem,
+          ...props
+        } = this.props;
+        const active = isOnlyResult || activeIndex === position;
 
         // Update the item's position in the item stack.
         setItem(option, position);
@@ -6714,26 +6673,26 @@
           ref: this.itemRef,
           role: "option"
         }));
-      };
-      return WrappedMenuItem;
-    }(React__default["default"].Component);
+      }
+    }
     _defineProperty(WrappedMenuItem, "displayName", "menuItemContainer(" + getDisplayName(Component) + ")");
     _defineProperty(WrappedMenuItem, "propTypes", propTypes$3);
     return withContext(WrappedMenuItem, ['activeIndex', 'id', 'isOnlyResult', 'items', 'onActiveItemChange', 'onInitialItemChange', 'onMenuItemClick', 'setItem']);
   };
 
-  var _excluded$2 = ["active", "children", "className", "disabled", "onClick", "onMouseDown"];
-  var BaseMenuItem = /*#__PURE__*/React__default["default"].forwardRef(function (_ref, ref) {
-    var active = _ref.active,
-      children = _ref.children,
-      className = _ref.className,
-      disabled = _ref.disabled,
-      _onClick = _ref.onClick,
-      onMouseDown = _ref.onMouseDown,
-      props = _objectWithoutPropertiesLoose(_ref, _excluded$2);
-    var conditionalClassNames = {
-      active: active,
-      disabled: disabled
+  const BaseMenuItem = /*#__PURE__*/React__default["default"].forwardRef((_ref, ref) => {
+    let {
+      active,
+      children,
+      className,
+      disabled,
+      onClick,
+      onMouseDown,
+      ...props
+    } = _ref;
+    const conditionalClassNames = {
+      active,
+      disabled
     };
     return (
       /*#__PURE__*/
@@ -6744,9 +6703,9 @@
       }), /*#__PURE__*/React__default["default"].createElement("a", {
         className: cx('dropdown-item', conditionalClassNames),
         href: "#",
-        onClick: function onClick(e) {
+        onClick: e => {
           e.preventDefault();
-          !disabled && _onClick && _onClick(e);
+          !disabled && onClick && onClick(e);
         },
         onMouseDown: onMouseDown
       }, children))
@@ -6755,18 +6714,14 @@
   });
   var MenuItem = menuItemContainer(BaseMenuItem);
 
-  var MenuDivider = function MenuDivider(props) {
-    return /*#__PURE__*/React__default["default"].createElement("li", {
-      className: "divider dropdown-divider",
-      role: "separator"
-    });
-  };
-  var MenuHeader = function MenuHeader(props) {
-    return /*#__PURE__*/React__default["default"].createElement("li", _extends({}, props, {
-      className: "dropdown-header"
-    }));
-  };
-  var propTypes$2 = {
+  const MenuDivider = props => /*#__PURE__*/React__default["default"].createElement("li", {
+    className: "divider dropdown-divider",
+    role: "separator"
+  });
+  const MenuHeader = props => /*#__PURE__*/React__default["default"].createElement("li", _extends({}, props, {
+    className: "dropdown-header"
+  }));
+  const propTypes$2 = {
     'aria-label': PropTypes.string,
     /**
      * Message to display in the menu if there are no valid results.
@@ -6781,7 +6736,7 @@
      */
     maxHeight: PropTypes.string
   };
-  var defaultProps$2 = {
+  const defaultProps$2 = {
     'aria-label': 'menu-options',
     emptyLabel: 'No matches found.',
     maxHeight: '300px'
@@ -6789,33 +6744,30 @@
   /**
    * Menu component that handles empty state when passed a set of results.
    */
-  var Menu = /*#__PURE__*/function (_React$Component) {
-    function Menu() {
-      return _React$Component.apply(this, arguments) || this;
-    }
-    _inheritsLoose(Menu, _React$Component);
-    var _proto = Menu.prototype;
-    _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-      var _this$props = this.props,
-        inputHeight = _this$props.inputHeight,
-        scheduleUpdate = _this$props.scheduleUpdate;
+  class Menu extends React__default["default"].Component {
+    componentDidUpdate(prevProps) {
+      const {
+        inputHeight,
+        scheduleUpdate
+      } = this.props;
 
       // Update the menu position if the height of the input changes.
       if (inputHeight !== prevProps.inputHeight) {
         scheduleUpdate();
       }
-    };
-    _proto.render = function render() {
-      var _this$props2 = this.props,
-        children = _this$props2.children,
-        className = _this$props2.className,
-        emptyLabel = _this$props2.emptyLabel,
-        id = _this$props2.id,
-        innerRef = _this$props2.innerRef,
-        maxHeight = _this$props2.maxHeight,
-        style = _this$props2.style,
-        text = _this$props2.text;
-      var contents = React.Children.count(children) === 0 ? /*#__PURE__*/React__default["default"].createElement(BaseMenuItem, {
+    }
+    render() {
+      const {
+        children,
+        className,
+        emptyLabel,
+        id,
+        innerRef,
+        maxHeight,
+        style,
+        text
+      } = this.props;
+      const contents = React.Children.count(children) === 0 ? /*#__PURE__*/React__default["default"].createElement(BaseMenuItem, {
         disabled: true,
         role: "option"
       }, emptyLabel) : children;
@@ -6829,22 +6781,21 @@
         text,
         ref: innerRef,
         role: "listbox",
-        style: _extends({}, style, {
+        style: {
+          ...style,
           display: 'block',
-          maxHeight: maxHeight,
+          maxHeight,
           overflow: 'auto'
-        })
+        }
       }, contents);
-    };
-    return Menu;
-  }(React__default["default"].Component);
+    }
+  }
   _defineProperty(Menu, "propTypes", propTypes$2);
   _defineProperty(Menu, "defaultProps", defaultProps$2);
   _defineProperty(Menu, "Divider", MenuDivider);
   _defineProperty(Menu, "Header", MenuHeader);
 
-  var _excluded$1 = ["id", "labelKey", "newSelectionPrefix", "options", "renderMenuItemChildren", "text"];
-  var propTypes$1 = {
+  const propTypes$1 = {
     /**
      * Provides the ability to specify a prefix before the user-entered text to
      * indicate that the selection will be new. No-op unless `allowNew={true}`.
@@ -6859,35 +6810,30 @@
      */
     renderMenuItemChildren: PropTypes.func
   };
-  var defaultProps$1 = {
+  const defaultProps$1 = {
     newSelectionPrefix: 'New selection: ',
     paginationText: 'Display additional results...',
-    renderMenuItemChildren: function renderMenuItemChildren(option, props, idx) {
-      return /*#__PURE__*/React__namespace.createElement(Highlighter, {
-        search: props.text
-      }, getOptionLabel(option, props.labelKey));
-    }
+    renderMenuItemChildren: (option, props, idx) => /*#__PURE__*/React__namespace.createElement(Highlighter, {
+      search: props.text
+    }, getOptionLabel(option, props.labelKey))
   };
-  var TypeaheadMenu = /*#__PURE__*/function (_React$Component) {
-    function TypeaheadMenu() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "_renderMenuItem", function (option, position) {
-        var _this$props = _this.props,
-          labelKey = _this$props.labelKey,
-          newSelectionPrefix = _this$props.newSelectionPrefix,
-          paginationText = _this$props.paginationText,
-          renderMenuItemChildren = _this$props.renderMenuItemChildren,
-          text = _this$props.text;
-        var label = getOptionLabel(option, labelKey);
-        var menuItemProps = {
+  class TypeaheadMenu extends React__namespace.Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "_renderMenuItem", (option, position) => {
+        const {
+          labelKey,
+          newSelectionPrefix,
+          paginationText,
+          renderMenuItemChildren,
+          text
+        } = this.props;
+        const label = getOptionLabel(option, labelKey);
+        const menuItemProps = {
           disabled: getOptionProperty(option, 'disabled'),
-          label: label,
-          option: option,
-          position: position
+          label,
+          option,
+          position
         };
         if (option.customOption) {
           return /*#__PURE__*/React__namespace.createElement(MenuItem, _extends({}, menuItemProps, {
@@ -6908,21 +6854,19 @@
         }
         return /*#__PURE__*/React__namespace.createElement(MenuItem, _extends({}, menuItemProps, {
           key: position
-        }), renderMenuItemChildren(option, _this.props, position));
+        }), renderMenuItemChildren(option, this.props, position));
       });
-      return _this;
     }
-    _inheritsLoose(TypeaheadMenu, _React$Component);
-    var _proto = TypeaheadMenu.prototype;
-    _proto.render = function render() {
-      var _this$props2 = this.props,
-        id = _this$props2.id;
-        _this$props2.labelKey;
-        _this$props2.newSelectionPrefix;
-        var options = _this$props2.options;
-        _this$props2.renderMenuItemChildren;
-        var text = _this$props2.text,
-        menuProps = _objectWithoutPropertiesLoose(_this$props2, _excluded$1);
+    render() {
+      const {
+        id,
+        labelKey,
+        newSelectionPrefix,
+        options,
+        renderMenuItemChildren,
+        text,
+        ...menuProps
+      } = this.props;
       return (
         /*#__PURE__*/
         // Explictly pass some props so Flow doesn't complain...
@@ -6931,14 +6875,12 @@
           text: text
         }), options.map(this._renderMenuItem))
       );
-    };
-    return TypeaheadMenu;
-  }(React__namespace.Component);
+    }
+  }
   _defineProperty(TypeaheadMenu, "propTypes", propTypes$1);
   _defineProperty(TypeaheadMenu, "defaultProps", defaultProps$1);
 
-  var _excluded = ["getInputProps"];
-  var propTypes = {
+  const propTypes = {
     /**
      * Specifies the size of the input.
      */
@@ -6981,108 +6923,109 @@
      */
     size: sizeType
   };
-  var defaultProps = {
+  const defaultProps = {
     clearButton: false,
     inputProps: {},
     isInvalid: false,
     isLoading: false,
     isValid: false,
-    renderMenu: function renderMenu(results, menuProps, props) {
-      return /*#__PURE__*/React__default["default"].createElement(TypeaheadMenu, _extends({}, menuProps, {
-        labelKey: props.labelKey,
-        options: results,
-        text: props.text
-      }));
-    },
-    renderToken: function renderToken(option, props, idx) {
-      return /*#__PURE__*/React__default["default"].createElement(Token$1, {
-        disabled: props.disabled,
-        key: idx,
-        onRemove: props.onRemove,
-        option: option,
-        tabIndex: props.tabIndex
-      }, getOptionLabel(option, props.labelKey));
-    }
+    renderMenu: (results, menuProps, props) => /*#__PURE__*/React__default["default"].createElement(TypeaheadMenu, _extends({}, menuProps, {
+      labelKey: props.labelKey,
+      options: results,
+      text: props.text
+    })),
+    renderToken: (option, props, idx) => /*#__PURE__*/React__default["default"].createElement(Token$1, {
+      disabled: props.disabled,
+      key: idx,
+      onRemove: props.onRemove,
+      option: option,
+      tabIndex: props.tabIndex
+    }, getOptionLabel(option, props.labelKey))
   };
   function getOverlayProps(props) {
     return pick(props, ['align', 'dropup', 'flip', 'positionFixed']);
   }
-  var TypeaheadComponent = /*#__PURE__*/function (_React$Component) {
-    function TypeaheadComponent() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "_referenceElement", void 0);
-      _defineProperty(_this, "referenceElementRef", function (element) {
+  class TypeaheadComponent extends React__default["default"].Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "_referenceElement", void 0);
+      _defineProperty(this, "referenceElementRef", element => {
         // Use `findDOMNode` here because it's easier and less fragile than
         // forwarding refs to the input's container.
         /* eslint-disable react/no-find-dom-node */
         // $FlowFixMe: `findDOMNode` could return Text or an Element.
-        _this._referenceElement = require$$0.findDOMNode(element);
+        this._referenceElement = require$$0.findDOMNode(element);
         /* eslint-enable react/no-find-dom-node */
       });
-      _defineProperty(_this, "_renderInput", function (inputProps, props) {
-        var _this$props = _this.props,
-          bsSize = _this$props.bsSize,
-          isInvalid = _this$props.isInvalid,
-          isValid = _this$props.isValid,
-          multiple = _this$props.multiple,
-          renderInput = _this$props.renderInput,
-          renderToken = _this$props.renderToken,
-          size = _this$props.size;
+      _defineProperty(this, "_renderInput", (inputProps, props) => {
+        const {
+          bsSize,
+          isInvalid,
+          isValid,
+          multiple,
+          renderInput,
+          renderToken,
+          size
+        } = this.props;
         if (isFunction(renderInput)) {
           return renderInput(inputProps, props);
         }
-        var commonProps = _extends({}, inputProps, {
-          isInvalid: isInvalid,
-          isValid: isValid,
+        const commonProps = {
+          ...inputProps,
+          isInvalid,
+          isValid,
           size: bsSize || size
-        });
+        };
         if (!multiple) {
           return /*#__PURE__*/React__default["default"].createElement(TypeaheadInputSingle, commonProps);
         }
-        var labelKey = props.labelKey,
-          onRemove = props.onRemove,
-          selected = props.selected;
+        const {
+          labelKey,
+          onRemove,
+          selected
+        } = props;
         return /*#__PURE__*/React__default["default"].createElement(TypeaheadInputMulti$1, _extends({}, commonProps, {
           selected: selected
-        }), selected.map(function (option, idx) {
-          return renderToken(option, _extends({}, commonProps, {
-            labelKey: labelKey,
-            onRemove: onRemove
-          }), idx);
-        }));
+        }), selected.map((option, idx) => renderToken(option, {
+          ...commonProps,
+          labelKey,
+          onRemove
+        }, idx)));
       });
-      _defineProperty(_this, "_renderMenu", function (results, menuProps, props) {
-        var _this$props2 = _this.props,
-          emptyLabel = _this$props2.emptyLabel,
-          id = _this$props2.id,
-          maxHeight = _this$props2.maxHeight,
-          newSelectionPrefix = _this$props2.newSelectionPrefix,
-          paginationText = _this$props2.paginationText,
-          renderMenu = _this$props2.renderMenu,
-          renderMenuItemChildren = _this$props2.renderMenuItemChildren;
-        return renderMenu(results, _extends({}, menuProps, {
-          emptyLabel: emptyLabel,
-          id: id,
-          maxHeight: maxHeight,
-          newSelectionPrefix: newSelectionPrefix,
-          paginationText: paginationText,
-          renderMenuItemChildren: renderMenuItemChildren
-        }), props);
+      _defineProperty(this, "_renderMenu", (results, menuProps, props) => {
+        const {
+          emptyLabel,
+          id,
+          maxHeight,
+          newSelectionPrefix,
+          paginationText,
+          // $FlowFixMe: Flow can't seem to find `renderMenu`
+          renderMenu,
+          renderMenuItemChildren
+        } = this.props;
+        return renderMenu(results, {
+          ...menuProps,
+          emptyLabel,
+          id,
+          maxHeight,
+          newSelectionPrefix,
+          paginationText,
+          renderMenuItemChildren
+        }, props);
       });
-      _defineProperty(_this, "_renderAux", function (_ref) {
-        var onClear = _ref.onClear,
-          selected = _ref.selected;
-        var _this$props3 = _this.props,
-          bsSize = _this$props3.bsSize,
-          clearButton = _this$props3.clearButton,
-          disabled = _this$props3.disabled,
-          isLoading = _this$props3.isLoading,
-          size = _this$props3.size;
-        var content;
+      _defineProperty(this, "_renderAux", _ref => {
+        let {
+          onClear,
+          selected
+        } = _ref;
+        const {
+          bsSize,
+          clearButton,
+          disabled,
+          isLoading,
+          size
+        } = this.props;
+        let content;
         if (isLoading) {
           content = /*#__PURE__*/React__default["default"].createElement(Loader, {
             size: bsSize || size
@@ -7091,7 +7034,7 @@
           content = /*#__PURE__*/React__default["default"].createElement(ClearButton, {
             size: bsSize || size,
             onClick: onClear,
-            onFocus: function onFocus(e) {
+            onFocus: e => {
               // Prevent the main input from auto-focusing again.
               e.stopPropagation();
             },
@@ -7104,29 +7047,30 @@
           })
         }, content) : null;
       });
-      return _this;
     }
-    _inheritsLoose(TypeaheadComponent, _React$Component);
-    var _proto = TypeaheadComponent.prototype;
-    _proto.render = function render() {
-      var _this2 = this;
-      var _this$props4 = this.props,
-        children = _this$props4.children,
-        className = _this$props4.className,
-        instanceRef = _this$props4.instanceRef,
-        open = _this$props4.open,
-        options = _this$props4.options,
-        style = _this$props4.style;
+    render() {
+      const {
+        children,
+        className,
+        instanceRef,
+        open,
+        options,
+        style
+      } = this.props;
       return /*#__PURE__*/React__default["default"].createElement(Typeahead$1, _extends({}, this.props, {
         options: options,
         ref: instanceRef
-      }), function (_ref2) {
-        var getInputProps = _ref2.getInputProps,
-          props = _objectWithoutPropertiesLoose(_ref2, _excluded);
-        var hideMenu = props.hideMenu,
-          isMenuShown = props.isMenuShown,
-          results = props.results;
-        var auxContent = _this2._renderAux(props);
+      }), _ref2 => {
+        let {
+          getInputProps,
+          ...props
+        } = _ref2;
+        const {
+          hideMenu,
+          isMenuShown,
+          results
+        } = props;
+        const auxContent = this._renderAux(props);
         return /*#__PURE__*/React__default["default"].createElement(RootCloseWrapper, {
           disabled: open || !isMenuShown,
           onRootClose: hideMenu
@@ -7134,30 +7078,27 @@
           className: cx('rbt', {
             'has-aux': !!auxContent
           }, className),
-          style: _extends({}, style, {
+          style: {
+            ...style,
             outline: 'none',
             position: 'relative'
-          }),
+          },
           tabIndex: -1
-        }, _this2._renderInput(_extends({}, getInputProps(_this2.props.inputProps), {
-          ref: _this2.referenceElementRef
-        }), props), /*#__PURE__*/React__default["default"].createElement(Overlay, _extends({}, getOverlayProps(_this2.props), {
+        }, this._renderInput({
+          ...getInputProps(this.props.inputProps),
+          ref: this.referenceElementRef
+        }, props), /*#__PURE__*/React__default["default"].createElement(Overlay, _extends({}, getOverlayProps(this.props), {
           isMenuShown: isMenuShown,
-          referenceElement: _this2._referenceElement
-        }), function (menuProps) {
-          return _this2._renderMenu(results, menuProps, props);
-        }), auxContent, isFunction(children) ? children(props) : children));
+          referenceElement: this._referenceElement
+        }), menuProps => this._renderMenu(results, menuProps, props)), auxContent, isFunction(children) ? children(props) : children));
       });
-    };
-    return TypeaheadComponent;
-  }(React__default["default"].Component);
+    }
+  }
   _defineProperty(TypeaheadComponent, "propTypes", propTypes);
   _defineProperty(TypeaheadComponent, "defaultProps", defaultProps);
-  var Typeahead = /*#__PURE__*/React.forwardRef(function (props, ref) {
-    return /*#__PURE__*/React__default["default"].createElement(TypeaheadComponent, _extends({}, props, {
-      instanceRef: ref
-    }));
-  });
+  var Typeahead = /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement(TypeaheadComponent, _extends({}, props, {
+    instanceRef: ref
+  })));
 
   var AsyncTypeahead_react = asyncContainer(Typeahead);
 

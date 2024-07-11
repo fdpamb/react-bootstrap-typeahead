@@ -1,4 +1,4 @@
-var idCounter = 0;
+let idCounter = 0;
 export function head(arr) {
   return Array.isArray(arr) && arr.length ? arr[0] : undefined;
 }
@@ -10,8 +10,8 @@ export function isString(value) {
 }
 export function noop() {}
 export function pick(obj, keys) {
-  var result = {};
-  keys.forEach(function (k) {
+  const result = {};
+  keys.forEach(k => {
     if (Object.prototype.hasOwnProperty.call(obj, k)) {
       result[k] = obj[k];
     }
@@ -25,7 +25,7 @@ export function uniqueId(prefix) {
 
 // Export for testing purposes.
 export function valuesPolyfill(obj) {
-  return Object.keys(obj).reduce(function (accum, key) {
+  return Object.keys(obj).reduce((accum, key) => {
     if (Object.prototype.propertyIsEnumerable.call(obj, key)) {
       accum.push(obj[key]);
     }

@@ -1,7 +1,3 @@
-import _extends from "@babel/runtime/helpers/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/objectWithoutPropertiesLoose";
-var _excluded = ["styles"],
-  _excluded2 = ["ref"];
 /* eslint-disable react/no-unused-prop-types */
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -10,8 +6,8 @@ import { values } from '../utils';
 import { ALIGN } from '../constants';
 // `Element` is not defined during server-side rendering, so shim it here.
 /* istanbul ignore next */
-var SafeElement = typeof Element === 'undefined' ? function () {} : Element;
-var propTypes = {
+const SafeElement = typeof Element === 'undefined' ? () => {} : Element;
+const propTypes = {
   /**
    * Specify menu alignment. The default value is `justify`, which makes the
    * menu as wide as the input and truncates long values. Specifying `left`
@@ -33,7 +29,7 @@ var propTypes = {
   positionFixed: PropTypes.bool,
   referenceElement: PropTypes.instanceOf(SafeElement)
 };
-var defaultProps = {
+const defaultProps = {
   align: ALIGN.JUSTIFY,
   dropup: false,
   flip: false,
@@ -41,24 +37,30 @@ var defaultProps = {
   positionFixed: false
 };
 function getModifiers(_ref) {
-  var align = _ref.align,
-    flip = _ref.flip;
+  let {
+    align,
+    flip
+  } = _ref;
   return {
     computeStyles: {
       enabled: true,
-      fn: function fn(_ref2) {
-        var styles = _ref2.styles,
-          data = _objectWithoutPropertiesLoose(_ref2, _excluded);
-        return _extends({}, data, {
-          styles: _extends({}, styles, {
+      fn: _ref2 => {
+        let {
+          styles,
+          ...data
+        } = _ref2;
+        return {
+          ...data,
+          styles: {
+            ...styles,
             // Use the following condition instead of `align === 'justify'`
             // since it allows the component to fall back to justifying the
             // menu width if `align` is undefined.
             width: align !== ALIGN.RIGHT && align !== ALIGN.LEFT ?
             // Set the popper width to match the target width.
             data.offsets.reference.width : styles.width
-          })
-        });
+          }
+        };
       }
     },
     flip: {
@@ -71,7 +73,7 @@ function getModifiers(_ref) {
 }
 
 // Flow expects a string literal value for `placement`.
-var PLACEMENT = {
+const PLACEMENT = {
   bottom: {
     end: 'bottom-end',
     start: 'bottom-start'
@@ -82,17 +84,21 @@ var PLACEMENT = {
   }
 };
 export function getPlacement(_ref3) {
-  var align = _ref3.align,
-    dropup = _ref3.dropup;
-  var x = align === ALIGN.RIGHT ? 'end' : 'start';
-  var y = dropup ? 'top' : 'bottom';
+  let {
+    align,
+    dropup
+  } = _ref3;
+  const x = align === ALIGN.RIGHT ? 'end' : 'start';
+  const y = dropup ? 'top' : 'bottom';
   return PLACEMENT[y][x];
 }
-var Overlay = function Overlay(props) {
-  var children = props.children,
-    isMenuShown = props.isMenuShown,
-    positionFixed = props.positionFixed,
-    referenceElement = props.referenceElement;
+const Overlay = props => {
+  const {
+    children,
+    isMenuShown,
+    positionFixed,
+    referenceElement
+  } = props;
   if (!isMenuShown) {
     return null;
   }
@@ -101,13 +107,16 @@ var Overlay = function Overlay(props) {
     placement: getPlacement(props),
     positionFixed: positionFixed,
     referenceElement: referenceElement
-  }, function (_ref4) {
-    var ref = _ref4.ref,
-      popperProps = _objectWithoutPropertiesLoose(_ref4, _excluded2);
-    return children(_extends({}, popperProps, {
+  }, _ref4 => {
+    let {
+      ref,
+      ...popperProps
+    } = _ref4;
+    return children({
+      ...popperProps,
       innerRef: ref,
       inputHeight: referenceElement ? referenceElement.offsetHeight : 0
-    }));
+    });
   });
 };
 Overlay.propTypes = propTypes;

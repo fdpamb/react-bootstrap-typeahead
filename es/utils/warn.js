@@ -1,5 +1,5 @@
 import warning from 'warning';
-var warned = {};
+let warned = {};
 
 /**
  * Copied from: https://github.com/ReactTraining/react-router/blob/master/modules/routerWarning.js
@@ -15,7 +15,7 @@ export default function warn(falseToWarn, message) {
   for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
     args[_key - 2] = arguments[_key];
   }
-  warning.apply(void 0, [falseToWarn, "[react-bootstrap-typeahead] " + message].concat(args));
+  process.env.NODE_ENV !== "production" ? warning(falseToWarn, "[react-bootstrap-typeahead] " + message, ...args) : void 0;
 }
 export function resetWarned() {
   warned = {};

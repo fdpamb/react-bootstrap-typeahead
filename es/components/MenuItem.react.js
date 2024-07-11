@@ -1,20 +1,20 @@
 import _extends from "@babel/runtime/helpers/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/objectWithoutPropertiesLoose";
-var _excluded = ["active", "children", "className", "disabled", "onClick", "onMouseDown"];
 import cx from 'classnames';
 import React from 'react';
 import menuItemContainer from '../containers/menuItemContainer';
-var BaseMenuItem = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
-  var active = _ref.active,
-    children = _ref.children,
-    className = _ref.className,
-    disabled = _ref.disabled,
-    _onClick = _ref.onClick,
-    onMouseDown = _ref.onMouseDown,
-    props = _objectWithoutPropertiesLoose(_ref, _excluded);
-  var conditionalClassNames = {
-    active: active,
-    disabled: disabled
+const BaseMenuItem = /*#__PURE__*/React.forwardRef((_ref, ref) => {
+  let {
+    active,
+    children,
+    className,
+    disabled,
+    onClick,
+    onMouseDown,
+    ...props
+  } = _ref;
+  const conditionalClassNames = {
+    active,
+    disabled
   };
   return (
     /*#__PURE__*/
@@ -25,9 +25,9 @@ var BaseMenuItem = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
     }), /*#__PURE__*/React.createElement("a", {
       className: cx('dropdown-item', conditionalClassNames),
       href: "#",
-      onClick: function onClick(e) {
+      onClick: e => {
         e.preventDefault();
-        !disabled && _onClick && _onClick(e);
+        !disabled && onClick && onClick(e);
       },
       onMouseDown: onMouseDown
     }, children))

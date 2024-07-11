@@ -11,7 +11,7 @@ function getOptionLabel(option, labelKey) {
   if (!isString(option) && (option.paginationOption || option.customOption)) {
     return option[getStringLabelKey(labelKey)];
   }
-  var optionLabel;
+  let optionLabel;
   if (isFunction(labelKey)) {
     optionLabel = labelKey(option);
   } else if (isString(option)) {

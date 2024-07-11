@@ -4,8 +4,8 @@ import { isFunction, isString } from './nodash';
 import stripDiacritics from './stripDiacritics';
 import warn from './warn';
 function isMatch(input, string, props) {
-  var searchStr = input;
-  var str = string;
+  let searchStr = input;
+  let str = string;
   if (!props.caseSensitive) {
     searchStr = searchStr.toLowerCase();
     str = str.toLowerCase();
@@ -21,22 +21,22 @@ function isMatch(input, string, props) {
  * Default algorithm for filtering results.
  */
 export default function defaultFilterBy(option, props) {
-  var filterBy = props.filterBy,
-    labelKey = props.labelKey,
-    multiple = props.multiple,
-    selected = props.selected,
-    text = props.text;
+  const {
+    filterBy,
+    labelKey,
+    multiple,
+    selected,
+    text
+  } = props;
 
   // Don't show selected options in the menu for the multi-select case.
-  if (multiple && selected.some(function (o) {
-    return isEqual(o, option);
-  })) {
+  if (multiple && selected.some(o => isEqual(o, option))) {
     return false;
   }
   if (isFunction(labelKey) && isMatch(text, labelKey(option), props)) {
     return true;
   }
-  var fields = filterBy.slice();
+  const fields = filterBy.slice();
   if (isString(labelKey)) {
     // Add the `labelKey` field to the list of fields if it isn't already there.
     if (fields.indexOf(labelKey) === -1) {
@@ -47,8 +47,8 @@ export default function defaultFilterBy(option, props) {
     warn(fields.length <= 1, 'You cannot filter by properties when `option` is a string.');
     return isMatch(text, option, props);
   }
-  return fields.some(function (field) {
-    var value = getOptionProperty(option, field);
+  return fields.some(field => {
+    let value = getOptionProperty(option, field);
     if (!isString(value)) {
       warn(false, 'Fields passed to `filterBy` should have string values. Value will ' + 'be converted to a string; results may be unexpected.');
       value = String(value);

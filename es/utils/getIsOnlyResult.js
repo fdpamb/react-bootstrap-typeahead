@@ -1,9 +1,11 @@
 import getOptionProperty from './getOptionProperty';
 import { head } from './nodash';
 function getIsOnlyResult(props) {
-  var allowNew = props.allowNew,
-    highlightOnlyResult = props.highlightOnlyResult,
-    results = props.results;
+  const {
+    allowNew,
+    highlightOnlyResult,
+    results
+  } = props;
   if (!highlightOnlyResult || allowNew) {
     return false;
   }

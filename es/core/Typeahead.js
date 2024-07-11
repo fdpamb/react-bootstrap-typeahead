@@ -1,8 +1,5 @@
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/objectWithoutPropertiesLoose";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
-import _defineProperty from "@babel/runtime/helpers/defineProperty";
 import _extends from "@babel/runtime/helpers/extends";
-var _excluded = ["onChange"];
+import _defineProperty from "@babel/runtime/helpers/defineProperty";
 import isEqual from 'fast-deep-equal';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -10,7 +7,7 @@ import TypeaheadManager from './TypeaheadManager';
 import { caseSensitiveType, checkPropType, defaultInputValueType, highlightOnlyResultType, ignoreDiacriticsType, isRequiredForA11y, labelKeyType, optionType, selectedType } from '../propTypes';
 import { addCustomOption, defaultFilterBy, getOptionLabel, getStringLabelKey, getUpdatedActiveIndex, getTruncatedOptions, head, isShown, isString, noop, uniqueId, validateSelectedPropChange, warn } from '../utils';
 import { DEFAULT_LABELKEY, DOWN, ESC, RETURN, TAB, UP } from '../constants';
-var propTypes = {
+const propTypes = {
   /**
    * Allows the creation of new selections on the fly. Note that any new items
    * will be added to the list of selections, but not the list of original
@@ -135,7 +132,7 @@ var propTypes = {
    */
   selectHintOnEnter: PropTypes.bool
 };
-var defaultProps = {
+const defaultProps = {
   allowNew: false,
   autoFocus: false,
   caseSensitive: false,
@@ -159,13 +156,15 @@ var defaultProps = {
   selectHintOnEnter: false
 };
 export function getInitialState(props) {
-  var defaultInputValue = props.defaultInputValue,
-    defaultOpen = props.defaultOpen,
-    defaultSelected = props.defaultSelected,
-    maxResults = props.maxResults,
-    multiple = props.multiple;
-  var selected = props.selected ? props.selected.slice() : defaultSelected.slice();
-  var text = defaultInputValue;
+  const {
+    defaultInputValue,
+    defaultOpen,
+    defaultSelected,
+    maxResults,
+    multiple
+  } = props;
+  let selected = props.selected ? props.selected.slice() : defaultSelected.slice();
+  let text = defaultInputValue;
   if (!multiple && selected.length) {
     // Set the text if an initial selection is passed in.
     text = getOptionLabel(head(selected), props.labelKey);
@@ -179,31 +178,33 @@ export function getInitialState(props) {
     activeItem: null,
     initialItem: null,
     isFocused: false,
-    selected: selected,
+    selected,
     showMenu: defaultOpen,
     shownResults: maxResults,
-    text: text
+    text
   };
 }
 export function clearTypeahead(state, props) {
-  return _extends({}, getInitialState(props), {
+  return {
+    ...getInitialState(props),
     isFocused: state.isFocused,
     selected: [],
     text: ''
-  });
+  };
 }
 export function hideMenu(state, props) {
-  var _getInitialState = getInitialState(props),
-    activeIndex = _getInitialState.activeIndex,
-    activeItem = _getInitialState.activeItem,
-    initialItem = _getInitialState.initialItem,
-    shownResults = _getInitialState.shownResults;
+  const {
+    activeIndex,
+    activeItem,
+    initialItem,
+    shownResults
+  } = getInitialState(props);
   return {
-    activeIndex: activeIndex,
-    activeItem: activeItem,
-    initialItem: initialItem,
+    activeIndex,
+    activeItem,
+    initialItem,
     showMenu: false,
-    shownResults: shownResults
+    shownResults
   };
 }
 export function toggleMenu(state, props) {
@@ -211,138 +212,130 @@ export function toggleMenu(state, props) {
     showMenu: true
   };
 }
-var Typeahead = /*#__PURE__*/function (_React$Component) {
-  function Typeahead() {
-    var _this;
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-    _defineProperty(_this, "state", getInitialState(_this.props));
-    _defineProperty(_this, "inputNode", void 0);
-    _defineProperty(_this, "isMenuShown", false);
+class Typeahead extends React.Component {
+  constructor() {
+    super(...arguments);
+    _defineProperty(this, "state", getInitialState(this.props));
+    _defineProperty(this, "inputNode", void 0);
+    _defineProperty(this, "isMenuShown", false);
     // Keeps track of actual items displayed in the menu, after sorting,
     // truncating, grouping, etc.
-    _defineProperty(_this, "items", []);
-    _defineProperty(_this, "blur", function () {
-      _this.inputNode && _this.inputNode.blur();
-      _this.hideMenu();
+    _defineProperty(this, "items", []);
+    _defineProperty(this, "blur", () => {
+      this.inputNode && this.inputNode.blur();
+      this.hideMenu();
     });
-    _defineProperty(_this, "clear", function () {
-      _this.setState(clearTypeahead);
+    _defineProperty(this, "clear", () => {
+      this.setState(clearTypeahead);
     });
-    _defineProperty(_this, "focus", function () {
-      _this.inputNode && _this.inputNode.focus();
+    _defineProperty(this, "focus", () => {
+      this.inputNode && this.inputNode.focus();
     });
-    _defineProperty(_this, "getInput", function () {
-      return _this.inputNode;
+    _defineProperty(this, "getInput", () => {
+      return this.inputNode;
     });
     /**
      * For backwards compatibility...
      */
-    _defineProperty(_this, "getInstance", function () {
+    _defineProperty(this, "getInstance", () => {
       warn(false, 'The `getInstance` method is deprecated. You can now access instance ' + 'methods directly on the ref.');
-      return _this;
+      return this;
     });
-    _defineProperty(_this, "inputRef", function (inputNode) {
-      _this.inputNode = inputNode;
+    _defineProperty(this, "inputRef", inputNode => {
+      this.inputNode = inputNode;
     });
-    _defineProperty(_this, "setItem", function (item, position) {
-      _this.items[position] = item;
+    _defineProperty(this, "setItem", (item, position) => {
+      this.items[position] = item;
     });
-    _defineProperty(_this, "hideMenu", function () {
-      _this.setState(hideMenu);
+    _defineProperty(this, "hideMenu", () => {
+      this.setState(hideMenu);
     });
-    _defineProperty(_this, "toggleMenu", function () {
-      _this.setState(toggleMenu);
+    _defineProperty(this, "toggleMenu", () => {
+      this.setState(toggleMenu);
     });
-    _defineProperty(_this, "_handleActiveIndexChange", function (activeIndex) {
-      _this.setState(function (state) {
-        return {
-          activeIndex: activeIndex,
-          activeItem: activeIndex === -1 ? null : state.activeItem
-        };
-      });
+    _defineProperty(this, "_handleActiveIndexChange", activeIndex => {
+      this.setState(state => ({
+        activeIndex,
+        activeItem: activeIndex === -1 ? null : state.activeItem
+      }));
     });
-    _defineProperty(_this, "_handleActiveItemChange", function (activeItem) {
+    _defineProperty(this, "_handleActiveItemChange", activeItem => {
       // Don't update the active item if it hasn't changed.
-      if (!isEqual(activeItem, _this.state.activeItem)) {
-        _this.setState({
-          activeItem: activeItem
+      if (!isEqual(activeItem, this.state.activeItem)) {
+        this.setState({
+          activeItem
         });
       }
     });
-    _defineProperty(_this, "_handleBlur", function (e) {
+    _defineProperty(this, "_handleBlur", e => {
       e.persist();
-      _this.setState({
+      this.setState({
         isFocused: false
-      }, function () {
-        return _this.props.onBlur(e);
-      });
+      }, () => this.props.onBlur(e));
     });
-    _defineProperty(_this, "_handleChange", function (selected) {
-      _this.props.onChange && _this.props.onChange(selected);
+    _defineProperty(this, "_handleChange", selected => {
+      this.props.onChange && this.props.onChange(selected);
     });
-    _defineProperty(_this, "_handleClear", function () {
-      _this.setState(clearTypeahead, function () {
-        return _this._handleChange([]);
-      });
+    _defineProperty(this, "_handleClear", () => {
+      this.setState(clearTypeahead, () => this._handleChange([]));
     });
-    _defineProperty(_this, "_handleFocus", function (e) {
+    _defineProperty(this, "_handleFocus", e => {
       e.persist();
-      _this.setState({
+      this.setState({
         isFocused: true,
         showMenu: true
-      }, function () {
-        return _this.props.onFocus(e);
-      });
+      }, () => this.props.onFocus(e));
     });
-    _defineProperty(_this, "_handleInitialItemChange", function (initialItem) {
+    _defineProperty(this, "_handleInitialItemChange", initialItem => {
       // Don't update the initial item if it hasn't changed.
-      if (!isEqual(initialItem, _this.state.initialItem)) {
-        _this.setState({
-          initialItem: initialItem
+      if (!isEqual(initialItem, this.state.initialItem)) {
+        this.setState({
+          initialItem
         });
       }
     });
-    _defineProperty(_this, "_handleInputChange", function (e) {
+    _defineProperty(this, "_handleInputChange", e => {
       e.persist();
-      var text = e.currentTarget.value;
-      var _this$props = _this.props,
-        multiple = _this$props.multiple,
-        onInputChange = _this$props.onInputChange;
+      const text = e.currentTarget.value;
+      const {
+        multiple,
+        onInputChange
+      } = this.props;
 
       // Clear selections when the input value changes in single-select mode.
-      var shouldClearSelections = _this.state.selected.length && !multiple;
-      _this.setState(function (state, props) {
-        var _getInitialState2 = getInitialState(props),
-          activeIndex = _getInitialState2.activeIndex,
-          activeItem = _getInitialState2.activeItem,
-          shownResults = _getInitialState2.shownResults;
+      const shouldClearSelections = this.state.selected.length && !multiple;
+      this.setState((state, props) => {
+        const {
+          activeIndex,
+          activeItem,
+          shownResults
+        } = getInitialState(props);
         return {
-          activeIndex: activeIndex,
-          activeItem: activeItem,
+          activeIndex,
+          activeItem,
           selected: shouldClearSelections ? [] : state.selected,
           showMenu: true,
-          shownResults: shownResults,
-          text: text
+          shownResults,
+          text
         };
-      }, function () {
+      }, () => {
         onInputChange(text, e);
-        shouldClearSelections && _this._handleChange([]);
+        shouldClearSelections && this._handleChange([]);
       });
     });
-    _defineProperty(_this, "_handleKeyDown", function (e) {
-      var activeItem = _this.state.activeItem;
+    _defineProperty(this, "_handleKeyDown", e => {
+      const {
+        activeItem
+      } = this.state;
 
       // Skip most actions when the menu is hidden.
-      if (!_this.isMenuShown) {
+      if (!this.isMenuShown) {
         if (e.keyCode === UP || e.keyCode === DOWN) {
-          _this.setState({
+          this.setState({
             showMenu: true
           });
         }
-        _this.props.onKeyDown(e);
+        this.props.onKeyDown(e);
         return;
       }
       switch (e.keyCode) {
@@ -350,60 +343,58 @@ var Typeahead = /*#__PURE__*/function (_React$Component) {
         case DOWN:
           // Prevent input cursor from going to the beginning when pressing up.
           e.preventDefault();
-          _this._handleActiveIndexChange(getUpdatedActiveIndex(_this.state.activeIndex, e.keyCode, _this.items));
+          this._handleActiveIndexChange(getUpdatedActiveIndex(this.state.activeIndex, e.keyCode, this.items));
           break;
         case RETURN:
           // Prevent form submission while menu is open.
           e.preventDefault();
-          activeItem && _this._handleMenuItemSelect(activeItem, e);
+          activeItem && this._handleMenuItemSelect(activeItem, e);
           break;
         case ESC:
         case TAB:
           // ESC simply hides the menu. TAB will blur the input and move focus to
           // the next item; hide the menu so it doesn't gain focus.
-          _this.hideMenu();
+          this.hideMenu();
           break;
         default:
           break;
       }
-      _this.props.onKeyDown(e);
+      this.props.onKeyDown(e);
     });
-    _defineProperty(_this, "_handleMenuItemSelect", function (option, e) {
+    _defineProperty(this, "_handleMenuItemSelect", (option, e) => {
       if (option.paginationOption) {
-        _this._handlePaginate(e);
+        this._handlePaginate(e);
       } else {
-        _this._handleSelectionAdd(option);
+        this._handleSelectionAdd(option);
       }
     });
-    _defineProperty(_this, "_handlePaginate", function (e) {
+    _defineProperty(this, "_handlePaginate", e => {
       e.persist();
-      _this.setState(function (state, props) {
-        return {
-          shownResults: state.shownResults + props.maxResults
-        };
-      }, function () {
-        return _this.props.onPaginate(e, _this.state.shownResults);
-      });
+      this.setState((state, props) => ({
+        shownResults: state.shownResults + props.maxResults
+      }), () => this.props.onPaginate(e, this.state.shownResults));
     });
-    _defineProperty(_this, "_handleSelectionAdd", function (option) {
-      var _this$props2 = _this.props,
-        multiple = _this$props2.multiple,
-        labelKey = _this$props2.labelKey;
-      var selected;
-      var selection = option;
-      var text;
+    _defineProperty(this, "_handleSelectionAdd", option => {
+      const {
+        multiple,
+        labelKey
+      } = this.props;
+      let selected;
+      let selection = option;
+      let text;
 
       // Add a unique id to the custom selection. Avoid doing this in `render` so
       // the id doesn't increment every time.
       if (!isString(selection) && selection.customOption) {
-        selection = _extends({}, selection, {
+        selection = {
+          ...selection,
           id: uniqueId('new-id-')
-        });
+        };
       }
       if (multiple) {
         // If multiple selections are allowed, add the new selection to the
         // existing selections.
-        selected = _this.state.selected.concat(selection);
+        selected = this.state.selected.concat(selection);
         text = '';
       } else {
         // If only a single selection is allowed, replace the existing selection
@@ -411,44 +402,35 @@ var Typeahead = /*#__PURE__*/function (_React$Component) {
         selected = [selection];
         text = getOptionLabel(selection, labelKey);
       }
-      _this.setState(function (state, props) {
-        return _extends({}, hideMenu(state, props), {
-          initialItem: selection,
-          selected: selected,
-          text: text
-        });
-      }, function () {
-        return _this._handleChange(selected);
-      });
+      this.setState((state, props) => ({
+        ...hideMenu(state, props),
+        initialItem: selection,
+        selected,
+        text
+      }), () => this._handleChange(selected));
     });
-    _defineProperty(_this, "_handleSelectionRemove", function (selection) {
-      var selected = _this.state.selected.filter(function (option) {
-        return !isEqual(option, selection);
-      });
+    _defineProperty(this, "_handleSelectionRemove", selection => {
+      const selected = this.state.selected.filter(option => !isEqual(option, selection));
 
       // Make sure the input stays focused after the item is removed.
-      _this.focus();
-      _this.setState(function (state, props) {
-        return _extends({}, hideMenu(state, props), {
-          selected: selected
-        });
-      }, function () {
-        return _this._handleChange(selected);
-      });
+      this.focus();
+      this.setState((state, props) => ({
+        ...hideMenu(state, props),
+        selected
+      }), () => this._handleChange(selected));
     });
-    return _this;
   }
-  _inheritsLoose(Typeahead, _React$Component);
-  var _proto = Typeahead.prototype;
-  _proto.componentDidMount = function componentDidMount() {
+  componentDidMount() {
     this.props.autoFocus && this.focus();
   }
 
-  /* eslint-disable-next-line camelcase */;
-  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
-    var labelKey = nextProps.labelKey,
-      multiple = nextProps.multiple,
-      selected = nextProps.selected;
+  /* eslint-disable-next-line camelcase */
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const {
+      labelKey,
+      multiple,
+      selected
+    } = nextProps;
     validateSelectedPropChange(selected, this.props.selected);
     if (multiple !== this.props.multiple) {
       this.setState({
@@ -459,7 +441,7 @@ var Typeahead = /*#__PURE__*/function (_React$Component) {
     // If new selections are passed via props, treat as a controlled input.
     if (selected && !isEqual(selected, this.state.selected)) {
       this.setState({
-        selected: selected
+        selected
       });
       if (multiple) {
         return;
@@ -470,7 +452,7 @@ var Typeahead = /*#__PURE__*/function (_React$Component) {
     }
 
     // Truncate selections when in single-select mode.
-    var newSelected = selected || this.state.selected;
+    let newSelected = selected || this.state.selected;
     if (!multiple && newSelected.length > 1) {
       newSelected = newSelected.slice(0, 1);
       this.setState({
@@ -478,47 +460,53 @@ var Typeahead = /*#__PURE__*/function (_React$Component) {
         text: getOptionLabel(head(newSelected), labelKey)
       });
     }
-  };
-  _proto.render = function render() {
+  }
+  render() {
     // Omit `onChange` so Flow doesn't complain.
-    var _this$props3 = this.props,
-      onChange = _this$props3.onChange,
-      otherProps = _objectWithoutPropertiesLoose(_this$props3, _excluded);
-    var mergedPropsAndState = _extends({}, otherProps, this.state);
-    var filterBy = mergedPropsAndState.filterBy,
-      labelKey = mergedPropsAndState.labelKey,
-      options = mergedPropsAndState.options,
-      paginate = mergedPropsAndState.paginate,
-      shownResults = mergedPropsAndState.shownResults,
-      text = mergedPropsAndState.text;
+    const {
+      onChange,
+      ...otherProps
+    } = this.props;
+    const mergedPropsAndState = {
+      ...otherProps,
+      ...this.state
+    };
+    const {
+      filterBy,
+      labelKey,
+      options,
+      paginate,
+      shownResults,
+      text
+    } = mergedPropsAndState;
     this.isMenuShown = isShown(mergedPropsAndState);
     this.items = []; // Reset items on re-render.
 
-    var results = [];
+    let results = [];
     if (this.isMenuShown) {
-      var cb = typeof filterBy === 'function' ? filterBy : defaultFilterBy;
-      results = options.filter(function (option) {
-        return cb(option, mergedPropsAndState);
-      });
+      const cb = typeof filterBy === 'function' ? filterBy : defaultFilterBy;
+      results = options.filter(option => cb(option, mergedPropsAndState));
 
       // This must come before results are truncated.
-      var shouldPaginate = paginate && results.length > shownResults;
+      const shouldPaginate = paginate && results.length > shownResults;
 
       // Truncate results if necessary.
       results = getTruncatedOptions(results, shownResults);
 
       // Add the custom option if necessary.
       if (addCustomOption(results, mergedPropsAndState)) {
-        var _results$push;
-        results.push((_results$push = {
-          customOption: true
-        }, _results$push[getStringLabelKey(labelKey)] = text, _results$push));
+        results.push({
+          customOption: true,
+          [getStringLabelKey(labelKey)]: text
+        });
       }
 
       // Add the pagination item if necessary.
       if (shouldPaginate) {
-        var _results$push2;
-        results.push((_results$push2 = {}, _results$push2[getStringLabelKey(labelKey)] = '', _results$push2.paginationOption = true, _results$push2));
+        results.push({
+          [getStringLabelKey(labelKey)]: '',
+          paginationOption: true
+        });
       }
     }
     return /*#__PURE__*/React.createElement(TypeaheadManager, _extends({}, mergedPropsAndState, {
@@ -541,9 +529,8 @@ var Typeahead = /*#__PURE__*/function (_React$Component) {
       setItem: this.setItem,
       toggleMenu: this.toggleMenu
     }));
-  };
-  return Typeahead;
-}(React.Component);
+  }
+}
 _defineProperty(Typeahead, "propTypes", propTypes);
 _defineProperty(Typeahead, "defaultProps", defaultProps);
 export default Typeahead;

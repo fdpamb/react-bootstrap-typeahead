@@ -1,22 +1,22 @@
 {
   "dist/react-bootstrap-typeahead.js": {
-    "bundled": 321364,
-    "minified": 104184,
-    "gzipped": 34940
+    "bundled": 240845,
+    "minified": 82584,
+    "gzipped": 29383
   },
   "dist/react-bootstrap-typeahead.min.js": {
-    "bundled": 290611,
-    "minified": 96081,
-    "gzipped": 32386
+    "bundled": 201219,
+    "minified": 70879,
+    "gzipped": 25738
   },
   "react-bootstrap-typeahead.js": {
-    "bundled": 255629,
-    "minified": 86640,
-    "gzipped": 30218
+    "bundled": 240845,
+    "minified": 82584,
+    "gzipped": 29383
   },
   "react-bootstrap-typeahead.min.js": {
-    "bundled": 216407,
-    "minified": 75015,
-    "gzipped": 26588
+    "bundled": 201219,
+    "minified": 70879,
+    "gzipped": 25738
   }
 }

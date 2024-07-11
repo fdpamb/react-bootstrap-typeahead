@@ -1,8 +1,10 @@
 export default function isShown(props) {
-  var open = props.open,
-    minLength = props.minLength,
-    showMenu = props.showMenu,
-    text = props.text;
+  const {
+    open,
+    minLength,
+    showMenu,
+    text
+  } = props;
 
   // If menu visibility is controlled via props, that value takes precedence.
   if (open || open === false) {

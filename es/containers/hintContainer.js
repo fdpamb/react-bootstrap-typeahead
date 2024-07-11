@@ -1,8 +1,5 @@
 import _extends from "@babel/runtime/helpers/extends";
-import _objectWithoutPropertiesLoose from "@babel/runtime/helpers/objectWithoutPropertiesLoose";
-import _inheritsLoose from "@babel/runtime/helpers/inheritsLoose";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
-var _excluded = ["forwardedRef", "hintText", "initialItem", "inputNode", "onAdd", "selectHintOnEnter"];
 import React from 'react';
 import { withContext } from '../core/Context';
 import { getDisplayName, shouldSelectHint } from '../utils';
@@ -17,15 +14,13 @@ function interpolateStyle(styles, attr, subattr) {
     /* eslint-disable-next-line no-param-reassign */
     subattr = subattr.replace(subattr[0], subattr[0].toUpperCase());
   }
-  return ['Top', 'Right', 'Bottom', 'Left'].map(function (dir) {
-    return styles[attr + dir + subattr];
-  }).join(' ');
+  return ['Top', 'Right', 'Bottom', 'Left'].map(dir => styles[attr + dir + subattr]).join(' ');
 }
 function copyStyles(inputNode, hintNode) {
   if (!inputNode || !hintNode) {
     return;
   }
-  var inputStyle = window.getComputedStyle(inputNode);
+  const inputStyle = window.getComputedStyle(inputNode);
 
   /* eslint-disable no-param-reassign */
   hintNode.style.borderStyle = interpolateStyle(inputStyle, 'border', 'style');
@@ -38,44 +33,39 @@ function copyStyles(inputNode, hintNode) {
   /* eslint-enable no-param-reassign */
 }
 function hintContainer(Input) {
-  var HintedInput = /*#__PURE__*/function (_React$Component) {
-    function HintedInput() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _defineProperty(_this, "hintRef", /*#__PURE__*/React.createRef());
-      _defineProperty(_this, "_handleKeyDown", function (e) {
-        var _this$props = _this.props,
-          initialItem = _this$props.initialItem,
-          onAdd = _this$props.onAdd,
-          onKeyDown = _this$props.onKeyDown;
-        if (shouldSelectHint(e, _this.props)) {
+  class HintedInput extends React.Component {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "hintRef", /*#__PURE__*/React.createRef());
+      _defineProperty(this, "_handleKeyDown", e => {
+        const {
+          initialItem,
+          onAdd,
+          onKeyDown
+        } = this.props;
+        if (shouldSelectHint(e, this.props)) {
           e.preventDefault(); // Prevent input from blurring on TAB.
           onAdd(initialItem);
         }
         onKeyDown(e);
       });
-      return _this;
     }
-    _inheritsLoose(HintedInput, _React$Component);
-    var _proto = HintedInput.prototype;
-    _proto.componentDidMount = function componentDidMount() {
+    componentDidMount() {
       copyStyles(this.props.inputNode, this.hintRef.current);
-    };
-    _proto.componentDidUpdate = function componentDidUpdate() {
+    }
+    componentDidUpdate() {
       copyStyles(this.props.inputNode, this.hintRef.current);
-    };
-    _proto.render = function render() {
-      var _this$props2 = this.props,
-        forwardedRef = _this$props2.forwardedRef,
-        hintText = _this$props2.hintText,
-        initialItem = _this$props2.initialItem,
-        inputNode = _this$props2.inputNode,
-        onAdd = _this$props2.onAdd,
-        selectHintOnEnter = _this$props2.selectHintOnEnter,
-        props = _objectWithoutPropertiesLoose(_this$props2, _excluded);
+    }
+    render() {
+      const {
+        forwardedRef,
+        hintText,
+        initialItem,
+        inputNode,
+        onAdd,
+        selectHintOnEnter,
+        ...props
+      } = this.props;
       return /*#__PURE__*/React.createElement("div", {
         style: {
           display: 'flex',
@@ -105,15 +95,12 @@ function hintContainer(Input) {
         tabIndex: -1,
         value: hintText
       }));
-    };
-    return HintedInput;
-  }(React.Component);
+    }
+  }
   _defineProperty(HintedInput, "displayName", "hintContainer(" + getDisplayName(Input) + ")");
-  var HintedInputWithContext = withContext(HintedInput, ['hintText', 'initialItem', 'inputNode', 'onAdd', 'selectHintOnEnter']);
-  return /*#__PURE__*/React.forwardRef(function (props, ref) {
-    return /*#__PURE__*/React.createElement(HintedInputWithContext, _extends({}, props, {
-      forwardedRef: ref
-    }));
-  });
+  const HintedInputWithContext = withContext(HintedInput, ['hintText', 'initialItem', 'inputNode', 'onAdd', 'selectHintOnEnter']);
+  return /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React.createElement(HintedInputWithContext, _extends({}, props, {
+    forwardedRef: ref
+  })));
 }
 export default hintContainer;
