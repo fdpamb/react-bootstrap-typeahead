@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const sass = require('node-sass');
+const sass = require('sass');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'css');

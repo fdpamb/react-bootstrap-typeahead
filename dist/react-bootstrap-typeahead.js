@@ -3786,7 +3786,7 @@
     if (null == r) return {};
     var t = {};
     for (var n in r) if ({}.hasOwnProperty.call(r, n)) {
-      if (e.indexOf(n) >= 0) continue;
+      if (e.includes(n)) continue;
       t[n] = r[n];
     }
     return t;
