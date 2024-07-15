@@ -4,10 +4,7 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.ReactBootstrapTypeahead = {}, global.React, global.ReactDOM));
 })(this, (function (exports, React, require$$0) { 'use strict';
 
-  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-  function _interopNamespace(e) {
-    if (e && e.__esModule) return e;
+  function _interopNamespaceDefault(e) {
     var n = Object.create(null);
     if (e) {
       Object.keys(e).forEach(function (k) {
@@ -20,13 +17,11 @@
         }
       });
     }
-    n["default"] = e;
+    n.default = e;
     return Object.freeze(n);
   }
 
-  var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
-  var React__namespace = /*#__PURE__*/_interopNamespace(React);
-  var require$$0__default = /*#__PURE__*/_interopDefaultLegacy(require$$0);
+  var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
   function _defineProperty$1(e, r, t) {
     return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
@@ -1663,7 +1658,7 @@
   }
   function uniqueId(prefix) {
     idCounter += 1;
-    return (prefix == null ? '' : String(prefix)) + idCounter;
+    return (String(prefix)) + idCounter;
   }
 
   // Export for testing purposes.
@@ -2244,7 +2239,6 @@
   	Licensed under the MIT License (MIT), see
   	http://jedwatson.github.io/classnames
   */
-  classnames.exports;
 
   (function (module) {
   	/* global define */
@@ -2536,9 +2530,9 @@
   const withContext = (Component, values) => {
     // Note: Use a class instead of function component to support refs.
 
-    return class extends React__default["default"].Component {
+    return class extends React.Component {
       render() {
-        return /*#__PURE__*/React__default["default"].createElement(TypeaheadContext.Consumer, null, context => /*#__PURE__*/React__default["default"].createElement(Component, _extends$2({}, this.props, pick(context, values))));
+        return /*#__PURE__*/React.createElement(TypeaheadContext.Consumer, null, context => /*#__PURE__*/React.createElement(Component, _extends$2({}, this.props, pick(context, values))));
       }
     };
   };
@@ -2553,7 +2547,7 @@
       isOnlyResult: getIsOnlyResult(props)
     };
   }
-  class TypeaheadManager extends React__default["default"].Component {
+  class TypeaheadManager extends React.Component {
     constructor() {
       super(...arguments);
       _defineProperty$1(this, "_handleKeyDown", e => {
@@ -2598,7 +2592,7 @@
           value: getInputText(this.props)
         })
       };
-      return /*#__PURE__*/React__default["default"].createElement(TypeaheadContext.Provider, {
+      return /*#__PURE__*/React.createElement(TypeaheadContext.Provider, {
         value: getTypeaheadContextValue(this.props)
       }, this.props.children(childProps));
     }
@@ -2913,7 +2907,7 @@
       showMenu: true
     };
   }
-  class Typeahead$1 extends React__default["default"].Component {
+  let Typeahead$1 = class Typeahead extends React.Component {
     constructor() {
       super(...arguments);
       _defineProperty$1(this, "state", getInitialState(this.props));
@@ -3206,7 +3200,7 @@
           });
         }
       }
-      return /*#__PURE__*/React__default["default"].createElement(TypeaheadManager, _extends$2({}, mergedPropsAndState, {
+      return /*#__PURE__*/React.createElement(TypeaheadManager, _extends$2({}, mergedPropsAndState, {
         hideMenu: this.hideMenu,
         inputNode: this.inputNode,
         inputRef: this.inputRef,
@@ -3227,7 +3221,7 @@
         toggleMenu: this.toggleMenu
       }));
     }
-  }
+  };
   _defineProperty$1(Typeahead$1, "propTypes", propTypes$a);
   _defineProperty$1(Typeahead$1, "defaultProps", defaultProps$9);
 
@@ -3284,7 +3278,7 @@
    *  - Search prompt and empty results behaviors
    */
   const asyncContainer = TypeaheadComponent => {
-    class AsyncTypeahead extends React__default["default"].Component {
+    class AsyncTypeahead extends React.Component {
       constructor() {
         super(...arguments);
         _defineProperty$1(this, "_cache", {});
@@ -3363,7 +3357,7 @@
           ...props
         } = this.props;
         const cachedQuery = this._cache[this._query];
-        return /*#__PURE__*/React__default["default"].createElement(TypeaheadComponent, _extends$2({}, props, {
+        return /*#__PURE__*/React.createElement(TypeaheadComponent, _extends$2({}, props, {
           allowNew:
           // Disable custom selections during a search unless
           // `allowNew` is a function.
@@ -3379,7 +3373,7 @@
     _defineProperty$1(AsyncTypeahead, "displayName", "asyncContainer(" + getDisplayName(Typeahead$1) + ")");
     _defineProperty$1(AsyncTypeahead, "propTypes", propTypes$9);
     _defineProperty$1(AsyncTypeahead, "defaultProps", defaultProps$8);
-    return /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement(AsyncTypeahead, _extends$2({}, props, {
+    return /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React.createElement(AsyncTypeahead, _extends$2({}, props, {
       instanceRef: ref
     })));
   };
@@ -3389,8 +3383,6 @@
   var contains = {exports: {}};
 
   var interopRequireDefault = {exports: {}};
-
-  interopRequireDefault.exports;
 
   (function (module) {
   	function _interopRequireDefault(e) {
@@ -3404,8 +3396,6 @@
   var interopRequireDefaultExports = interopRequireDefault.exports;
 
   var inDOM = {exports: {}};
-
-  inDOM.exports;
 
   var hasRequiredInDOM;
 
@@ -3424,8 +3414,6 @@
   	} (inDOM, inDOM.exports));
   	return inDOM.exports;
   }
-
-  contains.exports;
 
   (function (module, exports) {
 
@@ -3468,8 +3456,6 @@
 
   var on = {exports: {}};
 
-  on.exports;
-
   var hasRequiredOn;
 
   function requireOn () {
@@ -3510,8 +3496,6 @@
 
   var off = {exports: {}};
 
-  off.exports;
-
   var hasRequiredOff;
 
   function requireOff () {
@@ -3544,8 +3528,6 @@
   	} (off, off.exports));
   	return off.exports;
   }
-
-  listen.exports;
 
   (function (module, exports) {
 
@@ -3582,8 +3564,6 @@
 
   var ownerDocument = {exports: {}};
 
-  ownerDocument.exports;
-
   (function (module, exports) {
 
   	exports.__esModule = true;
@@ -3598,14 +3578,12 @@
 
   var ownerDocumentExports$1 = ownerDocument.exports;
 
-  ownerDocument$1.exports;
-
   (function (module, exports) {
 
   	exports.__esModule = true;
   	exports.default = _default;
 
-  	var _reactDom = _interopRequireDefault(require$$0__default["default"]);
+  	var _reactDom = _interopRequireDefault(require$$0);
 
   	var _ownerDocument = _interopRequireDefault(ownerDocumentExports$1);
 
@@ -3620,8 +3598,6 @@
 
   var ownerDocumentExports = ownerDocument$1.exports;
 
-  RootCloseWrapper$1.exports;
-
   (function (module, exports) {
 
   	exports.__esModule = true;
@@ -3633,9 +3609,9 @@
 
   	var _propTypes = _interopRequireDefault(propTypesExports);
 
-  	var _react = _interopRequireDefault(React__default["default"]);
+  	var _react = _interopRequireDefault(React);
 
-  	var _reactDom = _interopRequireDefault(require$$0__default["default"]);
+  	var _reactDom = _interopRequireDefault(require$$0);
 
   	var _ownerDocument = _interopRequireDefault(ownerDocumentExports);
 
@@ -4146,7 +4122,7 @@
 
   var slicy = function slicy(arrLike, offset) {
       var arr = [];
-      for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+      for (var i = offset , j = 0; i < arrLike.length; i += 1, j += 1) {
           arr[j] = arrLike[i];
       }
       return arr;
@@ -4733,8 +4709,6 @@
   	}
   	return fn;
   };
-
-  callBind$3.exports;
 
   (function (module) {
 
@@ -7893,8 +7867,6 @@
   Popper$1.placements = placements;
   Popper$1.Defaults = Defaults;
 
-  var PopperJS = Popper$1;
-
   var lib = {exports: {}};
 
   var implementation = {exports: {}};
@@ -7905,13 +7877,11 @@
     return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
   };
 
-  implementation.exports;
-
   (function (module, exports) {
 
   	exports.__esModule = true;
 
-  	var _react = React__default["default"];
+  	var _react = React;
 
   	_interopRequireDefault(_react);
 
@@ -8107,13 +8077,11 @@
 
   var implementationExports = implementation.exports;
 
-  lib.exports;
-
   (function (module, exports) {
 
   	exports.__esModule = true;
 
-  	var _react = React__default["default"];
+  	var _react = React;
 
   	var _react2 = _interopRequireDefault(_react);
 
@@ -8303,7 +8271,7 @@
 
         var referenceElement = _this.props.referenceElement;
         if (!referenceElement || !popperNode) return;
-        _this.popperInstance = new PopperJS(referenceElement, popperNode, _this.getOptions());
+        _this.popperInstance = new Popper$1(referenceElement, popperNode, _this.getOptions());
       });
 
       _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "scheduleUpdate", function () {
@@ -8372,7 +8340,7 @@
     positionFixed: false
   });
 
-  PopperJS.placements;
+  Popper$1.placements;
   function Popper(_ref) {
     var referenceElement = _ref.referenceElement,
         props = _objectWithoutPropertiesLoose(_ref, ["referenceElement"]);
@@ -8524,7 +8492,7 @@
       size,
       ...props
     } = _ref;
-    return /*#__PURE__*/React__default["default"].createElement("button", _extends$2({}, props, {
+    return /*#__PURE__*/React.createElement("button", _extends$2({}, props, {
       "aria-label": label,
       className: cx('close', 'rbt-close', {
         'rbt-close-lg': isSizeLarge(size)
@@ -8534,9 +8502,9 @@
         onClick(e);
       },
       type: "button"
-    }), /*#__PURE__*/React__default["default"].createElement("span", {
+    }), /*#__PURE__*/React.createElement("span", {
       "aria-hidden": "true"
-    }, "\xD7"), /*#__PURE__*/React__default["default"].createElement("span", {
+    }, "\xD7"), /*#__PURE__*/React.createElement("span", {
       className: "sr-only"
     }, label));
   };
@@ -8547,7 +8515,7 @@
     let {
       size
     } = _ref;
-    return /*#__PURE__*/React__default["default"].createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: cx('rbt-loader', {
         'rbt-loader-lg': isSizeLarge(size),
         'rbt-loader-sm': isSizeSmall(size)
@@ -8575,7 +8543,7 @@
    * Higher-order component to encapsulate Token behaviors.
    */
   const tokenContainer = Component => {
-    class WrappedComponent extends React__default["default"].Component {
+    class WrappedComponent extends React.Component {
       constructor() {
         super(...arguments);
         _defineProperty$1(this, "state", {
@@ -8629,10 +8597,10 @@
         const {
           active
         } = this.state;
-        return /*#__PURE__*/React__default["default"].createElement(RootCloseWrapper, {
+        return /*#__PURE__*/React.createElement(RootCloseWrapper, {
           disabled: !active,
           onRootClose: this._handleBlur
-        }, /*#__PURE__*/React__default["default"].createElement(Component, _extends$2({}, this.props, {
+        }, /*#__PURE__*/React.createElement(Component, _extends$2({}, this.props, {
           active: active,
           onBlur: this._handleBlur,
           onClick: this._handleClick,
@@ -8673,7 +8641,7 @@
    * Individual token component, generally displayed within the TokenizerInput
    * component, but can also be rendered on its own.
    */
-  class Token extends React__default["default"].Component {
+  class Token extends React.Component {
     constructor() {
       super(...arguments);
       _defineProperty$1(this, "_renderRemoveableToken", () => {
@@ -8684,11 +8652,11 @@
           onRemove,
           ...props
         } = this.props;
-        return /*#__PURE__*/React__default["default"].createElement("div", _extends$2({}, props, {
+        return /*#__PURE__*/React.createElement("div", _extends$2({}, props, {
           className: cx('rbt-token', 'rbt-token-removeable', {
             'rbt-token-active': active
           }, className)
-        }), children, /*#__PURE__*/React__default["default"].createElement(ClearButton, {
+        }), children, /*#__PURE__*/React.createElement(ClearButton, {
           className: "rbt-token-remove-button",
           label: "Remove",
           onClick: onRemove,
@@ -8706,12 +8674,12 @@
           'rbt-token-disabled': disabled
         }, className);
         if (href && !disabled) {
-          return /*#__PURE__*/React__default["default"].createElement("a", {
+          return /*#__PURE__*/React.createElement("a", {
             className: classnames,
             href: href
           }, children);
         }
-        return /*#__PURE__*/React__default["default"].createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: classnames
         }, children);
       });
@@ -8729,7 +8697,7 @@
   _defineProperty$1(Token, "defaultProps", defaultProps$4);
   var Token$1 = tokenContainer(Token);
 
-  const Input = /*#__PURE__*/React__default["default"].forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement("input", _extends$2({}, props, {
+  const Input = /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React.createElement("input", _extends$2({}, props, {
     className: cx('rbt-input-main', props.className),
     ref: ref
   })));
@@ -8760,10 +8728,10 @@
     hintNode.style.padding = interpolateStyle(inputStyle, 'padding');
   }
   function hintContainer(Input) {
-    class HintedInput extends React__default["default"].Component {
+    class HintedInput extends React.Component {
       constructor() {
         super(...arguments);
-        _defineProperty$1(this, "hintRef", /*#__PURE__*/React__default["default"].createRef());
+        _defineProperty$1(this, "hintRef", /*#__PURE__*/React.createRef());
         _defineProperty$1(this, "_handleKeyDown", e => {
           const {
             initialItem,
@@ -8793,17 +8761,17 @@
           selectHintOnEnter,
           ...props
         } = this.props;
-        return /*#__PURE__*/React__default["default"].createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           style: {
             display: 'flex',
             flex: 1,
             height: '100%',
             position: 'relative'
           }
-        }, /*#__PURE__*/React__default["default"].createElement(Input, _extends$2({}, props, {
+        }, /*#__PURE__*/React.createElement(Input, _extends$2({}, props, {
           onKeyDown: this._handleKeyDown,
           ref: forwardedRef
-        })), /*#__PURE__*/React__default["default"].createElement("input", {
+        })), /*#__PURE__*/React.createElement("input", {
           "aria-hidden": true,
           className: "rbt-input-hint",
           ref: this.hintRef,
@@ -8826,7 +8794,7 @@
     }
     _defineProperty$1(HintedInput, "displayName", "hintContainer(" + getDisplayName(Input) + ")");
     const HintedInputWithContext = withContext(HintedInput, ['hintText', 'initialItem', 'inputNode', 'onAdd', 'selectHintOnEnter']);
-    return /*#__PURE__*/React__default["default"].forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement(HintedInputWithContext, _extends$2({}, props, {
+    return /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React.createElement(HintedInputWithContext, _extends$2({}, props, {
       forwardedRef: ref
     })));
   }
@@ -8834,7 +8802,7 @@
   function withClassNames(Component) {
     // Use a class instead of function component to support refs.
 
-    class WrappedComponent extends React__default["default"].Component {
+    class WrappedComponent extends React.Component {
       render() {
         const {
           className,
@@ -8843,7 +8811,7 @@
           size,
           ...props
         } = this.props;
-        return /*#__PURE__*/React__default["default"].createElement(Component, _extends$2({}, props, {
+        return /*#__PURE__*/React.createElement(Component, _extends$2({}, props, {
           className: cx('form-control', 'rbt-input', {
             'input-lg form-control-lg': isSizeLarge(size),
             'input-sm form-control-sm': isSizeSmall(size),
@@ -8858,10 +8826,10 @@
   }
 
   const HintedInput$1 = hintContainer(Input);
-  class TypeaheadInputMulti extends React__default["default"].Component {
+  class TypeaheadInputMulti extends React.Component {
     constructor() {
       super(...arguments);
-      _defineProperty$1(this, "wrapperRef", /*#__PURE__*/React__default["default"].createRef());
+      _defineProperty$1(this, "wrapperRef", /*#__PURE__*/React.createRef());
       _defineProperty$1(this, "_input", void 0);
       _defineProperty$1(this, "getInputRef", input => {
         this._input = input;
@@ -8924,16 +8892,16 @@
         selected,
         ...props
       } = this.props;
-      return /*#__PURE__*/React__default["default"].createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: cx('rbt-input-multi', className),
         disabled: props.disabled,
         onClick: this._handleContainerClickOrFocus,
         onFocus: this._handleContainerClickOrFocus,
         tabIndex: -1
-      }, /*#__PURE__*/React__default["default"].createElement("div", {
+      }, /*#__PURE__*/React.createElement("div", {
         className: "rbt-input-wrapper",
         ref: this.wrapperRef
-      }, children, /*#__PURE__*/React__default["default"].createElement(HintedInput$1, _extends$2({}, props, {
+      }, children, /*#__PURE__*/React.createElement(HintedInput$1, _extends$2({}, props, {
         className: inputClassName,
         onKeyDown: this._handleKeyDown,
         placeholder: selected.length ? '' : placeholder,
@@ -8959,7 +8927,7 @@
       inputRef,
       ...props
     } = _ref;
-    return /*#__PURE__*/React__default["default"].createElement(HintedInput, _extends$2({}, props, {
+    return /*#__PURE__*/React.createElement(HintedInput, _extends$2({}, props, {
       ref: inputRef
     }));
   });
@@ -8978,7 +8946,7 @@
    * Results are already filtered by the time the component is used internally so
    * we can safely ignore case and diacritical marks for the purposes of matching.
    */
-  class Highlighter extends React__default["default"].PureComponent {
+  class Highlighter extends React.PureComponent {
     render() {
       const {
         children,
@@ -9008,7 +8976,7 @@
 
         // Capture the matching string.
         const match = remaining.slice(bounds.start, bounds.end);
-        highlighterChildren.push( /*#__PURE__*/React__default["default"].createElement("mark", {
+        highlighterChildren.push( /*#__PURE__*/React.createElement("mark", {
           className: highlightClassName,
           key: matchCount
         }, match));
@@ -9032,10 +9000,10 @@
     position: PropTypes.number
   };
   const menuItemContainer = Component => {
-    class WrappedMenuItem extends React__default["default"].Component {
+    class WrappedMenuItem extends React.Component {
       constructor() {
         super(...arguments);
-        _defineProperty$1(this, "itemRef", /*#__PURE__*/React__default["default"].createRef());
+        _defineProperty$1(this, "itemRef", /*#__PURE__*/React.createRef());
         _defineProperty$1(this, "_handleClick", e => {
           const {
             onMenuItemClick,
@@ -9094,7 +9062,7 @@
 
         // Update the item's position in the item stack.
         setItem(option, position);
-        return /*#__PURE__*/React__default["default"].createElement(Component, _extends$2({}, props, {
+        return /*#__PURE__*/React.createElement(Component, _extends$2({}, props, {
           active: active,
           "aria-label": label,
           "aria-selected": active,
@@ -9111,7 +9079,7 @@
     return withContext(WrappedMenuItem, ['activeIndex', 'id', 'isOnlyResult', 'items', 'onActiveItemChange', 'onInitialItemChange', 'onMenuItemClick', 'setItem']);
   };
 
-  const BaseMenuItem = /*#__PURE__*/React__default["default"].forwardRef((_ref, ref) => {
+  const BaseMenuItem = /*#__PURE__*/React.forwardRef((_ref, ref) => {
     let {
       active,
       children,
@@ -9125,10 +9093,10 @@
       active,
       disabled
     };
-    return /*#__PURE__*/React__default["default"].createElement("li", _extends$2({}, props, {
+    return /*#__PURE__*/React.createElement("li", _extends$2({}, props, {
       className: cx(conditionalClassNames, className),
       ref: ref
-    }), /*#__PURE__*/React__default["default"].createElement("a", {
+    }), /*#__PURE__*/React.createElement("a", {
       className: cx('dropdown-item', conditionalClassNames),
       href: "#",
       onClick: e => {
@@ -9140,11 +9108,11 @@
   });
   var MenuItem = menuItemContainer(BaseMenuItem);
 
-  const MenuDivider = props => /*#__PURE__*/React__default["default"].createElement("li", {
+  const MenuDivider = props => /*#__PURE__*/React.createElement("li", {
     className: "divider dropdown-divider",
     role: "separator"
   });
-  const MenuHeader = props => /*#__PURE__*/React__default["default"].createElement("li", _extends$2({}, props, {
+  const MenuHeader = props => /*#__PURE__*/React.createElement("li", _extends$2({}, props, {
     className: "dropdown-header"
   }));
   const propTypes$2 = {
@@ -9170,7 +9138,7 @@
   /**
    * Menu component that handles empty state when passed a set of results.
    */
-  class Menu extends React__default["default"].Component {
+  class Menu extends React.Component {
     componentDidUpdate(prevProps) {
       const {
         inputHeight,
@@ -9193,11 +9161,11 @@
         style,
         text
       } = this.props;
-      const contents = React.Children.count(children) === 0 ? /*#__PURE__*/React__default["default"].createElement(BaseMenuItem, {
+      const contents = React.Children.count(children) === 0 ? /*#__PURE__*/React.createElement(BaseMenuItem, {
         disabled: true,
         role: "option"
       }, emptyLabel) : children;
-      return /*#__PURE__*/React__default["default"].createElement("ul", {
+      return /*#__PURE__*/React.createElement("ul", {
         "aria-label": this.props['aria-label'],
         className: cx('rbt-menu', 'dropdown-menu', 'show', className),
         id: id,
@@ -9355,12 +9323,12 @@
     isInvalid: false,
     isLoading: false,
     isValid: false,
-    renderMenu: (results, menuProps, props) => /*#__PURE__*/React__default["default"].createElement(TypeaheadMenu, _extends$2({}, menuProps, {
+    renderMenu: (results, menuProps, props) => /*#__PURE__*/React.createElement(TypeaheadMenu, _extends$2({}, menuProps, {
       labelKey: props.labelKey,
       options: results,
       text: props.text
     })),
-    renderToken: (option, props, idx) => /*#__PURE__*/React__default["default"].createElement(Token$1, {
+    renderToken: (option, props, idx) => /*#__PURE__*/React.createElement(Token$1, {
       disabled: props.disabled,
       key: idx,
       onRemove: props.onRemove,
@@ -9371,7 +9339,7 @@
   function getOverlayProps(props) {
     return pick(props, ['align', 'dropup', 'flip', 'positionFixed']);
   }
-  class TypeaheadComponent extends React__default["default"].Component {
+  class TypeaheadComponent extends React.Component {
     constructor() {
       super(...arguments);
       _defineProperty$1(this, "_referenceElement", void 0);
@@ -9402,14 +9370,14 @@
           size: bsSize || size
         };
         if (!multiple) {
-          return /*#__PURE__*/React__default["default"].createElement(TypeaheadInputSingle, commonProps);
+          return /*#__PURE__*/React.createElement(TypeaheadInputSingle, commonProps);
         }
         const {
           labelKey,
           onRemove,
           selected
         } = props;
-        return /*#__PURE__*/React__default["default"].createElement(TypeaheadInputMulti$1, _extends$2({}, commonProps, {
+        return /*#__PURE__*/React.createElement(TypeaheadInputMulti$1, _extends$2({}, commonProps, {
           selected: selected
         }), selected.map((option, idx) => renderToken(option, {
           ...commonProps,
@@ -9452,11 +9420,11 @@
         } = this.props;
         let content;
         if (isLoading) {
-          content = /*#__PURE__*/React__default["default"].createElement(Loader, {
+          content = /*#__PURE__*/React.createElement(Loader, {
             size: bsSize || size
           });
         } else if (clearButton && !disabled && selected.length) {
-          content = /*#__PURE__*/React__default["default"].createElement(ClearButton, {
+          content = /*#__PURE__*/React.createElement(ClearButton, {
             size: bsSize || size,
             onClick: onClear,
             onFocus: e => {
@@ -9466,7 +9434,7 @@
             onMouseDown: preventInputBlur
           });
         }
-        return content ? /*#__PURE__*/React__default["default"].createElement("div", {
+        return content ? /*#__PURE__*/React.createElement("div", {
           className: cx('rbt-aux', {
             'rbt-aux-lg': isSizeLarge(bsSize)
           })
@@ -9482,7 +9450,7 @@
         options,
         style
       } = this.props;
-      return /*#__PURE__*/React__default["default"].createElement(Typeahead$1, _extends$2({}, this.props, {
+      return /*#__PURE__*/React.createElement(Typeahead$1, _extends$2({}, this.props, {
         options: options,
         ref: instanceRef
       }), _ref2 => {
@@ -9496,10 +9464,10 @@
           results
         } = props;
         const auxContent = this._renderAux(props);
-        return /*#__PURE__*/React__default["default"].createElement(RootCloseWrapper, {
+        return /*#__PURE__*/React.createElement(RootCloseWrapper, {
           disabled: open || !isMenuShown,
           onRootClose: hideMenu
-        }, /*#__PURE__*/React__default["default"].createElement("div", {
+        }, /*#__PURE__*/React.createElement("div", {
           className: cx('rbt', {
             'has-aux': !!auxContent
           }, className),
@@ -9512,7 +9480,7 @@
         }, this._renderInput({
           ...getInputProps(this.props.inputProps),
           ref: this.referenceElementRef
-        }, props), /*#__PURE__*/React__default["default"].createElement(Overlay, _extends$2({}, getOverlayProps(this.props), {
+        }, props), /*#__PURE__*/React.createElement(Overlay, _extends$2({}, getOverlayProps(this.props), {
           isMenuShown: isMenuShown,
           referenceElement: this._referenceElement
         }), menuProps => this._renderMenu(results, menuProps, props)), auxContent, isFunction$2(children) ? children(props) : children));
@@ -9521,7 +9489,7 @@
   }
   _defineProperty$1(TypeaheadComponent, "propTypes", propTypes);
   _defineProperty$1(TypeaheadComponent, "defaultProps", defaultProps);
-  var Typeahead = /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React__default["default"].createElement(TypeaheadComponent, _extends$2({}, props, {
+  var Typeahead = /*#__PURE__*/React.forwardRef((props, ref) => /*#__PURE__*/React.createElement(TypeaheadComponent, _extends$2({}, props, {
     instanceRef: ref
   })));
 
@@ -9543,7 +9511,5 @@
   exports.hintContainer = hintContainer;
   exports.menuItemContainer = menuItemContainer;
   exports.tokenContainer = tokenContainer;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
