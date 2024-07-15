@@ -2,7 +2,7 @@
 
 import { sortBy } from 'lodash';
 import React, { Fragment } from 'react';
-import { Button, FormGroup, InputGroup } from 'react-bootstrap';
+import { Button, FormGroup, InputGroup } from '@talend/react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import options from '../data';

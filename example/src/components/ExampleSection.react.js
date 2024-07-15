@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button } from '@talend/react-bootstrap';
 
 import CodeSample from './CodeSample.react';
 

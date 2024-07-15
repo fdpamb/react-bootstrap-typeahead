@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { MenuItem, NavDropdown } from 'react-bootstrap';
+import { MenuItem, NavDropdown } from '@talend/react-bootstrap';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 import { withContext } from './Context.react';

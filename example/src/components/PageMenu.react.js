@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { Nav } from 'react-bootstrap';
+import { Nav } from '@talend/react-bootstrap';
 
 const PageMenu = (props) => (
   <div className="bs-docs-sidebar hidden-print hidden-xs hidden-sm">

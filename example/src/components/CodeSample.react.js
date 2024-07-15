@@ -1,33 +1,32 @@
 
 
-import { PrismCode } from 'react-prism';
-import PropTypes from 'prop-types';
-import React from 'react';
+import Prism from 'prismjs'
+import React, { useEffect, useRef } from 'react'
 
-const START_STR = '/* example-start */';
-const END_STR = '/* example-end */';
+const START_STR = '/* example-start */'
+const END_STR = '/* example-end */'
 
 function getExampleCode(str) {
   return str.slice(
     str.indexOf(START_STR) + START_STR.length + 1,
     str.indexOf(END_STR)
-  );
+  )
 }
 
-const CodeSample = ({ children, component, language }) => (
-  <PrismCode className={`language-${language}`} component={component}>
-    {getExampleCode(children)}
-  </PrismCode>
-);
+const CodeSample = ({ children }) => {
+  const ref = useRef(null)
 
-CodeSample.propTypes = {
-  component: PropTypes.string,
-  language: PropTypes.string,
-};
+  useEffect(() => {
+    if (ref.current) {
+      Prism.highlightElement(ref.current)
+    }
+  }, [])
 
-CodeSample.defaultProps = {
-  component: 'pre',
-  language: 'jsx',
-};
+  return (
+    <pre className='language-jsx' ref={ref}>
+      {getExampleCode(children)}
+    </pre>
+  )
+}
 
-export default CodeSample;
+export default CodeSample

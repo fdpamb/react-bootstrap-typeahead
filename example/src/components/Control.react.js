@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { Checkbox, Radio } from 'react-bootstrap';
+import { Checkbox, Radio } from '@talend/react-bootstrap';
 import { FormGroup, Input, Label } from 'reactstrap';
 
 import { withContext } from './Context.react';

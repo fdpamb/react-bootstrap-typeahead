@@ -2,7 +2,7 @@
 
 import { groupBy } from 'lodash';
 import React, { Fragment } from 'react';
-import { FormControl, FormGroup } from 'react-bootstrap';
+import { FormControl, FormGroup } from '@talend/react-bootstrap';
 import { Highlighter, hintContainer, Menu, MenuItem, Token, Typeahead } from 'react-bootstrap-typeahead';
 
 import Control from '../components/Control.react';

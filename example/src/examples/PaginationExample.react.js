@@ -2,7 +2,7 @@
 
 import { range } from 'lodash';
 import React, { Fragment, useState } from 'react';
-import { FormGroup } from 'react-bootstrap';
+import { FormGroup } from '@talend/react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import Control from '../components/Control.react';

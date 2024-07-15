@@ -3,7 +3,7 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import { Nav, NavItem, Navbar } from 'react-bootstrap';
+import { Nav, NavItem, Navbar } from '@talend/react-bootstrap';
 
 import GitHubLogo from './GitHubLogo.react';
 import VersionDropdown from './VersionDropdown.react';

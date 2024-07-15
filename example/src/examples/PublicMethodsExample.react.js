@@ -1,7 +1,7 @@
 
 
 import React, { Fragment, useRef } from 'react';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonToolbar } from '@talend/react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 
 import options from '../data';

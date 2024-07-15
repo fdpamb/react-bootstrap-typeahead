@@ -2,7 +2,7 @@
 
 import cx from 'classnames';
 import React, { Children } from 'react';
-import { Col, NavItem, Row } from 'react-bootstrap';
+import { Col, NavItem, Row } from '@talend/react-bootstrap';
 
 import Context from './Context.react';
 import PageFooter from './PageFooter.react';
