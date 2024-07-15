@@ -4,8 +4,8 @@ const babel = require('@rollup/plugin-babel').default;
 const commonjs = require('@rollup/plugin-commonjs');
 const nodeResolve = require('@rollup/plugin-node-resolve').default;
 const replace = require('@rollup/plugin-replace');
-const { sizeSnapshot } = require('rollup-plugin-size-snapshot');
-const { terser } = require('rollup-plugin-terser');
+//const { sizeSnapshot } = require('rollup-plugin-size-snapshot');
+const terser = require('@rollup/plugin-terser');
 
 const { name } = require('./package.json');
 
@@ -37,7 +37,7 @@ const getUmdConfig = (isProd) => ({
         isProd ? 'production' : 'development'
       ),
     }),
-    sizeSnapshot(),
+    //sizeSnapshot(),
     isProd ? terser() : null,
   ],
 });
