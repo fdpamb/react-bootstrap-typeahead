@@ -37,7 +37,7 @@
     "start": "webpack --mode development -w --progress --config example/webpack.config.js",
     "test": "jest --silent",
     "test:coverage": "jest --coverage",
-    "prepare": "npm run build"
+    "prepare": "npm run build:css && npm run build:cjs && npm run build:es && npm run build:dist"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.7",
