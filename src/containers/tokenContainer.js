@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React, { type ComponentType } from 'react';
-import { RootCloseWrapper } from 'react-overlays';
+import RootCloseWrapper from '../RootCloseWrapper';
 
 import { getDisplayName, isFunction, noop } from '../utils';
 import { BACKSPACE } from '../constants';

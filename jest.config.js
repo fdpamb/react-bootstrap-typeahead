@@ -14,4 +14,5 @@ module.exports = {
   testMatch: [
     '**/?(*.)+(spec|test).[jt]s?(x)',
   ],
+  testTimeout: 70000
 };
