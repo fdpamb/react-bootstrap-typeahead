@@ -4,7 +4,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import { findDOMNode } from 'react-dom';
-import { RootCloseWrapper } from 'react-overlays';
+import RootCloseWrapper from '../RootCloseWrapper';
 
 import type { ElementRef, Node } from 'react';
 
