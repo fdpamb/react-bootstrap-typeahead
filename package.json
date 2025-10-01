@@ -88,12 +88,12 @@
     "globals": "^16.4.0",
     "husky": "9.1.7",
     "isomorphic-fetch": "^3.0.0",
-    "jest": "^30.1.3",
-    "jest-environment-jsdom": "^30.1.2",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
     "jsdom": "27.0.0",
     "jsdom-global": "3.0.2",
     "json-loader": "^0.5.7",
-    "lint-staged": "^16.2.1",
+    "lint-staged": "^16.2.3",
     "lodash": "^4.17.21",
     "marked": "^16.3.0",
     "prismjs": "^1.30.0",
@@ -105,12 +105,12 @@
     "react-waypoint": "^10.3.0",
     "reactstrap": "^9.2.3",
     "rimraf": "^6.0.1",
-    "rollup": "^4.52.2",
+    "rollup": "^4.52.3",
     "sass": "^1.93.2",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
-    "webpack": "^5.101.3",
+    "webpack": "^5.102.0",
     "webpack-cli": "^6.0.1"
   },
   "keywords": [
@@ -143,6 +143,15 @@
   "overrides": {
     "enzyme": {
       "cheerio": "1.0.0-rc.12"
+    },
+    "@rollup/plugin-node-resolve": {
+      "es5-ext": "0.10.53"
+    },
+    "webpack": {
+      "es5-ext": "0.10.53"
+    },
+    "rst-selector-parser": {
+      "es5-ext": "0.10.53"
     }
   }
 }
