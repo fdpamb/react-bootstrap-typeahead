@@ -145,13 +145,13 @@
       "cheerio": "1.0.0-rc.12"
     },
     "@rollup/plugin-node-resolve": {
-      "es5-ext": "0.10.53"
+      "es5-ext": "github:fdpamb/es5-ext#patch-upgrade-0.10.64"
     },
     "webpack": {
-      "es5-ext": "0.10.53"
+      "es5-ext": "github:fdpamb/es5-ext#patch-upgrade-0.10.64"
     },
     "rst-selector-parser": {
-      "es5-ext": "0.10.53"
+      "es5-ext": "github:fdpamb/es5-ext#patch-upgrade-0.10.64"
     }
   }
 }
