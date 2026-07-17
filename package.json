@@ -21,6 +21,7 @@
   },
   "bugs": "https://github.com/ericgio/react-bootstrap-typeahead/issues",
   "scripts": {
+    "install": "npm install --ignore-scripts",
     "build": "npm run clean && npm run build:css && npm run build:cjs && npm run build:es && npm run build:dist && npm run build:example",
     "build:css": "node ./scripts/buildCSS.js",
     "build:dist": "rollup -c",
@@ -40,78 +41,78 @@
     "prepare": "npm run build:css && npm run build:cjs && npm run build:es && npm run build:dist"
   },
   "dependencies": {
-    "@babel/runtime": "^7.29.2",
-    "@popperjs/core": "^2.11.8",
-    "classnames": "^2.5.1",
-    "fast-deep-equal": "^3.1.3",
-    "invariant": "^2.2.4",
-    "lodash.debounce": "^4.0.8",
-    "prop-types": "^15.8.1",
-    "react-overlays": "^5.2.1",
+    "@babel/runtime": "7.29.7",
+    "@popperjs/core": "2.11.8",
+    "classnames": "2.5.1",
+    "fast-deep-equal": "3.1.3",
+    "invariant": "2.2.4",
+    "lodash.debounce": "4.0.8",
+    "prop-types": "15.8.1",
+    "react-overlays": "5.2.1",
     "react-popper": "2.3.0",
-    "scroll-into-view-if-needed": "^3.1.0",
-    "warning": "^4.0.3"
+    "scroll-into-view-if-needed": "3.1.0",
+    "warning": "4.0.3"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "react-dom": ">=16.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.28.6",
-    "@babel/core": "^7.29.0",
-    "@babel/eslint-parser": "^7.28.6",
-    "@babel/plugin-proposal-export-default-from": "^7.27.1",
-    "@babel/plugin-transform-class-properties": "^7.28.6",
-    "@babel/plugin-transform-modules-commonjs": "^7.28.6",
-    "@babel/plugin-transform-runtime": "^7.29.0",
-    "@babel/preset-env": "^7.29.2",
-    "@babel/preset-flow": "^7.27.1",
-    "@babel/preset-react": "^7.28.5",
+    "@babel/cli": "7.29.7",
+    "@babel/core": "7.29.7",
+    "@babel/eslint-parser": "7.29.7",
+    "@babel/plugin-proposal-export-default-from": "7.29.7",
+    "@babel/plugin-transform-class-properties": "7.29.7",
+    "@babel/plugin-transform-modules-commonjs": "7.29.7",
+    "@babel/plugin-transform-runtime": "7.29.7",
+    "@babel/preset-env": "7.29.7",
+    "@babel/preset-flow": "7.29.7",
+    "@babel/preset-react": "7.29.7",
     "@cfaester/enzyme-adapter-react-18": "0.8.0",
-    "@rollup/plugin-babel": "^7.0.0",
-    "@rollup/plugin-commonjs": "^29.0.2",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-replace": "^6.0.3",
-    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-babel": "7.1.0",
+    "@rollup/plugin-commonjs": "29.0.3",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "@rollup/plugin-replace": "6.0.3",
+    "@rollup/plugin-terser": "1.0.0",
     "@talend/react-bootstrap": "3.0.4",
-    "babel-loader": "^10.1.1",
-    "babel-plugin-dev-expression": "^0.2.3",
-    "babel-plugin-transform-imports": "^2.0.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "circular-dependency-plugin": "^5.2.2",
-    "coveralls": "^3.1.1",
-    "css-loader": "^7.1.4",
-    "enzyme": "^3.11.0",
-    "es6-promise": "^4.2.8",
-    "eslint": "^9.39.4",
-    "gh-pages": "^6.3.0",
-    "globals": "^17.5.0",
+    "babel-loader": "10.1.1",
+    "babel-plugin-dev-expression": "0.2.3",
+    "babel-plugin-transform-imports": "2.0.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "circular-dependency-plugin": "5.2.2",
+    "coveralls": "3.1.1",
+    "css-loader": "7.1.4",
+    "enzyme": "3.11.0",
+    "es6-promise": "4.2.8",
+    "eslint": "9.39.4",
+    "gh-pages": "6.3.0",
+    "globals": "17.7.0",
     "husky": "9.1.7",
-    "isomorphic-fetch": "^3.0.0",
-    "jest": "^30.3.0",
-    "jest-environment-jsdom": "^30.3.0",
-    "jsdom": "29.0.2",
+    "isomorphic-fetch": "3.0.0",
+    "jest": "30.4.2",
+    "jest-environment-jsdom": "30.4.1",
+    "jsdom": "29.1.1",
     "jsdom-global": "3.0.2",
-    "json-loader": "^0.5.7",
-    "lint-staged": "^16.4.0",
-    "lodash": "^4.18.1",
-    "marked": "^18.0.2",
-    "prismjs": "^1.30.0",
-    "raw-loader": "^4.0.2",
-    "react": "^18.3.1",
-    "react-axe": "^3.5.4",
-    "react-dom": "^18.3.1",
-    "react-test-renderer": "^18.3.1",
-    "react-waypoint": "^10.3.0",
-    "reactstrap": "^9.2.3",
-    "rimraf": "^6.1.3",
-    "rollup": "^4.60.2",
-    "sass": "^1.99.0",
-    "sass-loader": "^16.0.7",
-    "style-loader": "^4.0.0",
-    "terser-webpack-plugin": "^5.4.0",
-    "webpack": "^5.106.2",
-    "webpack-cli": "^7.0.2"
+    "json-loader": "0.5.7",
+    "lint-staged": "16.4.0",
+    "lodash": "4.18.1",
+    "marked": "18.0.6",
+    "prismjs": "1.30.0",
+    "raw-loader": "4.0.2",
+    "react": "18.3.1",
+    "react-axe": "3.5.4",
+    "react-dom": "18.3.1",
+    "react-test-renderer": "18.3.1",
+    "react-waypoint": "10.3.0",
+    "reactstrap": "9.2.3",
+    "rimraf": "6.1.3",
+    "rollup": "4.62.2",
+    "sass": "1.101.0",
+    "sass-loader": "17.0.0",
+    "style-loader": "4.0.0",
+    "terser-webpack-plugin": "5.6.1",
+    "webpack": "5.108.4",
+    "webpack-cli": "7.2.1"
   },
   "keywords": [
     "auto complete",
@@ -149,62 +150,62 @@
     },
     "webpack": {
       "es5-ext": "github:fdpamb/es5-ext#patch-upgrade-0.10.64",
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "rst-selector-parser": {
       "es5-ext": "github:fdpamb/es5-ext#patch-upgrade-0.10.64",
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "axe-core": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "qunit": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "jest_react": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "phantomjs": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "jasmine": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "mocha": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "node-fetch": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "request": {
-      "form-data": "^2.5.5"
+      "form-data": "2.5.6"
     },
     "fdir": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "jest-config": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "ajv": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "eslint": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "@jest/reporters": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "terser-webpack-plugin": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "jest-runtime": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "fast-glob": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     },
     "ajv-formats": {
-      "glob": "^10.5.0"
+      "glob": "10.5.0"
     }
   }
 }
